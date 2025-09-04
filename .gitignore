@@ -2,4 +2,6 @@
 !.gitignore
 !nvim**
 !kitty**
+!hypr**
+!waybar**
 
