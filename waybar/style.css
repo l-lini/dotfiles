@@ -1,5 +1,5 @@
 * {
-	font-size: 18px;
+	font-size: 16px;
 	font-family: JetBrains Mono;
 }
 
@@ -13,20 +13,13 @@ window#waybar {
 }
 
 #workspaces button {
-	padding: 0 2px;
-	color: #fdf6e3;
+    padding: 0 3px;
 }
-#workspaces button.focused {
-	color: #268bd2;
-}
-#workspaces button:hover {
-	box-shadow: inherit;
-	text-shadow: inherit;
+#workspaces button.active {
+    color: #ffffff;
 }
 #workspaces button:hover {
-	background: #1a1a1a;
-	border: #1a1a1a;
-	padding: 0 3px;
+    color: #222222;
 }
 
 #pulseaudio {
