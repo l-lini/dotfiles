@@ -1,34 +1,15 @@
 * {
-	font-size: 16px;
+	font-size: 18px;
 	font-family: JetBrains Mono;
 }
 
 window#waybar {
-	background: #292b2e;
-	color: #fdf6e3;
+	background: #000000;
+	color: #ffffff;
 }
 
-#custom-right-arrow-dark,
-#custom-left-arrow-dark {
-	color: #1a1a1a;
-}
-#custom-right-arrow-light,
-#custom-left-arrow-light {
-	color: #292b2e;
-	background: #1a1a1a;
-}
-
-#workspaces,
-#clock.1,
-#clock.2,
-#clock.3,
-#pulseaudio,
-#memory,
-#cpu,
-#battery,
-#disk,
-#tray {
-	background: #1a1a1a;
+#custom-line {
+    color: #222222;
 }
 
 #workspaces button {
@@ -69,6 +50,7 @@ window#waybar {
 #memory,
 #cpu,
 #battery,
-#disk {
-	padding: 0 10px;
+#disk,
+#tray {
+    padding: 0 10px;
 }
