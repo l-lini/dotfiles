@@ -16,8 +16,6 @@
 		"custom/line",
 		"cpu",
 		"custom/line",
-		"battery",
-		"custom/line",
 		"disk",
 		"custom/line",
 		"tray"
