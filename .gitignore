@@ -1,7 +1,11 @@
 *
 !.gitignore
-!nvim**
-!kitty**
-!hypr**
-!waybar**
+!nvim/**
+!nvim/
+!kitty/**
+!kitty/
+!hypr/**
+!hypr/
+!waybar/**
+!waybar/
 
