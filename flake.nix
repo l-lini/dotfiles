@@ -15,6 +15,7 @@
   # auto indent detection
   # harpoon or fuzzy finder or file explorer or similar (pick one)
   # undo-tree
+  # system clipboard
 # zoxide
 # zsh
 # zfs (disko)
