@@ -2,6 +2,7 @@
 	description = "lini's system configuration";
 
 	inputs = {
+		# cachix?
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
 		nixpkgs-instable.url = "github:nixos/nixpkgs/nixos-unstable";
 		nixvim = {
@@ -19,52 +20,17 @@
 			lini = nixpkgs.lib.nixosSystem {
 				modules = [
 					./config/config.nix
-					# home-manager.nixosModules.home-manager {
-					# 	home-manager.useGlablPkgs = true;
-					# 	home-manager.useUserPackages = true;
-					# 	home-manager.users.lini = import ./home/lini;
-					# 	home-manager.extraSpecialArgs = {
-					# 		nixvim = nixvim;
-					# 	};
-					# }
+					nixvim.homeModules.nixvim
+					home-manager.nixosModules.home-manager {
+						home-manager.useGlobalPkgs = true;
+						home-manager.useUserPackages = true;
+						home-manager.users.lini = import ./home/lini;
+						home-manager.extraSpecialArgs = {
+							nixvim = nixvim;
+						};
+					}
 				];
 			};
 		};
 	};
 }
-# Default to tabwidth = 2
-# Git default branch = main
-# Git name = lini
-# Git mail = idontwant@youremailsfuckof.gmail.com
-# Git default pull/push with current branch
-# Git default pull with rebase
-# Remove all dirs except for Documents, Pictures, Projects, Password Digests, ... (ephemeral root)
-# Vim terminal, Vim nmtui, Vim browser (qutebrowser), Vim window manager (maybe not hyprland)
-# Disable mouse in terminal
-# Nmtui with fix for eduroam (keep somewhere where ephemeral root won't delete of course)
-# Git and ssh stuffies in some ephemeral root safe dir
-# Nice background
-# Nice consistent color scheme and font and styling
-# Battery-, Network-, Time-, Keybinds-, Sound-, notif on keybind
-# Switch language keybind with notif for language
-# zoxide
-# zsh
-# zfs (disko)
-# cachix (binary builds of packages I think)
-# Home manager of course (match the versions)
-# Window manager
-  # Launcher
-  # Terminal
-  # Browser
-  # File explorer (Vim keybinds)
-  # Fullscreen
-  # Move
-  # Switch
-  # Floating toggle
-  # Resizing
-  # Screenshot
-  # Master slave layout (keep same master, add slaves)
-  # Blurred background on not focused. Opaque if focused
-  # toggle mirror screen
-# Bluetooth auto connect to headphones
-# Slack and Discord and Spotify (don't forget to keep the login info outside of ephemeral root)

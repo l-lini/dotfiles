@@ -15,11 +15,10 @@
     # Flakes clones its dependencies through the git command,
     # so git must be installed first
     git
-    neovim
     tree
   ];
 
-  # Set the default editor to nixvim
+  # Set the default editor to neovim
   environment.variables.EDITOR = "nvim";
 
   # Use the systemd-boot EFI boot loader.

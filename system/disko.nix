@@ -1,0 +1,2 @@
+# zfs (disko)
+# Encryption
