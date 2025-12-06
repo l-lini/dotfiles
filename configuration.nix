@@ -1,6 +1,3 @@
-{ lib, ... }:
-{
-}
 { config, pkgs, ... }:
 {
 	# programs.nixvim = {
