@@ -4,6 +4,9 @@
 { config, pkgs, ... }:
 {
 	# programs.nixvim = {
+	#	# relative line numbers
+	#	# disable arrow keys
+	#	# disable mouse (in all terminal instances and neovim etc...) ()
 	# 	# lsp easy
 	# 	# tree-sitter easy
 	# 	# auto indent detection

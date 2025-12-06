@@ -15,23 +15,23 @@
 	};
 
 	outputs = inputs @{ nixpkgs, home-manager, nixvim, ... }: {
-		nixosConfiguration = {
+		nixosConfigurations = {
 			lini = nixpkgs.lib.nixosSystem {
 				modules = [
 					./config/config.nix
-					home-manager.nixosModules.home-manager {
-						home-manager.useGlablPkgs = true;
-						home-manager.useUserPackages = true;
-						home-manager.users.lini = import ./home/lini;
-						home-manager.extraSpecialArgs = {
-							nixvim = nixvim;
-						};
-					}
+					# home-manager.nixosModules.home-manager {
+					# 	home-manager.useGlablPkgs = true;
+					# 	home-manager.useUserPackages = true;
+					# 	home-manager.users.lini = import ./home/lini;
+					# 	home-manager.extraSpecialArgs = {
+					# 		nixvim = nixvim;
+					# 	};
+					# }
 				];
 			};
 		};
 	};
-};
+}
 # Default to tabwidth = 2
 # Git default branch = main
 # Git name = lini
@@ -40,6 +40,7 @@
 # Git default pull with rebase
 # Remove all dirs except for Documents, Pictures, Projects, Password Digests, ... (ephemeral root)
 # Vim terminal, Vim nmtui, Vim browser (qutebrowser), Vim window manager (maybe not hyprland)
+# Disable mouse in terminal
 # Nmtui with fix for eduroam (keep somewhere where ephemeral root won't delete of course)
 # Git and ssh stuffies in some ephemeral root safe dir
 # Nice background
