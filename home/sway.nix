@@ -4,7 +4,7 @@
         # deps
         imports = [
                 ./kitty.nix
-                # ./qutebrowser.nix 
+                ./qutebrowser.nix 
                 # ./wofi.nix
         ];
 
