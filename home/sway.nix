@@ -1,16 +1,18 @@
 { ... }:
 
-# Google how to nicely declare dependencies on packages. This config depends on the fact 
-# that kitty and wofi and qutebrowser etc ...  are installed.
 {
-        programs.kitty.enable = true;
-        programs.qutebrowser.enable = true;
-        programs.wofi.enable = true;
+        # deps
+        imports = [
+                ./kitty.nix
+                # ./qutebrowser.nix 
+                # ./wofi.nix
+        ];
+
         wayland.windowManager.sway = let
                 modifier = "Mod4";
                 terminal = "kitty";
                 browser = "qutebrowser";
-                menu = "wofi";
+                menu = "wofi --show run";
                 left = "h";
                 down = "j";
                 up = "k";
@@ -20,8 +22,8 @@
                 config = rec {
                         inherit modifier terminal menu left down up right;
                         startup = [
-                                { command = terminal; always = true; }
-                                { command = browser; always = true; }
+                                # { command = terminal; always = true; }
+                                # { command = browser; always = true; }
                         ];
                         bars = [];
                         colors = let
@@ -64,12 +66,6 @@
                         focus.mouseWarping = false; # warp mouse to focused window
                         focus.newWindow = "focus"; # smart, urgent, focus or none
                         focus.wrapping = "workspace"; # how to wrap around edge
-                        fonts = {
-                                # names = [  ];
-                                # style = "Bold Semi-Condensed";
-                                # size = 14.0;
-                                # find a nice font. use it for everything.
-                        };
                         input = {
                                 # see sway-input(5) for options
                         };
@@ -84,10 +80,10 @@
                                 "${modifier}+Shift+Slash" = "exec libnotify hello"; # Show keybinds;
                                 "${modifier}+f" = "fullscreen toggle";
                                 "${modifier}+o" = "floating toggle";
-                                "${modifier}+Ctrl+${left}" = "resize left";
-                                "${modifier}+Ctrl+${right}" = "resize right";
-                                "${modifier}+Ctrl+${up}" = "resize up";
-                                "${modifier}+Ctrl+${down}" = "resize down";
+                                "${modifier}+Ctrl+${left}" = "resize shrink width 100 px";
+                                "${modifier}+Ctrl+${right}" = "resize grow width 100 px";
+                                "${modifier}+Ctrl+${up}" = "resize grow height 100 px";
+                                "${modifier}+Ctrl+${down}" = "resize grow height 100 px";
                                 "${modifier}+Shift+${left}" = "move left";
                                 "${modifier}+Shift+${right}" = "move right";
                                 "${modifier}+Shift+${up}" = "move up";
@@ -116,23 +112,11 @@
                                 "${modifier}+Shift+8" = "move to workspace number 8";
                                 "${modifier}+Shift+9" = "move to workspace number 9";
                                 "${modifier}+Shift+0" = "move to workspace number 10";
-                                # risizing keybinds.
                                 # stop autocomplete in comments. fuck you bitch. that's fucking dumb as hell. 
-                                # moving keybinds. 
-                                # qutebrowser keybind. 
                                 # notifications (battery, time, network, language) keybinds. 
-                                # launcher menu.
-                                # fullscreen
-                                # floating toggle.
                         };
-                        modes = {}; # Fuck this shit
-                        output = {
-                        };
-                        seat = {
-                                "*" = {
-                                        hide_cursor = "when-typing enable";
-                                };
-                        };
+                        output = { };
+                        seat."*".hide_cursor = "when-typing enable";
                         window = {
                                 border = 2;
                                 commands = [
@@ -155,7 +139,6 @@
                                 }
                         ];
                 };
-                checkConfig = false;
                 extraConfig = ""; # add to config
                 extraConfigEarly = ""; # add to config before the rest
                 extraOptions = [
@@ -170,7 +153,7 @@
                         settings = {
                                 "<config>" = {
                                         edge = "bottom";
-                                        font = "Dina 12";
+                                        font = "Mona Sans";
                                 };
 
                                 green = {
@@ -200,7 +183,7 @@
                         xdgAutostart = false;
                 };
                 wrapperFeatures = {
-                        gtk = false;
+                        # gtk = false;
                         base = true;
                 };
                 xwayland = true;

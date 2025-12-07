@@ -14,7 +14,6 @@
         # Enable the Flakes feature and the accompanying new nix command-line tool
         nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-
         # List packages installed in system profile.
         # You can use https://search.nixos.org/ to find more packages (and options).
         environment.systemPackages = with pkgs; [
@@ -26,6 +25,10 @@
                 slurp
                 wl-clipboard
                 mako
+        ];
+
+        fonts.packages = with pkgs; [
+                mona-sans
         ];
 
         programs.nvf = {
