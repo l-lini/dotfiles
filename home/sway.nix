@@ -1,58 +1,132 @@
 { ... }:
 
+# Google how to nicely declare dependencies on packages. This config depends on the fact 
+# that kitty and wofi and qutebrowser etc ...  are installed.
 {
+        programs.kitty.enable = true;
+        programs.qutebrowser.enable = true;
+        programs.wofi.enable = true;
         wayland.windowManager.sway = let
                 modifier = "Mod4";
                 terminal = "kitty";
+                browser = "qutebrowser";
                 menu = "wofi";
+                left = "h";
+                down = "j";
+                up = "k";
+                right = "l";
         in {
                 enable = true;
                 config = rec {
-                        inherit modifier terminal menu;
+                        inherit modifier terminal menu left down up right;
                         startup = [
-                                { command = "kitty"; always = true; }
-                                { command = "qutebrowser"; }
+                                { command = terminal; always = true; }
+                                { command = browser; always = true; }
                         ];
                         bars = [];
-                        colors = {
-                                focusedInactive = null; # I don't fucking know
-                                placeholder = null; # when restoring layouts?
-                                unfocused = null; # non-active window
-                                focused = null; # active window
-                                urgent = null; # urgency hint active
+                        colors = let
+                                red = "#ff0000";
+                                idk = {
+                                        background = red;
+                                        border  = red;
+                                        childBorder = red;
+                                        indicator = red;
+                                        text = "#000000";
+                                };
+                                unfocused = {
+                                        background = "#000000";
+                                        border = "#997811";
+                                        childBorder = "#775528";
+                                        indicator = "f49e2e";
+                                        text = "#ffffff";
+                                };
+                                focused = {
+                                        background = "#000000";
+                                        border = "#4c7899";
+                                        childBorder = "#285577";
+                                        indicator = "2e9ef4";
+                                        text = "#ffffff";
+                                };
+                        in {
+                                background = "#ffffff";
+                                focusedInactive = idk; # I don't fucking know
+                                placeholder = idk; # when restoring layouts?
+                                urgent = idk; # urgency hint active
+                                unfocused = unfocused; # non-active window
+                                focused = focused; # active window
                         };
                         defaultWorkspace = "workspace number 1";
-                        up = "k";
-                        down = "j";
-                        left = "h";
-                        right = "l";
                         floating.border = 2; # floating window border width
-                        floating.criteria = null; # list of attributes to be floating
-                        floating.modifier = null; # "Mod4"
+                        floating.criteria = []; # list of attributes to be floating
+                        floating.modifier = modifier; # "Mod4"
                         floating.titlebar = false;
                         focus.followMouse = true; # focus windows under the mouse
                         focus.mouseWarping = false; # warp mouse to focused window
                         focus.newWindow = "focus"; # smart, urgent, focus or none
-                        focus.wrapping = "worksapce"; # how to wrap around edge
+                        focus.wrapping = "workspace"; # how to wrap around edge
                         fonts = {
-                                names = [ "" ];
-                                style = "Bold Semi-Condensed";
-                                size = 14.0;
+                                # names = [  ];
+                                # style = "Bold Semi-Condensed";
+                                # size = 14.0;
+                                # find a nice font. use it for everything.
                         };
-                        # gaps = null;
                         input = {
                                 # see sway-input(5) for options
                         };
-                        keybinds = let
-                                mod = modifier;
-                        in {
-                                "${mod}+Return" = "exec ${terminal}";
-                                "${mod}+k" = "kill";
-                                "${mod}+/" = null; # Show keybinds;
+                        # Replace caps-lock with escape or shift or whatever
+                        # Start sway automatically. Because of encryption thingie we could
+                        # just omitt the password I think.
+                        keybindings = {
+                                "${modifier}+Return" = "exec ${terminal}";
+                                "${modifier}+Space" = "exec ${menu}";
+                                "${modifier}+q" = "exec ${browser}";
+                                "${modifier}+Backspace" = "kill";
+                                "${modifier}+Shift+Slash" = "exec libnotify hello"; # Show keybinds;
+                                "${modifier}+f" = "fullscreen toggle";
+                                "${modifier}+o" = "floating toggle";
+                                "${modifier}+Ctrl+${left}" = "resize left";
+                                "${modifier}+Ctrl+${right}" = "resize right";
+                                "${modifier}+Ctrl+${up}" = "resize up";
+                                "${modifier}+Ctrl+${down}" = "resize down";
+                                "${modifier}+Shift+${left}" = "move left";
+                                "${modifier}+Shift+${right}" = "move right";
+                                "${modifier}+Shift+${up}" = "move up";
+                                "${modifier}+Shift+${down}" = "move down";
+                                "${modifier}+${left}" = "focus left";
+                                "${modifier}+${right}" = "focus right";
+                                "${modifier}+${up}" = "focus up";
+                                "${modifier}+${down}" = "focus down";
+                                "${modifier}+1" = "workspace number 1";
+                                "${modifier}+2" = "workspace number 2";
+                                "${modifier}+3" = "workspace number 3";
+                                "${modifier}+4" = "workspace number 4";
+                                "${modifier}+5" = "workspace number 5";
+                                "${modifier}+6" = "workspace number 6";
+                                "${modifier}+7" = "workspace number 7";
+                                "${modifier}+8" = "workspace number 8";
+                                "${modifier}+9" = "workspace number 9";
+                                "${modifier}+0" = "workspace number 10";
+                                "${modifier}+Shift+1" = "move to workspace number 1";
+                                "${modifier}+Shift+2" = "move to workspace number 2";
+                                "${modifier}+Shift+3" = "move to workspace number 3";
+                                "${modifier}+Shift+4" = "move to workspace number 4";
+                                "${modifier}+Shift+5" = "move to workspace number 5";
+                                "${modifier}+Shift+6" = "move to workspace number 6";
+                                "${modifier}+Shift+7" = "move to workspace number 7";
+                                "${modifier}+Shift+8" = "move to workspace number 8";
+                                "${modifier}+Shift+9" = "move to workspace number 9";
+                                "${modifier}+Shift+0" = "move to workspace number 10";
+                                # risizing keybinds.
+                                # stop autocomplete in comments. fuck you bitch. that's fucking dumb as hell. 
+                                # moving keybinds. 
+                                # qutebrowser keybind. 
+                                # notifications (battery, time, network, language) keybinds. 
+                                # launcher menu.
+                                # fullscreen
+                                # floating toggle.
                         };
-                        modes = null; # Fuck this shit
+                        modes = {}; # Fuck this shit
                         output = {
-                                "*" = null;
                         };
                         seat = {
                                 "*" = {
@@ -81,6 +155,7 @@
                                 }
                         ];
                 };
+                checkConfig = false;
                 extraConfig = ""; # add to config
                 extraConfigEarly = ""; # add to config before the rest
                 extraOptions = [
