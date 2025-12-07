@@ -11,7 +11,7 @@
                 autosuggestion.enable = true;
                 syntaxHighlighting.enable = true;
                 shellAliases = {
-                        update = "f() { git add . && git commit -m '$1' && git push && sudo nixos-rebuild switch };f";
+                        update = "f() { git add . && git commit -m $1 && git push && sudo nixos-rebuild switch };f";
                         tstcfg = "git add . && sudo nixos-rebuild test";
                 };
                 history.size = 10000;
