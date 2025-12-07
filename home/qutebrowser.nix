@@ -1,4 +1,5 @@
 { ... }:
+# disable arrow keys outside of passthrough mode
 
 {
         programs.qutebrowser = {

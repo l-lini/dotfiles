@@ -122,11 +122,12 @@
                                 "${modifier}+Shift+9" = "move to workspace number 9";
                                 "${modifier}+Shift+0" = "move to workspace number 10";
                                 # notifications (battery, time, network, language) keybinds. 
+                                # brightness keys, volume keys (with notification)
                         };
                         output = { };
                         seat."*".hide_cursor = "when-typing enable";
                         window = {
-                                border = 2;
+                                border = 5;
                                 commands = [
                                         {
                                                 command = "pkill steam";

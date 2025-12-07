@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, nvf, ... }:
 
 {
         imports = [
@@ -26,6 +26,9 @@
                 slurp
                 wl-clipboard
                 mako
+                mariadb-connector-java
+                jdk25_headless
+                maven
         ];
 
         fonts.packages = with pkgs; [
@@ -88,6 +91,12 @@
         # Enable the OpenSSH daemon.
         services.openssh.enable = true;
 
+        services.mysql = {
+                enable = true;
+                package = pkgs.mariadb;
+        };
+
+
         # Define a user account. Don't forget to set a password with ‘passwd’.
         users.users.lini = {
                 isNormalUser = true;
@@ -102,10 +111,10 @@
 
         # Doesn't work I dunno why
         # console.font = "sun12x22"; # Alright, imagine a hot-reloading nix. That would be something wouldn't it.
-                                   # Imagine if finding which fonts are available wasn't a problem. Imagine 
-                                   # If it was an enum instead.
-                                   # You change a single option in one file and the fucker realoads the entire
-                                   # Systems config. That's fucking dumb. There should be a solution for this.
+        # Imagine if finding which fonts are available wasn't a problem. Imagine 
+        # If it was an enum instead.
+        # You change a single option in one file and the fucker realoads the entire
+        # Systems config. That's fucking dumb. There should be a solution for this.
 
         # Some programs need SUID wrappers, can be configured further or are
         # started in user sessions.
