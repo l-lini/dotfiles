@@ -4,6 +4,7 @@
         imports = [
                 # Include the results of the hardware scan.
                 ./hardware.nix
+                # ./zsh.nix
                 # ./disko
                 # ./network
                 # ./users
@@ -30,6 +31,10 @@
         fonts.packages = with pkgs; [
                 mona-sans
         ];
+
+        users.defaultUserShell = pkgs.zsh;
+
+        programs.zsh.enable = true;
 
         programs.nvf = {
                 enable = true;

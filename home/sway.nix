@@ -1,11 +1,12 @@
 { ... }:
+# lockscreen is same as login screen. simple. consistent.
 
 {
         # deps
         imports = [
                 ./kitty.nix
                 ./qutebrowser.nix 
-                # ./wofi.nix
+                ./wofi.nix
         ];
 
         wayland.windowManager.sway = let

@@ -4,6 +4,7 @@
         imports = [
                 ./sway.nix
                 ./neovim.nix
+                ./zsh.nix
                 ./git.nix
         ];
 
