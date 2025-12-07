@@ -9,9 +9,6 @@
         # Enable the Flakes feature and the accompanying new nix command-line tool
         nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-        console.font = "sun12x22"; # Alright, imagine a hot-reloading nix. That would be something wouldn't it.
-                                   # Imagine if finding which fonts are available wasn't a problem. Imagine 
-                                   # If it was an enum instead.
 
         # List packages installed in system profile.
         # You can use https://search.nixos.org/ to find more packages (and options).
@@ -82,6 +79,12 @@
                         qutebrowser
                 ];
         };
+
+        console.font = "sun12x22"; # Alright, imagine a hot-reloading nix. That would be something wouldn't it.
+                                   # Imagine if finding which fonts are available wasn't a problem. Imagine 
+                                   # If it was an enum instead.
+                                   # You change a single option in one file and the fucker realoads the entire
+                                   # Systems config. That's fucking dumb. There should be a solution for this.
 
         # Some programs need SUID wrappers, can be configured further or are
         # started in user sessions.
