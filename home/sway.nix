@@ -1,5 +1,24 @@
 { ... }:
 # lockscreen is same as login screen. simple. consistent.
+# vim keybinds
+# Vim browser (qutebrowser)
+# Switch language keybind with notif for language
+# Battery-, Network-, Time-, Keybinds-, Sound-, notif on keybind
+# Nice background
+# Launcher
+# Terminal
+# Browser
+# File explorer (Vim keybinds)
+# Fullscreen
+# Move
+# Switch
+# Floating toggle
+# Resizing
+# Screenshot
+# Master slave layout (keep same master, add slaves)
+# Blurred background on not focused. Opaque if focused
+# toggle mirror screen
+# Same lock and login screen. Simple. Matching color scheme and font and size etc ...
 
 {
         # deps
