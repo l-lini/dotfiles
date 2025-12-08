@@ -33,6 +33,7 @@
                 maven
                 discord
                 slack
+                android-studio
         ];
 
         fonts.packages = with pkgs; [
