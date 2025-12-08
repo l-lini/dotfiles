@@ -12,4 +12,5 @@
 }
 # tmux ?
 # Disable mouse in terminal
-# vim keybinds
+# vim keybinds (So I can move around output easily witohut using less)
+# Better vim keybinds than default kitty. Or maybe just learn them.
