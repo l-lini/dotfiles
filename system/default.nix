@@ -34,6 +34,8 @@
                 discord
                 slack
                 android-studio
+                libnotify
+                brightnessctl
         ];
 
         fonts.packages = with pkgs; [
@@ -105,7 +107,7 @@
         # Define a user account. Don't forget to set a password with ‘passwd’.
         users.users.lini = {
                 isNormalUser = true;
-                extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+                extraGroups = [ "wheel" "networkmanager" "video" ]; # Enable ‘sudo’ for the user.
                 packages = with pkgs; [
                         tree
                         qutebrowser

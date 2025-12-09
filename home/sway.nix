@@ -17,6 +17,8 @@
                 ./wofi.nix
         ];
 
+        services.mako.enable = true;
+
         wayland.windowManager.sway = let
                 modifier = "Mod4";
                 terminal = "kitty";
@@ -121,6 +123,10 @@
                                 "${modifier}+Shift+8" = "move to workspace number 8";
                                 "${modifier}+Shift+9" = "move to workspace number 9";
                                 "${modifier}+Shift+0" = "move to workspace number 10";
+                                "XF86MonBrightnessDown" = "exec brightnessctl s 25%- -e 2 -n 1";
+                                "XF86MonBrightnessUp" = "exec brightnessctl s +25% -e 2";
+                                "${modifier}+b" = "exec notify-send -t 2000 \"$(cat /sys/class/power_supply/BAT0/status) $(cat /sys/class/power_supply/BAT0/capacity)%\"";
+                                # change screen mode on button press is on nixos wiki for sway under tips and tricks.
                                 # notifications (battery, time, network, language) keybinds. 
                                 # brightness keys, volume keys (with notification)
                         };
