@@ -126,9 +126,11 @@
                                 "XF86MonBrightnessDown" = "exec brightnessctl s 25%- -e 2 -n 1";
                                 "XF86MonBrightnessUp" = "exec brightnessctl s +25% -e 2";
                                 "${modifier}+b" = "exec notify-send -t 2000 \"$(cat /sys/class/power_supply/BAT0/status) $(cat /sys/class/power_supply/BAT0/capacity)%\"";
+                                "${modifier}+t" = "exec date \"+%A %d %H:%M\";
                                 # change screen mode on button press is on nixos wiki for sway under tips and tricks.
                                 # notifications (battery, time, network, language) keybinds. 
                                 # brightness keys, volume keys (with notification)
+                                # Keybind for notification of activity bar
                         };
                         output = { };
                         seat."*".hide_cursor = "when-typing enable";
