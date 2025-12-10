@@ -10,6 +10,7 @@
                 };
         };
 }
+# Comic mono (better readability)
 # tmux ?
 # Disable mouse in terminal
 # vim keybinds (So I can move around output easily witohut using less)

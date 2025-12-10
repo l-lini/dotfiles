@@ -23,11 +23,11 @@
                 # Flakes clones its dependencies through the git command,
                 # so git must be installed first
                 git
+                mupdf
                 tree
                 grim
                 slurp
                 wl-clipboard
-                mako
                 mariadb-connector-java
                 jdk25_headless
                 maven
