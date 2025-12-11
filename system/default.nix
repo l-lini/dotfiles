@@ -117,6 +117,8 @@
 
         programs.sway.enable = true;
 
+        networking.firewall.enable = false;
+
         # Doesn't work I dunno why
         # console.font = "sun12x22"; # Alright, imagine a hot-reloading nix. That would be something wouldn't it.
         # Imagine if finding which fonts are available wasn't a problem. Imagine 
