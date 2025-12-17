@@ -8,6 +8,8 @@
 # Master slave layout (keep same master, add slaves)
 # Blurred background on not focused. Opaque if focused
 # toggle mirror screen
+# Low battery notification
+# Fix qutebrowser crashing every first startup (check logs maybe. google if it is a common issue)
 
 {
         # deps
@@ -94,7 +96,7 @@
                                 "${modifier}+Ctrl+${left}" = "resize shrink width 100 px";
                                 "${modifier}+Ctrl+${right}" = "resize grow width 100 px";
                                 "${modifier}+Ctrl+${up}" = "resize grow height 100 px";
-                                "${modifier}+Ctrl+${down}" = "resize grow height 100 px";
+                                "${modifier}+Ctrl+${down}" = "resize shrink height 100 px";
                                 "${modifier}+Shift+${left}" = "move left";
                                 "${modifier}+Shift+${right}" = "move right";
                                 "${modifier}+Shift+${up}" = "move up";

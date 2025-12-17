@@ -12,7 +12,7 @@
                 # etc ...
         ];
 
-        nixpkgs.config.allowUnfree =true;
+        nixpkgs.config.allowUnfree = true;
 
         # Enable the Flakes feature and the accompanying new nix command-line tool
         nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -25,6 +25,8 @@
                 git
                 mpv
                 mupdf
+                hlint
+                haskellPackages.QuickCheck
                 tree
                 grim
                 slurp
