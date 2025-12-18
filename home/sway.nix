@@ -80,6 +80,9 @@
                         focus.newWindow = "focus"; # smart, urgent, focus or none
                         focus.wrapping = "workspace"; # how to wrap around edge
                         input = {
+                                "*" = {
+                                        natural_scroll = "enabled";
+                                };
                                 # see sway-input(5) for options
                         };
                         # Replace caps-lock with escape or shift or whatever
