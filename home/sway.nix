@@ -89,6 +89,7 @@
                                 "${modifier}+Return" = "exec ${terminal}";
                                 "${modifier}+Space" = "exec ${menu}";
                                 "${modifier}+q" = "exec ${browser}";
+                                "${modifier}+Print" = "exec slurp | grim -g - - | wl-copy";
                                 "${modifier}+Backspace" = "kill";
                                 "${modifier}+Shift+Slash" = "exec libnotify hello"; # Show keybinds;
                                 "${modifier}+f" = "fullscreen toggle";
