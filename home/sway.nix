@@ -26,6 +26,7 @@
                 modifier = "Mod4";
                 terminal = "kitty";
                 browser = "qutebrowser";
+                privateBrowser = "qutebrowser --target private-window";
                 menu = "wofi --show run";
                 left = "h";
                 down = "j";
@@ -94,6 +95,7 @@
                                 "${modifier}+Return" = "exec ${terminal}";
                                 "${modifier}+Space" = "exec ${menu}";
                                 "${modifier}+q" = "exec ${browser}";
+                                "${modifier}+p" = "exec ${privateBrowser}";
                                 "${modifier}+Print" = "exec slurp | grim -g - - | wl-copy";
                                 "${modifier}+Backspace" = "kill";
                                 "${modifier}+Shift+Slash" = "exec libnotify hello"; # Show keybinds;
