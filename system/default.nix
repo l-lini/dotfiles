@@ -107,6 +107,15 @@
                 package = pkgs.mariadb;
         };
 
+        i18n.inputMethod = {
+                type = "fcitx5";
+                enable = true;
+                # waylandFrontend = true;
+                fcitx5.addons = with pkgs; [
+                        fcitx5-mozc
+                ];
+        };
+
 
         # Define a user account. Don't forget to set a password with ‘passwd’.
         users.users.lini = {

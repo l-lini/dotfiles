@@ -10,6 +10,7 @@
 # toggle mirror screen
 # Low battery notification
 # Fix qutebrowser crashing every first startup (check logs maybe. google if it is a common issue)
+# Discord and slack with vim keybinds (probably a bad idea)
 
 {
         # deps
@@ -35,6 +36,7 @@
                 config = rec {
                         inherit modifier terminal menu left down up right;
                         startup = [
+                                { command = "fcitx5"; always = true; }
                                 # { command = terminal; always = true; }
                                 # { command = browser; always = true; }
                         ];
