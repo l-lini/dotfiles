@@ -13,15 +13,18 @@
         ];
 
         nixpkgs.config.allowUnfree = true;
+        hardware.bluetooth.enable = true;
 
         # Enable the Flakes feature and the accompanying new nix command-line tool
         nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+        programs.steam.enable = true;
         # List packages installed in system profile.
         # You can use https://search.nixos.org/ to find more packages (and options).
         environment.systemPackages = with pkgs; [
                 # Flakes clones its dependencies through the git command,
                 # so git must be installed first
+                r2modman
                 git
                 mpv
                 mupdf
