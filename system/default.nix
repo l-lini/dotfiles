@@ -24,6 +24,7 @@
         environment.systemPackages = with pkgs; [
                 # Flakes clones its dependencies through the git command,
                 # so git must be installed first
+                pavucontrol
                 r2modman
                 git
                 mpv

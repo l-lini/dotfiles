@@ -26,6 +26,7 @@
                 modifier = "Mod4";
                 terminal = "kitty";
                 browser = "qutebrowser";
+                # Pavucontroller keybind
                 privateBrowser = "qutebrowser --target private-window";
                 menu = "wofi --show run";
                 left = "h";
