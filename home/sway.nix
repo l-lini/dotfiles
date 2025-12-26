@@ -1,13 +1,10 @@
 { ... }:
 # Same lock and login screen. Simple. Matching color scheme and font and size etc ... (simple)
-# Switch language keybind with notif for language
-# Battery-, Network-, Time-, Keybinds-, Sound-, notif on keybind
 # Nice background
 # File explorer (Vim keybinds)
 # Screenshot
 # Master slave layout (keep same master, add slaves)
 # Blurred background on not focused. Opaque if focused
-# toggle mirror screen
 # Low battery notification
 # Fix qutebrowser crashing every first startup (check logs maybe. google if it is a common issue)
 # Discord and slack with vim keybinds (probably a bad idea)
@@ -138,10 +135,17 @@
                                 "XF86MonBrightnessUp" = "exec brightnessctl s +25% -e 2";
                                 "${modifier}+b" = "exec notify-send -t 2000 \"$(cat /sys/class/power_supply/BAT0/status) $(cat /sys/class/power_supply/BAT0/capacity)%\"";
                                 "${modifier}+t" = "exec notify-send -t 2000 \"$(date '+%A %d %H:%M\')\"";
-                                # change screen mode on button press is on nixos wiki for sway under tips and tricks.
-                                # notifications (battery, time, network, language) keybinds. 
-                                # brightness keys, volume keys (with notification)
+                                # change mirror screen on button press is on nixos wiki for sway under tips and tricks.
+                                # brightness key (notification)
                                 # Keybind for notification of activity bar
+                                # Iterate through mic keybind (notification)
+                                # Iterate through speaker keybind (notification)
+                                # Volume (notification)
+                                # Mute mic
+                                # Mute speakers
+                                # Switch language (notification) (Caps-lock so you can see which it is)
+                                # Battery-, Network-, Time-, Keybinds-, Sound-, notif on keybind
+                                # See keybinds keybind (tell people this when using computer)
                         };
                         output = { };
                         seat."*".hide_cursor = "when-typing enable";

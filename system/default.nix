@@ -12,13 +12,21 @@
                 # etc ...
         ];
 
+        # Synth program without delay
+        # Ephemeral root
+        # Manual neovim config (reproducible)
+        # Terminal with vim keybinds. (actually usefull keybinds)
+        # No mouse in terminal
+
         nixpkgs.config.allowUnfree = true;
         hardware.bluetooth.enable = true;
 
         # Enable the Flakes feature and the accompanying new nix command-line tool
         nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+        # TODO! Research and fix randomlu occuring persistant lagg in games.
         programs.steam.enable = true;
+
         # List packages installed in system profile.
         # You can use https://search.nixos.org/ to find more packages (and options).
         environment.systemPackages = with pkgs; [
@@ -29,8 +37,6 @@
                 git
                 mpv
                 mupdf
-                hlint
-                haskellPackages.QuickCheck
                 tree
                 grim
                 slurp
