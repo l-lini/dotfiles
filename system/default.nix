@@ -34,6 +34,7 @@
                 # so git must be installed first
                 pavucontrol
                 r2modman
+                anki
                 git
                 mpv
                 mupdf
@@ -48,6 +49,7 @@
                 slack
                 android-studio
                 libnotify
+                firefox
                 brightnessctl
         ];
 
