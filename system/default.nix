@@ -71,11 +71,10 @@
                                 style = "dark";
                         };
 
-                        # lsp.enable = true;
+                        lsp.enable = true;
 
                         languages = {
                                 enableTreesitter = true;
-                                enableLSP = true;
 
                                 nix.enable = true;
                                 rust.enable = true;
@@ -154,7 +153,9 @@
                 };
         };
 
-        services.displayManager.cosmic-greeter.enable = true;
+        services.displayManager.gdm = {
+                enable = true;
+        };
 
         services.logind.settings.Login = {
                 HandleLidSwitch = "poweroff";
