@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, ... }:
 
 {
         imports = [
@@ -19,7 +19,17 @@
         # No mouse in terminal
 
         nixpkgs.config.allowUnfree = true;
-        hardware.bluetooth.enable = true;
+        hardware.bluetooth = {
+                enable = true;
+                settings = {
+                        General = {
+                                FastConnectable = true;
+                        };
+                        Policy = {
+                                AutoEnable = true;
+                        };
+                };
+        };
 
         # Enable the Flakes feature and the accompanying new nix command-line tool
         nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -56,7 +66,11 @@
 
         fonts.packages = with pkgs; [
                 mona-sans
-        ];
+        ] ++ (with inputs.nixos-fonts.packages.x86_64-linux; [
+                        anzu-moji
+                        azukifont
+                        rii-tegaki-fude
+                ]);
 
         users.defaultUserShell = pkgs.zsh;
 

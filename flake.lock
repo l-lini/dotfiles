@@ -71,6 +71,24 @@
         "type": "github"
       }
     },
+    "nixos-fonts": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1738817211,
+        "narHash": "sha256-7fn9gP1kNlGt99uzfKv/pC1r218nsKCZUQs/8u1Umys=",
+        "owner": "Takamatsu-Naoki",
+        "repo": "nixos-fonts",
+        "rev": "600db74e940f9e5ac8db8d48ee5c852facc4c513",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Takamatsu-Naoki",
+        "repo": "nixos-fonts",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1764831616,
@@ -89,6 +107,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1767116409,
+        "narHash": "sha256-5vKw92l1GyTnjoLzEagJy5V5mDFck72LiQWZSOnSicw=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "cad22e7d996aea55ecab064e84834289143e44a0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1764831616,
         "narHash": "sha256-OtzF5wBvO0jgW1WW1rQU9cMGx7zuvkF7CAVJ1ypzkxA=",
         "owner": "nixos",
@@ -103,7 +137,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1761880412,
         "narHash": "sha256-QoJjGd4NstnyOG4mm4KXF+weBzA2AH/7gn1Pmpfcb0A=",
@@ -119,7 +153,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1748188598,
         "narHash": "sha256-eEejmrHX8rzpm1f4YqZmip+9myjjmqSjUoUxMIyybmo=",
@@ -139,7 +173,7 @@
         "flake-compat": "flake-compat",
         "flake-parts": "flake-parts",
         "mnw": "mnw",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_4",
         "systems": "systems"
       },
       "locked": {
@@ -159,14 +193,15 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs_2",
+        "nixos-fonts": "nixos-fonts",
+        "nixpkgs": "nixpkgs_3",
         "nvf": "nvf",
         "swaymonad": "swaymonad"
       }
     },
     "swaymonad": {
       "inputs": {
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_5",
         "utils": "utils"
       },
       "locked": {

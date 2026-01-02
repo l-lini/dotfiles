@@ -5,6 +5,7 @@
 		# cachix?
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
 		# nixpkgs-instable.url = "github:nixos/nixpkgs/nixos-unstable";
+                nixos-fonts.url = "github:Takamatsu-Naoki/nixos-fonts";
 		nvf.url = "github:notashelf/nvf";
                 swaymonad.url = "github:nicolasavru/swaymonad";
 		home-manager.url = "github:nix-community/home-manager/release-25.11";
@@ -31,6 +32,9 @@
                                                         root = import ./home;
                                                 };
 					}
+                                        {
+                                                _module.args = { inherit inputs; };
+                                        }
 				];
 			};
 		};

@@ -4,10 +4,10 @@
         programs.wofi = {
                 enable = true;
                 settings = {
-                        key_left = "l";
-                        key_right = "r";
-                        key_up = "k";
-                        key_down = "j";
+                        # key_left = "l";
+                        # key_right = "r";
+                        # key_up = "k";
+                        # key_down = "j";
                         width = 800;
                         height = 600;
                 };
@@ -15,7 +15,7 @@
                         * {
                                 font-family: "Mona Sans";
                                 font-size: 24;
-                                color: white;
+                                # color: white;
                         }
 
                         window {
