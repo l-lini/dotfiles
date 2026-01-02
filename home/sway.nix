@@ -23,7 +23,9 @@
                 modifier = "Mod4";
                 terminal = "kitty";
                 browser = "qutebrowser";
-                # Pavucontroller keybind
+                # TODO: Pavucontroller keybind
+                audio = "pavucontrol";
+
                 privateBrowser = "qutebrowser --target private-window";
                 menu = "wofi --show run";
                 left = "h";
@@ -36,6 +38,7 @@
                         inherit modifier terminal menu left down up right;
                         startup = [
                                 { command = "fcitx5"; always = true; }
+                                { command = "swaymonad --default-layout tall"; always = true; }
                                 # { command = terminal; always = true; }
                                 # { command = browser; always = true; }
                         ];

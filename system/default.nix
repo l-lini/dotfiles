@@ -62,11 +62,13 @@
                 libnotify
                 firefox
                 brightnessctl
+                inputs.swaymonad.defaultPackage.x86_64-linux
         ];
+                                                        
 
         fonts.packages = with pkgs; [
                 mona-sans
-        ] ++ (with inputs.nixos-fonts.packages.x86_64-linux; [
+                ] ++ (with inputs.nixos-fonts.packages.x86_64-linux; [
                         anzu-moji
                         azukifont
                         rii-tegaki-fude

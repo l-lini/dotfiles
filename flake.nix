@@ -11,7 +11,7 @@
 		home-manager.url = "github:nix-community/home-manager/release-25.11";
 	};
 
-	outputs = inputs @{ nixpkgs, home-manager, nvf, swaymonad, ... }: let
+	outputs = inputs @{ nixpkgs, home-manager, nvf, ... }: let
                 system = "x86_64-linux";
         in {
 		nixosConfigurations = {
@@ -19,11 +19,6 @@
 				modules = [
 					./system
 					nvf.nixosModules.default
-                                        ({ ... }: {
-                                                environment.systemPackages = [
-                                                        swaymonad.defaultPackage.${system}
-                                                ];
-                                        })
 					home-manager.nixosModules.home-manager {
 						home-manager.useGlobalPkgs = true;
 						home-manager.useUserPackages = true;
