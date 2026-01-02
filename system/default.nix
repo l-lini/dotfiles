@@ -105,7 +105,10 @@
         };
 
         # Set the default editor to neovim
-        environment.variables.EDITOR = "nvim";
+        environment.variables = {
+                EDITOR = "nvim";
+                NIX_SHELL ="zsh";
+        };
 
         # Use the systemd-boot EFI boot loader.
         boot.loader.systemd-boot.enable = true;
@@ -193,6 +196,7 @@
         users.users.lini = {
                 isNormalUser = true;
                 extraGroups = [ "wheel" "networkmanager" "video" ]; # Enable ‘sudo’ for the user.
+                shell = pkgs.zsh;
                 packages = with pkgs; [
                         tree
                         qutebrowser
