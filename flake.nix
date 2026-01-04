@@ -2,13 +2,12 @@
 	description = "lini's system configuration";
 
 	inputs = {
-		# cachix?
+		# cachix? What da hell is this??? i'm more confused by the second.
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-		# nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
                 nixos-fonts.url = "github:Takamatsu-Naoki/nixos-fonts";
 		nvf.url = "github:notashelf/nvf";
                 swaymonad.url = "github:nicolasavru/swaymonad";
-		home-manager.url = "github:nix-community/home-manager/release-25.11";
+		home-manager.url = "github:nix-community/home-manager/master";
 	};
 
 	outputs = inputs @{ nixpkgs, home-manager, nvf, ... }: let

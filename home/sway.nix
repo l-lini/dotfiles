@@ -7,6 +7,7 @@
 # Low battery notification
 # Fix qutebrowser crashing every first startup (check logs maybe. google if it is a common issue)
 # Discord and slack with vim keybinds (probably a bad idea)
+# Fix Mute Volume and Mute Mic lights
 {
         # deps
         imports = [
@@ -22,10 +23,37 @@
                 terminal = "kitty";
                 browser = "qutebrowser";
                 audio = "pavucontrol";
-                volUp = "pamixer -i 5 --set-limit 50"; # don't forget max volume 100%
-                volDown = "pamixer -d 5"; # don't forget min volume 0%
+                volUp = "pamixer -i 5 --set-limit 50";
+                volDown = "pamixer -d 5";
+                micVolUp = "pamixer --default-source -i 5 --set-limit 100";
+                micVolDown = "pamixer --default-source -d 5";
                 volSwitchMute = "pamixer -t";
                 micSwitchMute = "pamixer --default-source -t";
+                brightnessGamma = "2";
+                brightnessDown = "brightnessctl s 25%- -e ${brightnessGamma} -n 1";
+                brightnessUp = "brightnessctl s +25% -e ${brightnessGamma} -n 1";
+                brightnessNotification = let
+                        brightness = "$(brightnessctl g | awk -v max=\"$(brightnessctl m)\" '{ printf \"%.0f\", ($1/max)^(1/${brightnessGamma})*100 }')";
+                in
+                        notification "Brightness ${brightness}%";
+                notification = s: "exec notify-send -t 2000 \"${s}\"";
+                sinkNotification = let
+                        vol = "$(pamixer --get-volume)";
+                        sink = "$(pamixer --list-sinks | grep Running | awk -F'\"' '{print $6}')";
+                        muted = "$(pamixer --get-mute | awk '{print $1==\"true\" ? \"Muted \" : \"\"}')";
+                in
+                        notification "${vol}% ${muted}${sink}";
+                micNotification = let 
+                        vol = "$(pamixer --default-source --get-volume)";
+                        mic = "$(pamixer --list-sources | grep Running | awk -F'\"' '{print $6}')";
+                        muted = "$(pamixer --default-source --get-mute | awk '{print $1==\"true\" ? \"Muted \" : \"\"}')";
+                in
+                        notification "${vol}% ${muted}${mic}";
+                batStat = "$(cat /sys/class/power_supply/BAT0/status)";
+                batCap = "$(cat /sys/class/power_supply/BAT0/capacity)";
+                batNotification = notification "${batStat} ${batCap}%";
+                dateTime = "$(date '+%A %d %H:%M\')";
+                dateTimeNotification = notification dateTime;
                 privateBrowser = "qutebrowser --target private-window";
                 menu = "wofi --show run";
                 left = "h";
@@ -37,6 +65,8 @@
                 config = rec {
                         inherit modifier terminal menu left down up right;
                         startup = [
+                                # TODO! Fix fcitx5 not working in discord.
+                                # Maybe making a manual keybind will fix it! 
                                 { command = "fcitx5"; always = true; }
                                 # TODO! fix auto tiler. Maybe it has to do with fallof thingy option.
                                 { command = "swaymonad --default-layout tall"; always = true; }
@@ -137,22 +167,20 @@
                                 "${modifier}+Shift+8" = "move to workspace number 8";
                                 "${modifier}+Shift+9" = "move to workspace number 9";
                                 "${modifier}+Shift+0" = "move to workspace number 10";
-                                "XF86MonBrightnessDown" = "exec brightnessctl s 25%- -e 2 -n 1";
-                                "XF86MonBrightnessUp" = "exec brightnessctl s +25% -e 2";
-                                "XF86AudioRaiseVolume" = "exec ${volUp}";
-                                "XF86AudioLowerVolume" = "exec ${volDown}";
-                                "XF86AudioMute" = "exec ${volSwitchMute}";
-                                "XF86AudioMicMute" = "exec ${micSwitchMute}";
-                                "${modifier}+b" = "exec notify-send -t 2000 \"$(cat /sys/class/power_supply/BAT0/status) $(cat /sys/class/power_supply/BAT0/capacity)%\"";
-                                "${modifier}+t" = "exec notify-send -t 2000 \"$(date '+%A %d %H:%M\')\"";
+                                "XF86MonBrightnessDown" = "exec ${brightnessDown} && ${brightnessNotification}";
+                                "XF86MonBrightnessUp" = "exec ${brightnessUp} && ${brightnessNotification}";
+                                "XF86AudioRaiseVolume" = "exec ${volUp} && ${sinkNotification}";
+                                "XF86AudioLowerVolume" = "exec ${volDown} && ${sinkNotification}";
+                                "${modifier}+XF86AudioRaiseVolume" = "exec ${micVolUp} && ${micNotification}";
+                                "${modifier}+XF86AudioLowerVolume" = "exec ${micVolDown} && ${micNotification}";
+                                "XF86AudioMute" = "exec ${volSwitchMute} && ${sinkNotification}";
+                                "XF86AudioMicMute" = "exec ${micSwitchMute} && ${micNotification}";
+                                "${modifier}+b" = "exec ${batNotification}";
+                                "${modifier}+t" = "exec ${dateTimeNotification}";
                                 # change mirror screen on button press is on nixos wiki for sway under tips and tricks.
-                                # brightness key (notification)
                                 # Keybind for notification of activity bar
                                 # Iterate through mic keybind (notification)
                                 # Iterate through speaker keybind (notification)
-                                # Volume (notification)
-                                # Mute mic
-                                # Mute speakers
                                 # Switch language (notification) (Caps-lock so you can see which it is)
                                 # Battery-, Network-, Time-, Keybinds-, Sound-, notif on keybind
                                 # See keybinds keybind (tell people this when using computer)
