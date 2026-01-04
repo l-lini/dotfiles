@@ -54,6 +54,7 @@
                 batNotification = notification "${batStat} ${batCap}%";
                 dateTime = "$(date '+%A %d %H:%M\')";
                 dateTimeNotification = notification dateTime;
+                # TODO! Current workspace notification.
                 privateBrowser = "qutebrowser --target private-window";
                 menu = "wofi --show run";
                 left = "h";
@@ -147,6 +148,7 @@
                                 "${modifier}+${right}" = "focus right";
                                 "${modifier}+${up}" = "focus up";
                                 "${modifier}+${down}" = "focus down";
+                                # TODO! Current workspace notification.
                                 "${modifier}+1" = "workspace number 1";
                                 "${modifier}+2" = "workspace number 2";
                                 "${modifier}+3" = "workspace number 3";
@@ -183,7 +185,7 @@
                                 # Iterate through speaker keybind (notification)
                                 # Switch language (notification) (Caps-lock so you can see which it is)
                                 # Battery-, Network-, Time-, Keybinds-, Sound-, notif on keybind
-                                # See keybinds keybind (tell people this when using computer)
+                                # See keybinds keybind (tell people this when using computer). No timer on notif. Tall notif.
                         };
                         output = { };
                         seat."*".hide_cursor = "when-typing enable";
