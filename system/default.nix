@@ -42,6 +42,8 @@
         environment.systemPackages = with pkgs; [
                 # Flakes clones its dependencies through the git command,
                 # so git must be installed first
+                prismlauncher
+                heroic
                 pavucontrol
                 spotify
                 r2modman
@@ -153,6 +155,7 @@
                         CPU_MAX_PERF_ON_BAT = 20;
 
                         # Optional helps save long term battery health
+                        # TODO! fix this, it does not fucking work. fucking Bitchass.
                         START_CHARGE_THRESH_BAT0 = 40; # 40 and below it starts to charge
                         STOP_CHARGE_THRESH_BAT0 = 80;  # 80 and above it stops charging
                 };

@@ -3,8 +3,8 @@
 
 	inputs = {
 		# cachix?
-		nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
-		# nixpkgs-instable.url = "github:nixos/nixpkgs/nixos-unstable";
+		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+		# nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
                 nixos-fonts.url = "github:Takamatsu-Naoki/nixos-fonts";
 		nvf.url = "github:notashelf/nvf";
                 swaymonad.url = "github:nicolasavru/swaymonad";

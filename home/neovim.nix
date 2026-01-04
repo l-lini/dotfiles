@@ -16,4 +16,5 @@
         # Auto format
         # Autosave on close
         # Auto sudo on write protected
+        # haskell with good lsp. hlint builtin.
 }
