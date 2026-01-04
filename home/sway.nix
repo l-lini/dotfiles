@@ -2,13 +2,11 @@
 # Same lock and login screen. Simple. Matching color scheme and font and size etc ... (simple)
 # Nice background
 # File explorer (Vim keybinds)
-# Screenshot
 # Master slave layout (keep same master, add slaves)
 # Blurred background on not focused. Opaque if focused
 # Low battery notification
 # Fix qutebrowser crashing every first startup (check logs maybe. google if it is a common issue)
 # Discord and slack with vim keybinds (probably a bad idea)
-
 {
         # deps
         imports = [
@@ -23,9 +21,11 @@
                 modifier = "Mod4";
                 terminal = "kitty";
                 browser = "qutebrowser";
-                # TODO: Pavucontroller keybind
                 audio = "pavucontrol";
-
+                volUp = "pamixer -i 5 --set-limit 50"; # don't forget max volume 100%
+                volDown = "pamixer -d 5"; # don't forget min volume 0%
+                volSwitchMute = "pamixer -t";
+                micSwitchMute = "pamixer --default-source -t";
                 privateBrowser = "qutebrowser --target private-window";
                 menu = "wofi --show run";
                 left = "h";
@@ -38,6 +38,7 @@
                         inherit modifier terminal menu left down up right;
                         startup = [
                                 { command = "fcitx5"; always = true; }
+                                # TODO! fix auto tiler. Maybe it has to do with fallof thingy option.
                                 { command = "swaymonad --default-layout tall"; always = true; }
                                 # { command = terminal; always = true; }
                                 # { command = browser; always = true; }
@@ -82,10 +83,11 @@
                         focus.followMouse = true; # focus windows under the mouse
                         focus.mouseWarping = false; # warp mouse to focused window
                         focus.newWindow = "focus"; # smart, urgent, focus or none
-                        focus.wrapping = "workspace"; # how to wrap around edge
+                        focus.wrapping = "no"; # how to wrap around edge
                         input = {
-                                "*" = {
+                                "type:touchpad" = {
                                         natural_scroll = "enabled";
+                                        tap = "enabled";
                                 };
                                 # see sway-input(5) for options
                         };
@@ -98,6 +100,7 @@
                                 "${modifier}+q" = "exec ${browser}";
                                 "${modifier}+p" = "exec ${privateBrowser}";
                                 "${modifier}+Print" = "exec slurp | grim -g - - | wl-copy";
+                                "${modifier}+f9" = "exec ${audio}";
                                 "${modifier}+Backspace" = "kill";
                                 "${modifier}+Shift+Slash" = "exec libnotify hello"; # Show keybinds;
                                 "${modifier}+f" = "fullscreen toggle";
@@ -136,6 +139,10 @@
                                 "${modifier}+Shift+0" = "move to workspace number 10";
                                 "XF86MonBrightnessDown" = "exec brightnessctl s 25%- -e 2 -n 1";
                                 "XF86MonBrightnessUp" = "exec brightnessctl s +25% -e 2";
+                                "XF86AudioRaiseVolume" = "exec ${volUp}";
+                                "XF86AudioLowerVolume" = "exec ${volDown}";
+                                "XF86AudioMute" = "exec ${volSwitchMute}";
+                                "XF86AudioMicMute" = "exec ${micSwitchMute}";
                                 "${modifier}+b" = "exec notify-send -t 2000 \"$(cat /sys/class/power_supply/BAT0/status) $(cat /sys/class/power_supply/BAT0/capacity)%\"";
                                 "${modifier}+t" = "exec notify-send -t 2000 \"$(date '+%A %d %H:%M\')\"";
                                 # change mirror screen on button press is on nixos wiki for sway under tips and tricks.
@@ -162,10 +169,10 @@
                                                 };
                                         } # lol
                                 ];
-                                hideEdgeBorders = "both"; # Hide borders to the edge of the screen
+                                hideEdgeBorders = "both";
                                 titlebar = false;
                         };
-                        workspaceAutoBackAndForth = true; # Banger for a chaotic person as myself :)
+                        workspaceAutoBackAndForth = true;
                         workspaceLayout = "default";
                         workspaceOutputAssign = [
                                 {
@@ -174,12 +181,12 @@
                                 }
                         ];
                 };
-                extraConfig = ""; # add to config
-                extraConfigEarly = ""; # add to config before the rest
-                extraOptions = [
-                        # "--unsupported-gpu"
-                        # etc ...
-                ];
+                # extraConfig = "";
+                # extraConfigEarly = "";
+                # extraOptions = [
+                #       "--unsupported-gpu"
+                #       etc ...
+                # ];
                 # extraSessionCommands = ''
                 #         export SDL_VIDEODRIVER=wayland
                 # '';

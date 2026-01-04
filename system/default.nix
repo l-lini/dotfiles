@@ -45,6 +45,7 @@
                 prismlauncher
                 heroic
                 pavucontrol
+                pamixer
                 spotify
                 r2modman
                 anki
