@@ -4,6 +4,7 @@
 # TODO! Make Run menu nice
 # TODO! Make neovim nice
 # TODO! Make Sway nice
+#   (Nice Notifications)
 #   (Nice Background)
 #   (Borders etc)
 #   (Master Slave layout)
@@ -14,8 +15,9 @@
 # TODO! Fix qutebrowser crashing
 # TODO! Fix qutebrowser not working with SEB, Ladok etc ...
 # TODO! Fix Volume Mute and Mic Mute Lights
-
-# Discord and slack with vim keybinds (probably a bad idea)
+# TODO! Replace Caps-Lock
+# TODO! Vim Discord
+# TODO! Vim Slack
 {
         imports = [
                 ./kitty.nix
@@ -46,6 +48,17 @@
                 in
                         notification "Brightness ${brightness}%";
                 notification = s: "exec notify-send -t 2000 \"${s}\"";
+# ''
+# sinks=($(pactl list short sinks | awk "{print \$2}"));
+# current=$(pactl info | awk -F": " "/Default Sink/ {print \$2}");
+# len=${#sinks[@]};
+# for i in "${!sinks[@]}"; do [[ "${sinks[i]}" == "$current" ]] && index=$i && break; done;
+# next=${sinks[$(( (index + 1) % len ))]};
+# pactl set-default-sink "$next";
+# notify-send "Switched audio sink" "$next"
+# '';
+                sinks = "$(pactl list short sinks | awk \" {print \$2} \")";
+                sources = "$(pactl list short sources | awk \" {print \$2} \")";
                 sinkNotification = let
                         vol = "$(pamixer --get-volume)";
                         sink = "$(pamixer --list-sinks | grep Running | awk -F'\"' '{print $6}')";
@@ -65,7 +78,6 @@
                 dateTimeNotification = notification dateTime;
                 currentWorkspace = "$(swaymsg -t get_workspaces -r | jq '.[] | select(.focused) | .num')";
                 workspaceNotification = notification "Workspace ${currentWorkspace}";
-                # TODO! Current workspace notification.
                 privateBrowser = "qutebrowser --target private-window";
                 menu = "wofi --show run";
                 left = "h";
@@ -120,24 +132,20 @@
                                 focused = focused; # active window
                         };
                         defaultWorkspace = "workspace number 1";
-                        floating.border = 2; # floating window border width
+                        floating.border = 2;
                         floating.criteria = []; # list of attributes to be floating
-                        floating.modifier = modifier; # "Mod4"
+                        floating.modifier = modifier;
                         floating.titlebar = false;
-                        focus.followMouse = true; # focus windows under the mouse
-                        focus.mouseWarping = false; # warp mouse to focused window
-                        focus.newWindow = "focus"; # smart, urgent, focus or none
-                        focus.wrapping = "no"; # how to wrap around edge
+                        focus.followMouse = true;
+                        focus.mouseWarping = false;
+                        focus.newWindow = "smart"; # smart, urgent, focus or none
+                        focus.wrapping = "no"; # ???
                         input = {
                                 "type:touchpad" = {
                                         natural_scroll = "enabled";
                                         tap = "enabled";
                                 };
-                                # see sway-input(5) for options
                         };
-                        # Replace caps-lock with escape or shift or whatever
-                        # Start sway automatically. Because of encryption thingie we could
-                        # just omitt the password I think.
                         keybindings = {
                                 "${modifier}+Return" = "exec ${terminal}";
                                 "${modifier}+Space" = "exec ${menu}";
@@ -181,6 +189,7 @@
                                 "${modifier}+Shift+8" = "move to workspace number 8";
                                 "${modifier}+Shift+9" = "move to workspace number 9";
                                 "${modifier}+Shift+0" = "move to workspace number 10";
+                                "${modifier}+Up" = "exec ${notification sinks}";
                                 "XF86MonBrightnessDown" = "exec ${brightnessDown} && ${brightnessNotification}";
                                 "XF86MonBrightnessUp" = "exec ${brightnessUp} && ${brightnessNotification}";
                                 "XF86AudioRaiseVolume" = "exec ${volUp} && ${sinkNotification}";

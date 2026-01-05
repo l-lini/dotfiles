@@ -3,7 +3,10 @@
 
 	inputs = {
 		# cachix? What da hell is this??? i'm more confused by the second.
+		# nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+		# nixpkgs.url = "github:nixos/nixpkgs";
+		# nixpkgs.url = "https://github.com/nixos/nixpkgs/archive/refs/heads/master.tar.gz";
                 nixos-fonts.url = "github:Takamatsu-Naoki/nixos-fonts";
 		nvf.url = "github:notashelf/nvf";
                 swaymonad.url = "github:nicolasavru/swaymonad";
