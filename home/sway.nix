@@ -1,21 +1,29 @@
 { ... }:
-# Same lock and login screen. Simple. Matching color scheme and font and size etc ... (simple)
-   # Fix sddm being slow as shit
-# Nice background
-# File explorer (Vim keybinds)
-# Master slave layout (keep same master, add slaves)
-# Blurred background on not focused. Opaque if focused
-# Low battery notification
-# Fix qutebrowser crashing every first startup (check logs maybe. google if it is a common issue)
+# Make stuff look nice: (Comic Font for readability) (Nice Colorscheme) (Simple)
+# TODO! Make Login nice
+# TODO! Make Run menu nice
+# TODO! Make neovim nice
+# TODO! Make Sway nice
+#   (Nice Background)
+#   (Borders etc)
+#   (Master Slave layout)
+#   (Blurred translucent on unfocused)
+#   (Opaque on focused)
+# TODO! Make Browser nice
+# TODO! Low battery notification
+# TODO! Fix qutebrowser crashing
+# TODO! Fix qutebrowser not working with SEB, Ladok etc ...
+# TODO! Fix Volume Mute and Mic Mute Lights
+
 # Discord and slack with vim keybinds (probably a bad idea)
-# Fix Mute Volume and Mute Mic lights
 {
-        # deps
         imports = [
                 ./kitty.nix
                 ./qutebrowser.nix 
                 ./wofi.nix
         ];
+
+        programs.jq.enable = true;
 
         services.swaync.enable = true;
 
@@ -55,6 +63,8 @@
                 batNotification = notification "${batStat} ${batCap}%";
                 dateTime = "$(date '+%A %d %H:%M\')";
                 dateTimeNotification = notification dateTime;
+                currentWorkspace = "$(swaymsg -t get_workspaces -r | jq '.[] | select(.focused) | .num')";
+                workspaceNotification = notification "Workspace ${currentWorkspace}";
                 # TODO! Current workspace notification.
                 privateBrowser = "qutebrowser --target private-window";
                 menu = "wofi --show run";
@@ -151,17 +161,16 @@
                                 "${modifier}+${right}" = "focus right";
                                 "${modifier}+${up}" = "focus up";
                                 "${modifier}+${down}" = "focus down";
-                                # TODO! Current workspace notification.
-                                "${modifier}+1" = "workspace number 1";
-                                "${modifier}+2" = "workspace number 2";
-                                "${modifier}+3" = "workspace number 3";
-                                "${modifier}+4" = "workspace number 4";
-                                "${modifier}+5" = "workspace number 5";
-                                "${modifier}+6" = "workspace number 6";
-                                "${modifier}+7" = "workspace number 7";
-                                "${modifier}+8" = "workspace number 8";
-                                "${modifier}+9" = "workspace number 9";
-                                "${modifier}+0" = "workspace number 10";
+                                "${modifier}+1" = "workspace number 1; exec ${workspaceNotification}";
+                                "${modifier}+2" = "workspace number 2; exec ${workspaceNotification}";
+                                "${modifier}+3" = "workspace number 3; exec ${workspaceNotification}";
+                                "${modifier}+4" = "workspace number 4; exec ${workspaceNotification}";
+                                "${modifier}+5" = "workspace number 5; exec ${workspaceNotification}";
+                                "${modifier}+6" = "workspace number 6; exec ${workspaceNotification}";
+                                "${modifier}+7" = "workspace number 7; exec ${workspaceNotification}";
+                                "${modifier}+8" = "workspace number 8; exec ${workspaceNotification}";
+                                "${modifier}+9" = "workspace number 9; exec ${workspaceNotification}";
+                                "${modifier}+0" = "workspace number 10; exec ${workspaceNotification}";
                                 "${modifier}+Shift+1" = "move to workspace number 1";
                                 "${modifier}+Shift+2" = "move to workspace number 2";
                                 "${modifier}+Shift+3" = "move to workspace number 3";

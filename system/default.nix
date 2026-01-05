@@ -12,6 +12,7 @@
                 # etc ...
         ];
 
+        # TODO! encryption!
         # Synth program without delay
         # Ephemeral root
         # Manual neovim config (reproducible)
