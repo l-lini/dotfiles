@@ -176,12 +176,16 @@
                 };
         };
 
-        services.displayManager.gdm = {
-                enable = true;
+        services.getty = {
+                autologinUser = "lini";
+                autologinOnce = true;
         };
+        environment.loginShellInit = ''
+                [[ "$(tty)" == /dev/tty1 ]] && sway
+        '';
 
         services.logind.settings.Login = {
-                HandleLidSwitch = "poweroff";
+                HandleLidSwitch = "swaylock";
                 HandleLidSwitchExternalPower = "lock";
                 HandleLidSwitchDocked = "ignore";
         };

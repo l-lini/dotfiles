@@ -1,5 +1,6 @@
 { ... }:
 # Same lock and login screen. Simple. Matching color scheme and font and size etc ... (simple)
+   # Fix sddm being slow as shit
 # Nice background
 # File explorer (Vim keybinds)
 # Master slave layout (keep same master, add slaves)
@@ -71,6 +72,8 @@
                                 { command = "fcitx5"; always = true; }
                                 # TODO! fix auto tiler. Maybe it has to do with fallof thingy option.
                                 { command = "swaymonad --default-layout tall"; always = true; }
+                                { command = "swaync"; always = true; }
+                                { command = "swaylock"; always = true; }
                                 # { command = terminal; always = true; }
                                 # { command = browser; always = true; }
                         ];
