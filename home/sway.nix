@@ -37,6 +37,9 @@
                                 gamma = "2";
                                 get = "brightnessctl g | awk -v max=\"$(brightnessctl m)\" '{ printf \"%.0f\", ($1/max)^(1/${gamma})*100 }'";
                                 change = delta: "brightnessctl s ${delta} -e ${gamma} -n 1";
+                                delta = "25%";
+                                down = change "${delta}-";
+                                up = change "+${delta}";
                         };
                         start = {
                                 terminal = "kitty";
@@ -94,65 +97,56 @@
                                 sink = with get; rec {
                                         max = "0.5";
                                         delta = "0.05";
-                                        volume = arg: volume sinkId arg;
+                                        volume = arg: set.volume sinkId arg;
                                         volumeUp = volume "${delta}+" + "-l ${max}";
                                         volumeDown = volume "${delta}-" + "-l ${max}";
-                                        mute = mute sinkId;
-                                        volumeAndMuted = volumeAndMuted sinkId;
-                                        stat = stat sinkId;
+                                        mute = set.mute sinkId;
+                                        volumeAndMuted = get.volumeAndMuted sinkId;
+                                        stat = get.stat sinkId;
                                 };
                                 source = with get; rec {
-                                        max = "0.5";
+                                        max = "1.0";
                                         delta = "0.05";
-                                        volume = arg: volume sourceId arg;
+                                        volume = arg: set.volume sourceId arg;
                                         volumeUp = volume "${delta}+" + "-l ${max}";
                                         volumeDown = volume "${delta}-" + "-l ${max}";
-                                        mute = mute sourceId;
-                                        volumeAndMuted = volumeAndMuted sourceId;
-                                        stat = stat sourceId;
+                                        mute = set.mute sourceId;
+                                        volumeAndMuted = get.volumeAndMuted sourceId;
+                                        stat = get.stat sourceId;
                                 };
-                                volume = idCommand: arg: "wpctl set-volume ${wrapCommand idCommand} ${arg}";
-                                mute = idCommand: "wpctl set-mute ${wrapCommand idCommand} toggle";
-                                set = idCommand: "wpctl set-default ${wrapCommand idCommand}";
+                                set = {
+                                        volume = idCommand: arg: "wpctl set-volume ${wrapCommand idCommand} ${arg}";
+                                        mute = idCommand: "wpctl set-mute ${wrapCommand idCommand} toggle";
+                                        set = idCommand: "wpctl set-default ${wrapCommand idCommand}";
+                                };
                         };
-                        battery = rec {
-                                path = let
-                                        dir = "/sys/class/power_supply/BAT0/";
-                                in {
-                                        status = dir + "status";
-                                        capacity = dir + "capacity";
-                                };
-                                stat = "echo '$(cat ${path.status}) $(cat ${path.capacity})'";
+                        battery = let dir = "/sys/class/power_supply/BAT0"; in rec {
+                                status = "cat ${dir}/status";
+                                capacity = "cat ${dir}/capacity";
+                                stat = "echo \"$(${status}) $(${capacity})%\"";
                         };
                         notification = rec {
-                                fromWrapped = wrapped: { time ? "2000", ... }: "notify-send -t ${time} \"${wrapped}\"";
-                                fromCommand = command: args@{ time, ... }: fromWrapped (wrapCommand command args);
-                                dateTime = fromCommand date.all;
-                                battery = fromCommand battery.stat;
+                                fromCommand = command: { time ? "2000", ... }: "notify-send -t ${time} \"$(${command})\"";
+                                dateTime = fromCommand date.all {};
+                                battery = fromCommand commands.battery.stat {};
                                 sink = {
-                                        stat = fromCommand wpctl.sink.stat;
-                                        volume = fromCommand wpctl.sink.stat;
+                                        stat = fromCommand wpctl.sink.stat {};
+                                        volumeAndMuted = fromCommand wpctl.sink.volumeAndMuted {}; # TODO Maybe Add "Speaker: "
                                 };
-                                source = fromCommand wpctl.source.stat;
+                                source = {
+                                        stat = fromCommand wpctl.source.stat {};
+                                        volumeAndMuted = fromCommand wpctl.source.volumeAndMuted {}; # TODO Maybe Add "Microphone: "
+                                };
+                                workspace = fromCommand commands.workspace {};
                         };
-                        date = let wrap = s: "date '+%${s}'"; in rec {
-                                day     = wrap "d日";
-                                weekday = let 
-                                        names = "'日曜日' '月曜日' '火曜日' '水曜日' '木曜日' '金曜日' '土曜日'";
-                                        kanas = "'にちようび' 'げつようび' 'かようび' 'すいようび' 'もくようび' 'きんようび' 'どようび'";
-                                        script =
-                                                "read i;" +
-                                                "((i++));" +
-                                                "ns=(${names});" +
-                                                "ks=(${kanas});" +
-                                                "echo \"($\{ns[i]}: $\{ks[i]})\"";
-                                in script;
-                                hour    = wrap "H時";
-                                minute  = wrap "M分";
-                                second  = wrap "S秒";
-                                date    = "echo \"$(${day}) $(${weekday})\"";
-                                time    = "echo \"$(${hour})$(${minute})$(${second})\"";
-                                all     = "echo \"$(${date}) $(${time})\"";
+                        date = rec {
+                                day     = "date '+%d日'";
+                                time = "date '+%H時%M分%S秒'";
+                                weekday =
+                                        "bash -c 'ns=(日曜日 月曜日 火曜日 水曜日 木曜日 金曜日 土曜日); " +
+                                        "ks=(にちようび げつようび かようび すいようび もくようび きんようび どようび); " +
+                                        "i=$(date +%w); echo \"$\{ns[$i]}: $\{ks[$i]}\"'";
+                                all = "echo \"$(${day}) $(${weekday}) $(${time})\"";
                         };
                         workspace = "swaymsg -t get_workspaces -r | jq '.[] | select(.focused) | .num'";
                 };
@@ -230,8 +224,9 @@
                                 "${modifier}+Space" = "exec ${launcher}";
                                 "${modifier}+q" = "exec ${browser}";
                                 "${modifier}+p" = "exec ${privateBrowser}";
-                                "${modifier}+Print" = "exec ${screenshot}";
-                                "${modifier}+f9" = "exec ${audio}";
+                                "Print" = "exec ${screenshot}";
+                                "f9" = "exec ${audio}";
+                        }) // (with commands; with keys; {
                                 "${modifier}+Backspace" = "kill";
                                 "${modifier}+f" = "fullscreen toggle";
                                 "${modifier}+o" = "floating toggle";
@@ -247,7 +242,7 @@
                                 "${modifier}+${right}" = "focus right";
                                 "${modifier}+${up}" = "focus up";
                                 "${modifier}+${down}" = "focus down";
-                                "f9" = "exec ${workspaceNotification}";
+                                "${modifier}+f9" = "exec ${notification.workspace}";
                                 "${modifier}+1" = "workspace number 1";
                                 "${modifier}+2" = "workspace number 2";
                                 "${modifier}+3" = "workspace number 3";
@@ -272,7 +267,7 @@
                                 "XF86MonBrightnessUp" = "exec ${brightness.up}";
                                 "${modifier}+b" = "exec ${notification.battery}";
                                 "${modifier}+t" = "exec ${notification.dateTime}";
-                        }) // (with commands.wpctl; {
+                        }) // (with commands; with wpctl; with keys; {
                                 "${modifier}+Right" = "exec ${notification.source.stat}";
                                 "${modifier}+Left" = "exec ${notification.sink.stat}";
                                 "XF86AudioRaiseVolume" = "exec ${sink.volumeUp} && ${notification.sink.volumeAndMuted}";
