@@ -30,13 +30,23 @@
 
         nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-        # TODO! Fix random persistant lag
-        programs.steam.enable = true;
+        programs = {
+                # TODO! Fix random persistant lag
+                steam.enable = true;
+                sway.enable = true;
+                zsh.enable = true;
+                neovim = {
+                        enable = true;
+                        defaultEditor = true;
+                        viAlias = true;
+                        vimAlias = true;
+                };
+        };
+
 
         # You can use https://search.nixos.org/ to find more packages (and options).
         environment.systemPackages = with pkgs; [
                 # nvcat # ^^
-                neovim
                 prismlauncher
                 heroic
                 pavucontrol
@@ -75,7 +85,6 @@
 
         users.defaultUserShell = pkgs.zsh;
 
-        programs.zsh.enable = true;
 
         # Set the default editor to neovim
         environment.variables = {
@@ -179,8 +188,6 @@
                         qutebrowser
                 ];
         };
-
-        programs.sway.enable = true;
 
         networking.firewall.enable = false;
 
