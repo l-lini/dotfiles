@@ -17,4 +17,6 @@
         # Autosave on close
         # Auto sudo on write protected
         # haskell with good lsp. hlint builtin.
+        # Se lsp and tree-sitter errors
+        # Autocomplete
 }

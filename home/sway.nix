@@ -1,11 +1,13 @@
 { ... }:
 # Make stuff look nice: (Comic Font for readability) (Nice Colorscheme) (Simple)
 # TODO! Make Login nice
-# TODO! Make Run menu nice
+# TODO! Make Launcher nice
+# TODO! Make Launcher always on top
 # TODO! Make neovim nice
 # TODO! Make Audio Interface nice (Pipewire thingy instead?)
 # TODO! Make Network Interface nice
 # TODO! Make Sway nice
+#   TODO! Better JA Font
 #   TODO! (Nice Notifications)
 #   TODO! (Nice Background)
 #   TODO! (Borders etc)
@@ -53,26 +55,26 @@
                                 screenshot = "slurp | grim -g - - | wl-copy";
                         };
                         move = delta: fetchOneCommand: fetchAllCommand:
-                                "arr=();" +
-                                "while IFS= read -r line; do" +
-                                "arr+=(\"$line\")" +
-                                "done <<< \"${wrapCommand fetchAllCommand}\";秒" +
-                                "l=$\{#arr[@]};" +
-                                "for ((i=0;i<$l;i++)); do" + 
-                                "[[ \"$\{arr[i]}]\" == \"${wrapCommand fetchOneCommand}\" ]] &&" +
-                                "prev=$(((i${delta}+l)%l)) &&" +
-                                "break;" +
-                                "done;" +
-                                "echo $\{arr[prev]}";
-                        prev = move "-1";
-                        next = move "+1";
+                                "bash -c '"
+                                + "mapfile -t arr < <(" + wrapCommand fetchAllCommand + "); "
+                                + "l=$\{#arr[@]}; "
+                                + "for ((i=0; i<l; i++)); do "
+                                + "  if [[ \"$\{arr[i]}\" == $(" + wrapCommand fetchOneCommand + ") ]]; then "
+                                + "    prev=$(((i + " + toString delta + " + l) % l)); "
+                                + "    echo \"$\{arr[prev]}\"; "
+                                + "    break; "
+                                + "  fi; "
+                                + "done"
+                                + "'";
+                        prev = move (-1);
+                        next = move 1;
                         sed = {
                                 fromTo = from: to: "sed -n '/${from}/,/${to}/ {p; /${to}/q}'";
-                                numbers = "sed -nE 's/^[^0-9]*([0-9]+)\..*/\1/p'";
-                                number = "sed -nE 's/^[^*]*\* *([0-9]+)\..*/\1/p'";
-                                muted = "sed -n 's/.*\(MUTED\).*/\1/p'";
-                                volume = "sed -nE ' /\*/{ s/.*Volume: *([0-9.]+)\].*/\1/p }'";
-                                name = "sed -nE 's/^[^*]*\* *[0-9]+\. *(.*) *\[vol:.*/\1/p'";
+                                numbers = "sed -nE 's/^[^0-9]*([0-9]+)\\..*/\\1/p'";
+                                number = "sed -nE 's/^[^*]*\\* *([0-9]+)\\..*/\\1/p'";
+                                muted = "sed -n 's/.*\\(MUTED\\).*/\\1/p'";
+                                volume = "sed -nE ' /\\*/{ s/.*Volume: *([0-9.]+)\\].*/\\1/p }'";
+                                name = "sed -nE 's/^[^*]*\\* *[0-9]+\\. *(.*) *\\[vol:.*/\\1/p'";
                         };
                         awk = {
                                 toPercent = "awk '{ vol = int($1 * 100) } END { printf \"%d%%\", vol }'";
@@ -94,30 +96,22 @@
                                         name = idCommand: "${deviceLine idCommand} | ${sed.name}";
                                         stat = idCommand: "echo \"$(${volumeAndMuted idCommand}) $(${name idCommand})\"";
                                 };
-                                sink = with get; rec {
-                                        max = "0.5";
-                                        delta = "0.05";
-                                        volume = arg: set.volume sinkId arg;
-                                        volumeUp = volume "${delta}+" + "-l ${max}";
-                                        volumeDown = volume "${delta}-" + "-l ${max}";
-                                        mute = set.mute sinkId;
-                                        volumeAndMuted = get.volumeAndMuted sinkId;
-                                        stat = get.stat sinkId;
-                                };
-                                source = with get; rec {
-                                        max = "1.0";
-                                        delta = "0.05";
-                                        volume = arg: set.volume sourceId arg;
-                                        volumeUp = volume "${delta}+" + "-l ${max}";
-                                        volumeDown = volume "${delta}-" + "-l ${max}";
-                                        mute = set.mute sourceId;
-                                        volumeAndMuted = get.volumeAndMuted sourceId;
-                                        stat = get.stat sourceId;
-                                };
-                                set = {
-                                        volume = idCommand: arg: "wpctl set-volume ${wrapCommand idCommand} ${arg}";
+                                set = rec {
+                                        volume = idCommand: delta: max: "wpctl set-volume ${wrapCommand idCommand} ${delta} -l ${max}";
+                                        volumeUp = idCommand: delta: volume idCommand "${delta}+";
+                                        volumeDown = idCommand: delta: volume idCommand "${delta}-";
                                         mute = idCommand: "wpctl set-mute ${wrapCommand idCommand} toggle";
                                         set = idCommand: "wpctl set-default ${wrapCommand idCommand}";
+                                };
+                                sink = f get.sinkId "0.5" "0.05";
+                                source = f get.sourceId "1" "0.1";
+                                f = idCommand: max: delta: rec {
+                                        inherit max delta;
+                                        volumeUp = set.volumeUp idCommand delta max;
+                                        volumeDown = set.volumeDown idCommand delta max;
+                                        mute = set.mute idCommand;
+                                        volumeAndMuted = get.volumeAndMuted idCommand;
+                                        stat = get.stat idCommand;
                                 };
                         };
                         battery = let dir = "/sys/class/power_supply/BAT0"; in rec {
@@ -268,8 +262,8 @@
                                 "${modifier}+b" = "exec ${notification.battery}";
                                 "${modifier}+t" = "exec ${notification.dateTime}";
                         }) // (with commands; with wpctl; with keys; {
-                                "${modifier}+Right" = "exec ${notification.source.stat}";
-                                "${modifier}+Left" = "exec ${notification.sink.stat}";
+                                "${modifier}+Right" = "exec ${notification.fromCommand (next get.sinkId get.sinkIds) {}}";
+                                "${modifier}+Left" = "exec ${notification.fromCommand (prev get.sinkId get.sinkIds) {}}";
                                 "XF86AudioRaiseVolume" = "exec ${sink.volumeUp} && ${notification.sink.volumeAndMuted}";
                                 "XF86AudioLowerVolume" = "exec ${sink.volumeDown} && ${notification.sink.volumeAndMuted}";
                                 "${modifier}+XF86AudioRaiseVolume" = "exec ${source.volumeUp} && ${notification.source.volumeAndMuted}";
@@ -282,7 +276,7 @@
                         # Iterate through mic keybind (notification)
                         # Iterate through speaker keybind (notification)
                         # Switch language (notification) (Caps-lock so you can see which it is)
-                        # Network keybind
+                        # Network keybind (AirplaneMode button)
                         # See keybinds keybind. No Timer. Tall.
                         output = { };
                         seat."*".hide_cursor = "when-typing enable";

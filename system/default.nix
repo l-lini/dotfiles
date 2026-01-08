@@ -35,7 +35,8 @@
 
         # You can use https://search.nixos.org/ to find more packages (and options).
         environment.systemPackages = with pkgs; [
-                # nvcat
+                nvcat # ^^
+                neovim
                 prismlauncher
                 heroic
                 pavucontrol
@@ -75,32 +76,6 @@
         users.defaultUserShell = pkgs.zsh;
 
         programs.zsh.enable = true;
-
-        programs.nvf = {
-                enable = true;
-                settings.vim = {
-                        theme = {
-                                enable = true;
-                                name = "gruvbox";
-                                style = "dark";
-                        };
-
-                        lsp.enable = true;
-
-                        languages = {
-                                enableTreesitter = true;
-
-                                nix.enable = true;
-                                rust.enable = true;
-                                java.enable = true;
-                                haskell.enable = true;
-                        };
-
-                        statusline.lualine.enable = true;
-                        telescope.enable = true;
-                        autocomplete.nvim-cmp.enable = true;
-                };
-        };
 
         # Set the default editor to neovim
         environment.variables = {
