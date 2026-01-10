@@ -58,6 +58,7 @@
                 mpv
                 mupdf
                 tree
+		screen
                 grim
                 slurp
                 wl-clipboard
