@@ -22,7 +22,9 @@
 						root_markers = { '.git' },
 					})
 
-					vim.lsp.config('hls', {})'';
+					vim.lsp.config('hls', {})
+					vim.lsp.config('lua_ls', {})
+					vim.lsp.config('rnix-lsp', {})'';
 			}
 			nvim-treesitter.withAllGrammars
 			# telescope-nvim
