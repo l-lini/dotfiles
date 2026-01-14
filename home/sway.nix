@@ -19,6 +19,7 @@
 # TODO! Fix qutebrowser crashing
 # TODO! Fix qutebrowser not working with SEB, Ladok etc ...
 # TODO! Fix Volume Mute and Mic Mute Lights
+# TODO! Fix notification delay
 # TODO! Replace Caps-Lock
 # TODO! Vim Discord
 # TODO! Vim Slack

@@ -35,12 +35,6 @@
                 steam.enable = true;
                 sway.enable = true;
                 zsh.enable = true;
-                neovim = {
-                        enable = true;
-                        defaultEditor = true;
-                        viAlias = true;
-                        vimAlias = true;
-                };
         };
 
 
@@ -105,7 +99,6 @@
         # Set your time zone.
         time.timeZone = "Europe/Stockholm";
 
-        services.plantuml-server.enable = true;
         # CUPS
         services.printing.enable = true;
         # Sound
@@ -113,7 +106,6 @@
                 enable = true;
                 pulse.enable = true;
         };
-        # Enable the OpenSSH daemon.
         services.openssh.enable = true;
 
         services.mysql = {
@@ -141,20 +133,20 @@
                         STOP_CHARGE_THRESH_BAT0 = 80;  # 80 and above it stops charging
                 };
         };
-
-        services.auto-cpufreq = {
-                enable = true;
-                settings = {
-                        battery = {
-                                governor = "powersave";
-                                turbo = "never";
-                        };
-                        charger = {
-                                governor = "performance";
-                                turbo = "auto";
-                        };
-                };
-        };
+        #
+        # services.auto-cpufreq = {
+        #         enable = true;
+        #         settings = {
+        #                 battery = {
+        #                         governor = "powersave";
+        #                         turbo = "never";
+        #                 };
+        #                 charger = {
+        #                         governor = "performance";
+        #                         turbo = "auto";
+        #                 };
+        #         };
+        # };
 
         services.getty = {
                 autologinUser = "lini";
