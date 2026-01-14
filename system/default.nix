@@ -41,6 +41,7 @@
         # You can use https://search.nixos.org/ to find more packages (and options).
         environment.systemPackages = with pkgs; [
                 # nvcat # ^^
+		acpid
 		tree-sitter
                 prismlauncher
                 heroic
@@ -163,23 +164,9 @@
                 HandleLidSwitchDocked = "ignore";
         };
 
-	systemd.services.lid-lock = {
-		description = "Lock screen on lid close";
-		wantedBy = [ "multi-user.target" ];
-		serviceConfig = {
-			Type = "oneshot";
-			ExecStart = ''
-				if pgrep -x sway >/dev/null; then
-					swaylock -f -c 000000
-			 	fi
-			'';
-		};
-# Run this when the lid device appears
-		unitConfig = {
-			wantedBy = [ "dev-sensor-lid.device" ];
-			BindsTo = "dev-sensor-lid.device";
-			After = "dev-sensor-lid.device";
-		};
+	services.acpid = {
+		enable = true;
+		lidEventCommands = "swaylock";
 	};
 
         i18n.inputMethod = {
