@@ -48,7 +48,7 @@
                                 browser = "qutebrowser";
                                 privateBrowser = "qutebrowser --target private-window";
                                 audio = "pavucontrol";
-                                autotiler = "swaymonad";
+                                autotiler = "autotiling -l 2";
                                 notification = "swaync";
                                 lock = "swaylock";
                                 launcher = "wofi --show run";

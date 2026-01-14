@@ -71,7 +71,7 @@
                 libnotify
                 firefox
                 brightnessctl
-                inputs.swaymonad.defaultPackage.x86_64-linux
+		autotiling
         ];
                                                         
 
