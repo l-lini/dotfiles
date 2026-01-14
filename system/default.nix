@@ -158,10 +158,29 @@
         '';
 
         services.logind.settings.Login = {
-                HandleLidSwitch = "swaylock";
+                HandleLidSwitch = "ignore";
                 HandleLidSwitchExternalPower = "lock";
                 HandleLidSwitchDocked = "ignore";
         };
+
+	systemd.services.lid-lock = {
+		description = "Lock screen on lid close";
+		wantedBy = [ "multi-user.target" ];
+		serviceConfig = {
+			Type = "oneshot";
+			ExecStart = ''
+				if pgrep -x sway >/dev/null; then
+					swaylock -f -c 000000
+			 	fi
+			'';
+		};
+# Run this when the lid device appears
+		unitConfig = {
+			wantedBy = [ "dev-sensor-lid.device" ];
+			BindsTo = "dev-sensor-lid.device";
+			After = "dev-sensor-lid.device";
+		};
+	};
 
         i18n.inputMethod = {
                 type = "fcitx5";
