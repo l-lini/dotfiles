@@ -160,9 +160,9 @@
         '';
 
         services.logind.settings.Login = {
-                HandleLidSwitch = "ignore";
+                HandleLidSwitch = "lock";
                 HandleLidSwitchExternalPower = "lock";
-                HandleLidSwitchDocked = "ignore";
+                HandleLidSwitchDocked = "lock";
         };
 
 	services.acpid = {
