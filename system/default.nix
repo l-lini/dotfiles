@@ -35,12 +35,13 @@
                 steam.enable = true;
                 sway.enable = true;
                 zsh.enable = true;
+		direnv.enable = true;
         };
 
 
         # You can use https://search.nixos.org/ to find more packages (and options).
         environment.systemPackages = with pkgs; [
-                # nvcat # ^^
+                nvcat # ^^
 		prusa-slicer
 		acpid
 		tree-sitter
