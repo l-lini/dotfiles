@@ -121,7 +121,7 @@
                                 stat = "echo \"$(${status}) $(${capacity})%\"";
                         };
                         notification = rec {
-                                fromCommand = command: { time ? "2000", ... }: "notify-send -t ${time} \"$(${command})\"";
+                                fromCommand = command: { time ? "4000", ... }: "notify-send -t ${time} \"$(${command})\"";
                                 dateTime = fromCommand date.all {};
                                 battery = fromCommand commands.battery.stat {};
                                 sink = {
