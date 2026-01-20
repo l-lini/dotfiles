@@ -53,6 +53,7 @@
                 spotify
                 r2modman
                 anki
+		inkscape
                 git
                 mpv
                 mupdf
