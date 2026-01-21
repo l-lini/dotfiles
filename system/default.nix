@@ -41,6 +41,7 @@
 
         # You can use https://search.nixos.org/ to find more packages (and options).
         environment.systemPackages = with pkgs; [
+		unzip
                 nvcat
 		erlang
 		prusa-slicer
