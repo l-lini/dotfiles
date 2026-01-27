@@ -11,8 +11,6 @@
                 autosuggestion.enable = true;
                 syntaxHighlighting.enable = true;
                 shellAliases = {
-                        update = "f() { git -C /etc/nixos add . && git -C /etc/nixos commit -m $1 && git -C /etc/nixos push && sudo nixos-rebuild switch };f";
-                        tstcfg = "git -C /etc/nixos add . && sudo nixos-rebuild test";
                 };
                 history.size = 10000;
         };

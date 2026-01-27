@@ -3,10 +3,13 @@
 {
         programs.git = {
                 enable = true;
-                settings.user = {
-                        name = "lini";
-                        email = "no@thanks.com";
-                };
+                settings = {
+			user = {
+                        	name = "lini";
+                        	email = "no@thanks.com";
+                	};
+			credential.helper = "!gh auth git-credential";
+		};
         };
 }
 # Git default branch = main

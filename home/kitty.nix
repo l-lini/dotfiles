@@ -5,8 +5,9 @@
                 enable = true;
                 settings = {
                         enable_audio_bell = false;
-                        font_family = "Mona Sans";
-                        font_size = 16.0;
+                        font_family = "Comic Mono";
+			font_style = "Bold";
+                        font_size = 20.0;
                         # clear_all_mouse_actions = "yes"; Disables mouse:
                         scrollback_pager = "nvim --cmd 'set eventignore=FileType' +'nnoremap q ZQ' +'call nvim_open_term(0, {})' +'set nomodified nolist' +'$' -";
                 };

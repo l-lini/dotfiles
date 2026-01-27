@@ -1,5 +1,6 @@
 { ... }:
 # Make stuff look nice: (Comic Font for readability) (Nice Colorscheme) (Simple)
+# TODO Fix double lock
 # TODO! Make Login nice
 # TODO! Make Launcher nice
 # TODO! Make Launcher always on top

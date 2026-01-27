@@ -2,12 +2,12 @@
 # TODO! Synth Program
 # TODO! Ephemeral Root
 # TODO! File for passwords (Outside of Config) (Outside of Ephemeral Root)
+# TODO password place and github token place thingy collected i folder
 { inputs, config, lib, pkgs, ... }:
 
 {
         imports = [
-		inputs.md307.nixosModules.default
-                ./hardware.nix # TODO! Remove this file from git repo
+                ./hardware.nix # TODO Remove this file from git repo
                 # ./zsh.nix
                 # ./disko
                 # ./network
@@ -29,7 +29,14 @@
                 };
         };
 
-        nix.settings.experimental-features = [ "nix-command" "flakes" ];
+        nix = {
+		settings.experimental-features = [ "nix-command" "flakes" ];
+		gc = {
+			automatic = true;
+			dates = "weekly";
+			options = "--delete-older-than 7d";
+		};
+	};
 
         programs = {
                 # TODO! Fix random persistant lag
@@ -42,7 +49,8 @@
 
         # You can use https://search.nixos.org/ to find more packages (and options).
         environment.systemPackages = with pkgs; [
-		vscode
+		asm-lsp
+		dust
 		tigervnc
 		stunnel
 		unzip
@@ -77,6 +85,7 @@
                 firefox
                 brightnessctl
 		autotiling
+		gh
         ];
                                                         
 

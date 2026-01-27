@@ -6,7 +6,7 @@
 		defaultEditor = true;
 		viAlias = true;
 		vimAlias = true;
-		extraLuaConfig = let 
+		initLua = let 
 			early = lib.mkOrder 5000 ''
 				vim.schedule(function()
 					vim.o.clipboard = 'unnamedplus'
@@ -38,7 +38,8 @@
                                         local configs = {
                                                 { 'hls', {} },
                                                 { 'lua_ls', {} },
-                                                { 'rnix-lsp', {} },
+                                                { 'nil', { filetypes = {'nix'} } },
+						{ 'asm_lsp', {  } },
                                         }
 
                                         for _, lsp in pairs(configs) do
