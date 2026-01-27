@@ -6,6 +6,7 @@
 
 {
         imports = [
+		inputs.md307.nixosModules.default
                 ./hardware.nix # TODO! Remove this file from git repo
                 # ./zsh.nix
                 # ./disko
@@ -41,6 +42,7 @@
 
         # You can use https://search.nixos.org/ to find more packages (and options).
         environment.systemPackages = with pkgs; [
+		vscode
 		tigervnc
 		stunnel
 		unzip

@@ -8,19 +8,19 @@
 		# nixpkgs.url = "github:nixos/nixpkgs";
 		# nixpkgs.url = "https://github.com/nixos/nixpkgs/archive/refs/heads/master.tar.gz";
                 nixos-fonts.url = "github:Takamatsu-Naoki/nixos-fonts";
-		nvf.url = "github:notashelf/nvf";
                 swaymonad.url = "github:nicolasavru/swaymonad";
 		home-manager.url = "github:nix-community/home-manager/master";
+		md307.url = "github:olillin/eda482-md307-flake";
 	};
 
-	outputs = inputs @{ nixpkgs, home-manager, nvf, ... }: let
+	outputs = inputs @{ nixpkgs, home-manager, md307, ... }: let
                 system = "x86_64-linux";
         in {
 		nixosConfigurations = {
 			lini = nixpkgs.lib.nixosSystem {
 				modules = [
 					./system
-					nvf.nixosModules.default
+					md307.nixosModules.default
 					home-manager.nixosModules.home-manager {
 						home-manager.useGlobalPkgs = true;
 						home-manager.useUserPackages = true;
