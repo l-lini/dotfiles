@@ -1,4 +1,5 @@
-# TODO! Encryption!
+# TODO! Compression (zfs?)
+# TODO! Encryption! (Or not)
 # TODO! Synth Program
 # TODO! Ephemeral Root
 # TODO! File for passwords (Outside of Config) (Outside of Ephemeral Root)
