@@ -40,12 +40,12 @@
                                                 { 'lua_ls', {} },
                                                 { 'nil', { filetypes = {'nix'} } },
 						{ 'asm_lsp', {  } },
+						{ 'java_language_server', {} }
                                         }
 
                                         for _, lsp in pairs(configs) do
                                                 local name, config = lsp[1], lsp[2]
                                                 vim.lsp.enable(name)
-						vim.lsp.config(name, config)
                                         end
 				'';
 			}

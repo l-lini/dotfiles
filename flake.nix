@@ -15,9 +15,10 @@
                 swaymonad.url = "github:nicolasavru/swaymonad";
 		home-manager.url = "github:nix-community/home-manager/master";
 		md307.url = "github:olillin/eda482-md307-flake";
+		chalmers-search-exam.url = "github:olillin/chalmers-search-exam";
 	};
 
-	outputs = inputs @{ nixpkgs, home-manager, md307, nixos-fonts, ... }: let
+	outputs = inputs @{ nixpkgs, home-manager, md307, nixos-fonts, chalmers-search-exam, ... }: let
                 system = "x86_64-linux";
         in {
 		nixosConfigurations = {
@@ -36,7 +37,7 @@
 								};
 					}
                                         {
-                                                _module.args = { inherit inputs; };
+                                                _module.args = { inherit inputs system; };
                                         }
 				];
 			};

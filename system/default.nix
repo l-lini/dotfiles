@@ -3,7 +3,7 @@
 # TODO! Ephemeral Root
 # TODO! File for passwords (Outside of Config) (Outside of Ephemeral Root)
 # TODO password place and github token place thingy collected i folder
-{ inputs, config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, system, ... }:
 
 {
         imports = [
@@ -49,6 +49,7 @@
 
         # You can use https://search.nixos.org/ to find more packages (and options).
         environment.systemPackages = with pkgs; [
+		inputs.chalmers-search-exam.packages.${system}.default
 		asm-lsp
 		dust
 		tigervnc
