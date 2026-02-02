@@ -1,12 +1,14 @@
-{ pkgs, lib, ... }:
+{ pkgs, pkgs-unstable, lib, ... }:
 
 {
 	programs.neovim = {
 		enable = true;
+		package = pkgs-unstable.neovim;
 		defaultEditor = true;
 		viAlias = true;
 		vimAlias = true;
-		initLua = let 
+		extraLuaConfig = let 
+			# TODO this sucks. make it a separate file instead in actual lua and us readfile
 			early = lib.mkOrder 5000 ''
 				vim.schedule(function()
 					vim.o.clipboard = 'unnamedplus'
@@ -65,16 +67,6 @@
 				}
 			'';
 		}
-# telescope-nvim
-# telescope-fzf-native-nvim
-# harpoon
-# vim-fugitive
-# {
-# 	plugin = nvim-lspconfig;
-# 	type = "lua";
-# 	config = "require('lspconfig').hls.setup {};";
-# }
-# use coc-nvim to have LSP
 		];
 		extraPackages = [];
 	};

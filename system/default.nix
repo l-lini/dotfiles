@@ -4,13 +4,13 @@
 # TODO! Ephemeral Root
 # TODO! File for passwords (Outside of Config) (Outside of Ephemeral Root)
 # TODO password place and github token place thingy collected i folder
-{ inputs, config, lib, pkgs, system, ... }:
+{ inputs, config, lib, pkgs, pkgs-unstable, system, ... }:
 
 {
         imports = [
                 ./hardware.nix # TODO Remove this file from git repo
                 # ./zsh.nix
-                # ./disko
+                ./disko.nix
                 # ./network
                 # ./users
                 #
@@ -51,12 +51,14 @@
         # You can use https://search.nixos.org/ to find more packages (and options).
         environment.systemPackages = with pkgs; [
 		inputs.chalmers-search-exam.packages.${system}.default
+		playerctl
+		neovim
+		git-crypt
 		asm-lsp
 		dust
 		tigervnc
 		stunnel
 		unzip
-                nvcat
 		erlang
 		prusa-slicer
 		acpid
@@ -87,8 +89,9 @@
                 firefox
                 brightnessctl
 		autotiling
-		gh
-        ];
+        ] ++ (with pkgs-unstable; [
+		nvcat
+	]);
                                                         
 
         fonts.packages = with pkgs; [
@@ -122,39 +125,47 @@
         time.timeZone = "Europe/Stockholm";
 
         # CUPS
-        services.printing.enable = true;
-        # Sound
-        services.pipewire = {
-                enable = true;
-                pulse.enable = true;
-        };
-        services.openssh.enable = true;
+	services = {
+		spotifyd = {
+			enable = true;
+			settings = {
+			};
+		};
 
-        services.mysql = {
-                enable = true;
-                package = pkgs.mariadb;
-        };
+		printing.enable = true;
+# Sound
+		pipewire = {
+			enable = true;
+			pulse.enable = true;
+		};
+		openssh.enable = true;
 
-        services.tlp = {
-                enable = true;
-                settings = {
-                        CPU_SCALING_GOVERNOR_ON_AC = "performance";
-                        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+		mysql = {
+			enable = true;
+			package = pkgs.mariadb;
+		};
 
-                        CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-                        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+		tlp = {
+			enable = true;
+			settings = {
+				CPU_SCALING_GOVERNOR_ON_AC = "performance";
+				CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
 
-                        CPU_MIN_PERF_ON_AC = 0;
-                        CPU_MAX_PERF_ON_AC = 100;
-                        CPU_MIN_PERF_ON_BAT = 0;
-                        CPU_MAX_PERF_ON_BAT = 20;
+				CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+				CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
 
-                        # Optional helps save long term battery health
-                        # TODO! fix this, it does not fucking work. fucking Bitchass.
-                        START_CHARGE_THRESH_BAT0 = 40; # 40 and below it starts to charge
-                        STOP_CHARGE_THRESH_BAT0 = 80;  # 80 and above it stops charging
-                };
-        };
+				CPU_MIN_PERF_ON_AC = 0;
+				CPU_MAX_PERF_ON_AC = 100;
+				CPU_MIN_PERF_ON_BAT = 0;
+				CPU_MAX_PERF_ON_BAT = 20;
+
+# Optional helps save long term battery health
+# TODO! fix this, it does not fucking work. fucking Bitchass.
+				START_CHARGE_THRESH_BAT0 = 40; # 40 and below it starts to charge
+					STOP_CHARGE_THRESH_BAT0 = 80;  # 80 and above it stops charging
+			};
+		};
+	};
         #
         # services.auto-cpufreq = {
         #         enable = true;

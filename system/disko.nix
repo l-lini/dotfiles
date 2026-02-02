@@ -1,13 +1,15 @@
-# zfs (disko)
-# Encryption
-{ ... }:
+{ inputs, ... }:
 
 {
+	imports = [ inputs.disko.nixosModules.disko ];
+
+	networking.hostId = "a1b2c3d4";
+
         disko.devices = {
                 disk = {
                         root = {
                                 type = "disk";
-                                device = /dev/nvme0n1;
+                                device = "/dev/disk/by-id/nvme-SSSTC_CL1-8D256-HP_UKFCN01ZTF95EW";
                                 content = {
                                         type = "gpt";
                                         partitions = {
@@ -17,7 +19,7 @@
                                                         content = {
                                                                 type = "filesystem";
                                                                 format = "vfat";
-                                                                mountpoint = /boot;
+                                                                mountpoint = "/boot";
                                                                 mountOptions = [ "umask=0077" ];
                                                         };
                                                 };
@@ -37,27 +39,24 @@
                                 type = "zpool";
                                 rootFsOptions = {
                                         mountpoint = "none";
-                                        compression = "zstd";
-                                        acltype = "posixacl";
-                                        xattr = "sa";
-                                        "com.sun:auto-snapshot" = "true";
+                                        compression = "zstd"; # Check!
                                 };
-                                options.ashift = "12";
                                 datasets = {
-                                        "root" = "zfs_fs";
-                                        options = {
-                                                encryption = "aes-256-gcm";
-                                                keyformat = "passphrase";
-                                                # keylocation = /home/lini/Secrets/encryption.key;
-                                                keylocation = "prompt";
-                                        };
+                                        "root" = {
+						type = "zfs_fs";
+						mountpoint = "/";
+						options = {
+							encryption = "aes-256-gcm"; # Check!
+							keyformat = "passphrase";
+							keylocation = "prompt";
+						};
+					};
+					"root/nix" = {
+						type = "zfs_fs";
+						options.mountpoint = "/nix";
+						mountpoint = "/nix";
+					};
                                 };
-                                mountpoint = /.;
-                        };
-                        "root/nix" = {
-                                type = "zfs_fs";
-                                options.mountpoint = /nix;
-                                mountpoint = /nix;
                         };
                 };
         };
