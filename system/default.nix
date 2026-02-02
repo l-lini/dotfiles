@@ -1,9 +1,5 @@
-# TODO! Compression (zfs?)
-# TODO! Encryption! (Or not)
 # TODO! Synth Program
 # TODO! Ephemeral Root
-# TODO! File for passwords (Outside of Config) (Outside of Ephemeral Root)
-# TODO password place and github token place thingy collected i folder
 { inputs, config, lib, pkgs, pkgs-unstable, system, ... }:
 
 {
@@ -67,7 +63,6 @@
                 heroic
                 pavucontrol
                 pamixer
-                spotify
                 r2modman
                 anki
 		inkscape
