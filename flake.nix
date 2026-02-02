@@ -1,4 +1,5 @@
 {
+# TODO Store network passwords and spotify password and discord pat in secrets
 # TODO Modularize config and do the desktop separation stuffies. https://wiki.nixos.org/wiki/NixOS_system_configuration#Modularizing_your_configuration_with_modules
 # TODO lookup how to make nixos rebuil faster
 # TODO lookup how to make flake.nix shells faster
