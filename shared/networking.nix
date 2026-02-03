@@ -8,7 +8,7 @@
         networkmanager = {
             enable = true;
             ensureProfiles.profiles = let
-                createWifi = ssid: psk: {
+                createWifi = ssid: {
                     connection = {
                         id = ssid;
                         type = "wifi";
@@ -21,7 +21,7 @@
                     wifi-security = {
                         auth-alg = "open";
                         key-mgmt = "wpa-psk";
-                        inherit psk;
+                        psk = secrets.${ssid};
                     };
                     ipv4.method = "auto";
                     ipv6 = {
@@ -30,13 +30,8 @@
                     };
                 };
             in {
-                Merkurius = createWifi "Merkurius" secrets.Merkurius;
-                Lini = {
-                    connection = {
-                        type = "wifi";
-                        id = "Lini";
-                    };
-                };
+                Merkurius = createWifi "Merkurius";
+                Lini = createWifi "Lini";
             };
         };
     };
