@@ -115,6 +115,15 @@
 
         # Configure network connections interactively with nmcli or nmtui.
         networking.networkmanager.enable = true;
+	networking.wireless.networks.eduroam = {
+		auth = ''
+			domain-suffix-match=eduroam.chalmers.se
+			eap=PEAP
+			identity="alteborn@chalmers.se"
+			password=${builtins.readFile ../secrets/eduroam}
+			phase2-auth=mschapv2
+		'';
+	};
 
         # Set your time zone.
         time.timeZone = "Europe/Stockholm";
