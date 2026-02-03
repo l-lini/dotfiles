@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, secrets, ... }:
 
 {
         programs.git = {
                 enable = true;
-                settings = {
+                config = {
 			init.defaultBranch = "main";
 			user = {
                         	name = "l-lini";
@@ -11,7 +11,7 @@
                 	};
 			credential.helper = "!${pkgs.writeShellScript "git-cred" ''
 				echo "username=l-lini"
-				echo "password=$(cat /etc/nixos/secrets/github)"
+				echo "password=${secrets.github}"
 			''}";
 		};
         };

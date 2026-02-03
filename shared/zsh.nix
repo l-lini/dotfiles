@@ -1,5 +1,4 @@
 { ... }:
-# zsh
 # zoxide
 # command history thingy with fuzzy finding.
 # Alias for nixupdate = git add . && git commit -m "$1" && git push && sudo nixos-rebuild switch
@@ -8,10 +7,9 @@
         programs.zsh = {
                 enable = true;
                 enableCompletion = true;
-                autosuggestion.enable = true;
+                autosuggestions.enable = true;
                 syntaxHighlighting.enable = true;
-                shellAliases = {
-                };
-                history.size = 10000;
+		ohMyZsh.enable = true;
+                histSize = 10000;
         };
 }

@@ -7,6 +7,11 @@
                 ./hardware.nix # TODO Remove this file from git repo
                 # ./zsh.nix
                 ./disko.nix
+		./networking.nix
+		./neovim
+		./zoxide.nix
+		./zsh.nix
+		./git.nix
                 # ./network
                 # ./users
                 #
