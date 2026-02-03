@@ -164,7 +164,6 @@
                                 { command = "fcitx5"; always = true; }
                                 { command = autotiler; always = true; }
                                 { command = notification; always = true; }
-                                { command = lock; always = false; }
 				{ command = "swayidle -w lock " + lock; always = true; }
                                 # { command = terminal; always = true; }
                                 # { command = browser; always = true; }
