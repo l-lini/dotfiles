@@ -1,6 +1,7 @@
 {
 # TODO switch to sops-nix
-# TODO Store network passwords and spotify password and discord pat in secrets
+# TODO Ephemeral root network manager passwords and make declarative
+# TODO Ephemeral root .config and other stuffs.
 # TODO Ephemeral root your Downloads folder. Nothing of value should be there. Teach yourself this through this measure.
 # TODO Modularize config and do the desktop separation stuffies. https://wiki.nixos.org/wiki/NixOS_system_configuration#Modularizing_your_configuration_with_modules
 # TODO lookup how to make nixos rebuil faster
@@ -35,20 +36,20 @@
 				};
 			in listToAttrs (map pathToPair secretPaths);
 		};
-		generateSystem = hostname: nixpkgs.lib.nixosSystem {
-			specialArgs = args // { inherit hostname; };
+		generateSystem = hostName: nixpkgs.lib.nixosSystem {
+			specialArgs = args // { inherit hostName; };
 			modules = [
-				./${hostname}
-				(generateHomeManagerModule hostname)
+				./${hostName}
+				(generateHomeManagerModule hostName)
 			];
 		};
-		generateHomeManagerModule = hostname: {
+		generateHomeManagerModule = hostName: {
 			imports = [ home-manager.nixosModules.home-manager ];
 			home-manager = {
 				useGlobalPkgs = true;
 				#useUserPackages = true;
-				users.lini = import ./home/${hostname};
-				extraSpecialArgs = args // { inherit hostname; };
+				users.lini = import ./home/${hostName};
+				extraSpecialArgs = args // { inherit hostName; };
 			};
 		};
 	in {
