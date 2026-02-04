@@ -7,20 +7,20 @@
 # TODO lookup how to make nixos rebuil faster
 # TODO lookup how to make flake.nix shells faster
 # TODO lookup how to make home manager builds faster
-	description = "lini's system configuration";
+    description = "lini's system configuration";
 
-	inputs = {
-		nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
-		nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-		home-manager.url = "github:nix-community/home-manager/release-25.11";
-                nixos-fonts.url = "github:Takamatsu-Naoki/nixos-fonts";
-		disko.url = "github:nix-community/disko/latest";
+    inputs = {
+        nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+        nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+        home-manager.url = "github:nix-community/home-manager/release-25.11";
+        nixos-fonts.url = "github:Takamatsu-Naoki/nixos-fonts";
+        disko.url = "github:nix-community/disko/latest";
 
-		md307.url = "github:olillin/eda482-md307-flake";
-		chalmers-search-exam.url = "github:olillin/chalmers-search-exam";
-	};
+        md307.url = "github:olillin/eda482-md307-flake";
+        chalmers-search-exam.url = "github:olillin/chalmers-search-exam";
+    };
 
-	outputs = inputs @{ nixpkgs, nixpkgs-unstable, disko, home-manager, md307, nixos-fonts, chalmers-search-exam, ... }: let
+    outputs = inputs @{ nixpkgs, nixpkgs-unstable, disko, home-manager, md307, nixos-fonts, chalmers-search-exam, ... }: let
 		args = rec {
 			inherit inputs;
 			system = "x86_64-linux";
@@ -34,6 +34,9 @@
 					name = baseNameOf path;
 					value = readFile path;
 				};
+                pathToEmptyPair = path: { name = baseNameOf path; value = ""; };
+			# TODO make it automatically choose this if not unlocked
+            #in listToAttrs (map pathToEmptyPair secretPaths);
 			in listToAttrs (map pathToPair secretPaths);
 		};
 		generateSystem = hostName: nixpkgs.lib.nixosSystem {
