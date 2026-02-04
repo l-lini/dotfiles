@@ -9,6 +9,7 @@
             ./zoxide.nix
             ./zsh.nix
             ./git.nix
+            inputs.md307.nixosModules.default
 #./users
     ];
 
