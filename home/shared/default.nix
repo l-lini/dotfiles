@@ -1,13 +1,14 @@
 { inputs, ... }:
 
 {
-        imports = [
-                ./sway.nix
-		# TODO Firefox, with extensions and stuffies. Ask Cal!
-		# TODO bluetooth shortcut
-		# TODO Comic sans and Comic mono fonts.
-		inputs.md307.homeModules.default
-        ];
+    imports = [
+        ./sway.nix
+            inputs.md307.homeModules.default
+# TODO Firefox, with extensions and stuffies. Ask Cal!
+# TODO bluetooth shortcut
+# TODO Comic sans and Comic mono fonts.
+    ];
 
-        home.stateVersion = "25.11";
+    programs.zsh.initContent = "# Shutup bitch - John Cena";
+    home.stateVersion = "25.11";
 }
