@@ -1,23 +1,33 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
-	programs.neovim = {
-		enable = true;
-		defaultEditor = true;
-		viAlias = true;
-		vimAlias = true;
-		configure = {
-			customLuaRC = builtins.readFile ./init.lua; 
-			packages.myVimPackage = with pkgs.vimPlugins; {
-                start = [
-                    nvim-treesitter.withAllGrammars
-                    tokyonight-nvim
-                ];
-            };
-		};
-	};
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+    configure = {
+      customLuaRC = import ./combineLua.nix { inherit lib; };
+      packages.myVimPackage = with pkgs.vimPlugins; {
+        start = [
+          nvim-treesitter.withAllGrammars
+          tokyonight-nvim
+          nvim-lspconfig
+          telescope-nvim
+          harpoon
+        ];
+      };
+    };
+  };
+
+  environment.systemPackages = with pkgs; [
+    java-language-server
+    nil
+    lua-language-server
+    ripgrep
+  ];
 }
-# stop autocomplete in comments. fuck you bitch. that's fucking dumb as hell. 
+# stop autocomplete in comments. fuck you bitch. that's fucking dumb as hell.
 # Default to tabwidth = 2
 # relative line numbers
 # relative line numbers in explorer
