@@ -8,7 +8,9 @@
 		vimAlias = true;
 		configure = {
 			customLuaRC = builtins.readFile ./init.lua; 
-			# packages.myVimPackage = with pkgs.vimPlugins; [ ];
+			packages.myVimPackage = with pkgs.vimPlugins; {
+                start = [ nvim-treesitter.withAllGrammars ];
+            };
 		};
 	};
 }
