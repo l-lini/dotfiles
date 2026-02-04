@@ -1,4 +1,9 @@
 { lib, pkgs, ... }:
+# TODO add plugin to get vim specific stuffs in lua
+# TODO add plugin to get nixos specific stuff in nix
+# TODO no autocomplete in comments
+# TODO auto hide cmp when done
+# TODO remove confirm keybind cmp
 
 {
   programs.neovim = {
@@ -15,6 +20,16 @@
           nvim-lspconfig
           telescope-nvim
           harpoon
+          undotree
+          vim-fugitive
+          nvim-cmp
+          cmp-buffer
+          cmp-path
+          cmp_luasnip
+          cmp-nvim-lsp
+          cmp-nvim-lua
+          luasnip
+          friendly-snippets
         ];
       };
     };
