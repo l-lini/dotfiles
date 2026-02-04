@@ -54,6 +54,7 @@
             tigervnc
             stunnel
             unzip
+            ffmpeg
             erlang
             prusa-slicer
             acpid
