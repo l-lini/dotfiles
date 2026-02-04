@@ -9,7 +9,10 @@
 		configure = {
 			customLuaRC = builtins.readFile ./init.lua; 
 			packages.myVimPackage = with pkgs.vimPlugins; {
-                start = [ nvim-treesitter.withAllGrammars ];
+                start = [
+                    nvim-treesitter.withAllGrammars
+                    tokyonight-nvim
+                ];
             };
 		};
 	};
