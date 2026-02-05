@@ -2,10 +2,7 @@
 # TODO! Ephemeral Root
 # TODO split up this file
 {
-  hostname,
   inputs,
-  config,
-  lib,
   pkgs,
   pkgs-unstable,
   system,
@@ -19,22 +16,12 @@
     ./zoxide.nix
     ./zsh.nix
     ./git.nix
+    ./bluetooth.nix
+    ./users
     inputs.md307.nixosModules.default
-    #./users
   ];
 
   nixpkgs.config.allowUnfree = true;
-  hardware.bluetooth = {
-    enable = true;
-    settings = {
-      General = {
-        FastConnectable = true;
-      };
-      Policy = {
-        AutoEnable = true;
-      };
-    };
-  };
 
   nix = {
     settings.experimental-features = [
@@ -49,10 +36,8 @@
   };
 
   programs = {
-    # TODO! Fix random persistant lag
-    steam.enable = true;
+    steam.enable = true; # TODO! Fix random persistant lag
     sway.enable = true;
-    zsh.enable = true;
     direnv.enable = true;
   };
 
@@ -61,6 +46,7 @@
     with pkgs;
     [
       inputs.chalmers-search-exam.packages.${system}.default
+      minitube # Super basic youtube app
       glow
       playerctl
       git-crypt
@@ -115,8 +101,6 @@
       azukifont
       rii-tegaki-fude
     ]);
-
-  users.defaultUserShell = pkgs.zsh;
 
   # Set the default editor to neovim
   environment.variables = {
@@ -192,53 +176,19 @@
     [[ "$(tty)" == /dev/tty1 ]] && sway
   '';
 
-  services.logind.settings.Login = {
-    HandleLidSwitch = "lock";
-    HandleLidSwitchExternalPower = "lock";
-    HandleLidSwitchDocked = "lock";
-  };
-
-  services.acpid = {
-    enable = true;
-    lidEventCommands = "swaylock";
-  };
-
   i18n.inputMethod = {
     type = "fcitx5";
     enable = true;
-    # waylandFrontend = true;
+    waylandFrontend = true;
     fcitx5.addons = with pkgs; [
       fcitx5-mozc
     ];
   };
 
-  users.users.lini = {
-    isNormalUser = true;
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-      "video"
-    ]; # Enable ‘sudo’ for the user.
-    shell = pkgs.zsh;
-    packages = with pkgs; [
-      tree
-      qutebrowser
-    ];
+  console = {
+    earlySetup = true;
+    font = "sun12x22"; # Enums, why are there no enums );
   };
 
-  # Doesn't work I dunno why
-  # console.font = "sun12x22";
-  # Ponera Enum Istället för strängar.
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  # DO NOT CHANGE!!!
   system.stateVersion = "25.11";
 }
