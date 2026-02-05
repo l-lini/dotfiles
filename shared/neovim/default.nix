@@ -62,5 +62,6 @@
     nil
     lua-language-server
     ripgrep
+    asm-lsp
   ];
 }
