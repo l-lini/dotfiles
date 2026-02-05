@@ -3,6 +3,6 @@
 {
   console = {
     earlySetup = true;
-    font = "sun12x22"; # Enums, why are there no enums );
+    font = "latarcyrheb-sun32"; # Enums, why are there no enums );
   };
 }
