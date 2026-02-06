@@ -10,7 +10,10 @@
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
     ohMyZsh.enable = true;
-    shellInit = ''PS1="%1~ > "'';
+    shellInit = ''
+      PS1="%1~ > "
+      nix-env --delete-generations +3
+    '';
     histSize = 10000;
   };
 }
