@@ -10,7 +10,7 @@
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
     ohMyZsh.enable = true;
-    shellInit = "#hello";
+    shellInit = ''PS1="%1~ > "'';
     histSize = 10000;
   };
 }

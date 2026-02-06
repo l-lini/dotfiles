@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, config, ... }:
 
 {
   imports = [
@@ -10,6 +10,8 @@
     # TODO Comic sans and Comic mono fonts.
   ];
 
-  programs.zsh.initContent = "# Shutup bitch - John Cena";
+  # I want the same environment as root and user.
+  programs.zsh.initContent = config.programs.zsh.shellInit;
+
   home.stateVersion = "25.11";
 }
