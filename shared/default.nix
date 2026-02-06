@@ -22,6 +22,7 @@
     ./login.nix
     ./nix.nix
     ./console.nix
+    ./boot.nix
     inputs.md307.nixosModules.default
   ];
 
@@ -78,11 +79,6 @@
 
   # Set the default editor to neovim
   environment.variables.EDITOR = "nvim";
-
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-  };
 
   # Set your time zone.
   time.timeZone = "Europe/Stockholm";
