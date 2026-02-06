@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pencils,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   systemd.services.reload-systemd-vconsole-setup.serviceConfig.ExecStart = lib.mkForce (
@@ -12,23 +17,22 @@
     earlySetup = true;
     font = "latarcyrheb-sun32"; # Enums, why are they not enums );
     colors = [
-      # TODO declare global colors for all modules to use
-      "1a1b26" # Black
-      "f7768e" # Red
-      "73daca" # Green
-      "30af68" # Yellow
-      "7112f7" # Blue
-      "bb9af7" # Magenta
-      "7dcfff" # Cyan
-      "c0caf5" # White
-      "1a1b26" # Black
-      "f7768e" # Red
-      "73daca" # Green
-      "30af68" # Yellow
-      "7112f7" # Blue
-      "bb9af7" # Magenta
-      "7dcfff" # Cyan
-      "c0caf5" # White
+      pencils.black
+      pencils.red
+      pencils.green
+      pencils.yellow
+      pencils.blue
+      pencils.magenta
+      pencils.cyan
+      pencils.white
+      pencils.bright.black
+      pencils.bright.red
+      pencils.bright.green
+      pencils.bright.yellow
+      pencils.bright.blue
+      pencils.bright.magenta
+      pencils.bright.cyan
+      pencils.bright.white
     ];
   };
 }

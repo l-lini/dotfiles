@@ -33,6 +33,7 @@
       args = rec {
         inherit inputs;
         system = "x86_64-linux";
+        pencils = import ./pencils.nix;
         pkgs-unstable = import nixpkgs-unstable {
           inherit system;
           config.allowUnfree = true;

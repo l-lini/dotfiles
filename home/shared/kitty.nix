@@ -1,83 +1,63 @@
-{ ... }:
+{ pencils, ... }:
 
 {
   programs.kitty = {
     enable = true;
-    settings = {
+    settings = with builtins.mapAttrs (n: c: "#" + c) pencils; rec {
       enable_audio_bell = false;
       font_family = "Comic Mono";
       font_style = "Bold";
       font_size = 20.0;
       # clear_all_mouse_actions = "yes"; Disables mouse:
-      scrollback_pager = "nvim --cmd 'set eventignore=FileType' +'nnoremap q ZQ' +'call nvim_open_term(0, {})' +'set nomodified nolist' +'$' -";
 
-      # Tokyonight colors
-      # adapted from https://github.com/davidmathers/tokyo-night-kitty-theme
-      foreground = "#a9b1d6";
-      background = "#1a1b26";
+      foreground = white;
+      background = black;
+      color0 = bright.black;
+      color1 = red;
+      color2 = green;
+      color3 = yellow;
+      color4 = blue;
+      color5 = magenta;
+      color6 = cyan;
 
-      # Black
-      color0 = "#414868";
-      color8 = "#414868";
+      color7 = foreground;
+      cursor_text_color = background;
 
-      # Red
-      color1 = "#f7768e";
-      color9 = "#f7768e";
-
-      # Green
-      color2 = "#73daca";
-      color10 = "#73daca";
-
-      # Yellow
-      color3 = "#e0af68";
-      color11 = "#e0af68";
-
-      # Blue
-      color4 = "#7aa2f7";
-      color12 = "#7aa2f7";
-
-      # Magenta
-      color5 = "#bb9af7";
-      color13 = "#bb9af7";
-
-      # Cyan
-      color6 = "#7dcfff";
-      color14 = "#7dcfff";
-
-      # White
-      color7 = "#c0caf5";
-      color15 = "#c0caf5";
-
-      # Cursor
-      cursor = "#c0caf5";
-      cursor_text_color = "#1a1b26";
+      color8 = color0;
+      color9 = color1;
+      color10 = color2;
+      color11 = color3;
+      color12 = color4;
+      color13 = color5;
+      color14 = color6;
+      color15 = color7;
+      cursor = color7;
 
       # Selection highlight
       selection_foreground = "none";
-      selection_background = "#28344a";
+      selection_background = color0;
 
       # The color for highlighting URLs on mouse-over
-      url_color = "#9ece6a";
+      url_color = bright.red;
 
-      # Window borders
-      active_border_color = "#3d59a1";
-      inactive_border_color = "#101014";
-      bell_border_color = "#e0af68";
+      # # Window borders
+      # active_border_color = "#3d59a1";
+      # inactive_border_color = "#101014";
+      # bell_border_color = "#e0af68";
 
       # Tab bar
-      tab_bar_style = "fade";
-      tab_fade = 1;
-      active_tab_foreground = "#3d59a1";
-      active_tab_background = "#16161e";
-      active_tab_font_style = "bold";
-      inactive_tab_foreground = "#787c99";
-      inactive_tab_background = "#16161e";
-      inactive_tab_font_style = "bold";
-      tab_bar_background = "#101014";
+      # tab_bar_style = "fade";
+      # tab_fade = 1;
+      # active_tab_foreground = color0;
+      # active_tab_background = baackground;
+      # active_tab_font_style = "bold";
+      # inactive_tab_foreground = "#787c99";
+      # inactive_tab_background = "#16161e";
+      # inactive_tab_font_style = "bold";
+      # tab_bar_background = "#101014";
 
       # Title bar
-      macos_titlebar_color = "#16161e";
-
+      # macos_titlebar_color = "#16161e";
     };
   };
 }
