@@ -1,4 +1,5 @@
 { pencils, ... }:
+# TODO
 # disable arrow keys outside of passthrough mode
 
 {
@@ -8,133 +9,134 @@
       fonts.default_size = "24px";
       fonts.default_family = "Comic Mono";
       colors = with pencils; {
+        webpage.darkmode.enabled = true;
         completion = {
-          fg = tokyonight.fg;
-          odd.bg = tokyonight.bg_dark;
-          even.bg = tokyonight.bg;
+          fg = "#${black}";
+          odd.bg = "#${black}";
+          even.bg = "#${black}";
           category = {
-            fg = tokyonight.blue;
-            bg = tokyonight.bg_dark;
+            fg = "#${blue}";
+            bg = "#${black}";
             border = {
-              top = tokyonight.bg_dark;
-              bottom = tokyonight.bg_dark;
+              top = "#${black}";
+              bottom = "#${black}";
             };
           };
           item.selected = {
-            fg = tokyonight.fg;
-            bg = tokyonight.bg_visual;
-            border.top = tokyonight.bg_visual;
-            border.bottom = tokyonight.bg_visual;
-            match.fg = tokyonight.orange;
+            fg = "#${black}";
+            bg = "#${bright.black}";
+            border.top = "#${bright.black}";
+            border.bottom = "#${bright.black}";
+            match.fg = "#${bright.red}";
           };
-          match.fg = tokyonight.orange;
+          match.fg = "#${bright.red}";
           scrollbar = {
-            fg = tokyonight.fg_gutter;
-            bg = tokyonight.bg_dark;
+            fg = "#${bright.black}";
+            bg = "#${black}";
           };
         };
 
         contextmenu = {
-          disabled.bg = tokyonight.bg_dark;
-          disabled.fg = tokyonight.dark5;
-          menu.bg = tokyonight.bg_popup;
-          menu.fg = tokyonight.fg;
-          selected.bg = tokyonight.bg_visual;
-          selected.fg = tokyonight.fg;
+          disabled.bg = "#${black}";
+          disabled.fg = "#${bright.black}";
+          menu.bg = "#${black}";
+          menu.fg = "#${black}";
+          selected.bg = "#${bright.black}";
+          selected.fg = "#${black}";
         };
 
         downloads = {
-          bar.bg = tokyonight.bg_statusline;
-          start.fg = tokyonight.bg;
-          start.bg = tokyonight.blue;
-          stop.fg = tokyonight.bg;
-          stop.bg = tokyonight.green;
-          error.fg = tokyonight.error;
+          bar.bg = "#${black}";
+          start.fg = "#${black}";
+          start.bg = "#${blue}";
+          stop.fg = "#${black}";
+          stop.bg = "#${green}";
+          error.fg = "#${yellow}";
         };
 
         hints = {
-          fg = tokyonight.bg;
-          bg = tokyonight.yellow;
-          match.fg = tokyonight.green;
+          fg = "#${black}";
+          bg = "#${yellow}";
+          match.fg = "#${green}";
         };
 
         keyhint = {
-          fg = tokyonight.fg;
-          suffix.fg = tokyonight.yellow;
-          bg = tokyonight.bg_popup;
+          fg = "#${black}";
+          suffix.fg = "#${yellow}";
+          bg = "#${black}";
         };
 
         messages = {
-          error.fg = tokyonight.error;
-          error.bg = tokyonight.bg;
-          error.border = tokyonight.error;
-          warning.fg = tokyonight.warning;
-          warning.bg = tokyonight.bg;
-          warning.border = tokyonight.warning;
-          info.fg = tokyonight.info;
-          info.bg = tokyonight.bg;
+          error.fg = "#${yellow}";
+          error.bg = "#${black}";
+          error.border = "#${yellow}";
+          warning.fg = "#${bright.yellow}";
+          warning.bg = "#${black}";
+          warning.border = "#${bright.yellow}";
+          info.fg = "#${black}";
+          info.bg = "#${black}";
         };
 
         prompts = {
-          fg = tokyonight.fg;
-          border = tokyonight.border_highlight;
-          bg = tokyonight.bg_popup;
-          selected.bg = tokyonight.bg_visual;
-          selected.fg = tokyonight.fg;
+          fg = "#${black}";
+          border = "#${bright.black}";
+          bg = "#${black}";
+          selected.bg = "#${bright.black}";
+          selected.fg = "#${black}";
         };
 
         statusbar = {
-          normal.fg = tokyonight.blue;
-          normal.bg = tokyonight.bg_statusline;
-          insert.fg = tokyonight.green;
-          insert.bg = tokyonight.bg_highlight;
-          passthrough.fg = tokyonight.blue;
-          passthrough.bg = tokyonight.bg_highlight;
-          private.fg = tokyonight.purple;
-          private.bg = tokyonight.bg_highlight;
-          command.fg = tokyonight.fg;
-          command.bg = tokyonight.bg_statusline;
-          command.private.fg = tokyonight.purple;
-          command.private.bg = tokyonight.bg_highlight;
-          caret.fg = tokyonight.magenta;
-          caret.bg = tokyonight.bg_highlight;
-          caret.selection.fg = tokyonight.cyan;
-          caret.selection.bg = tokyonight.bg_highlight;
-          progress.bg = tokyonight.blue;
-          url.fg = tokyonight.fg;
-          url.error.fg = tokyonight.error;
-          url.hover.fg = tokyonight.cyan;
-          url.success.http.fg = tokyonight.orange;
-          url.success.https.fg = tokyonight.green1;
-          url.warn.fg = tokyonight.warning;
+          normal.fg = "#${blue}";
+          normal.bg = "#${black}";
+          insert.fg = "#${green}";
+          insert.bg = "#${bright.black}";
+          passthrough.fg = "#${blue}";
+          passthrough.bg = "#${bright.black}";
+          private.fg = "#${magenta}";
+          private.bg = "#${bright.black}";
+          command.fg = "#${black}";
+          command.bg = "#${black}";
+          command.private.fg = "#${magenta}";
+          command.private.bg = "#${bright.black}";
+          caret.fg = "#${magenta}";
+          caret.bg = "#${bright.black}";
+          caret.selection.fg = "#${cyan}";
+          caret.selection.bg = "#${bright.black}";
+          progress.bg = "#${blue}";
+          url.fg = "#${black}";
+          url.error.fg = "#${yellow}";
+          url.hover.fg = "#${cyan}";
+          url.success.http.fg = "#${bright.red}";
+          url.success.https.fg = "#${green}";
+          url.warn.fg = "#${bright.yellow}";
         };
 
         tabs = {
-          bar.bg = tokyonight.black;
-          indicator.start = tokyonight.blue;
-          indicator.stop = tokyonight.green;
-          indicator.error = tokyonight.error;
-          odd.fg = tokyonight.dark3;
-          odd.bg = tokyonight.bg_highlight;
-          even.fg = tokyonight.dark3;
-          even.bg = tokyonight.bg_highlight;
-          pinned.even.bg = tokyonight.bg_highlight;
-          pinned.even.fg = tokyonight.dark3;
-          pinned.odd.bg = tokyonight.bg_highlight;
-          pinned.odd.fg = tokyonight.dark3;
-          pinned.selected.even.fg = tokyonight.bg;
-          pinned.selected.even.bg = tokyonight.magenta;
-          pinned.selected.odd.fg = tokyonight.bg;
-          pinned.selected.odd.bg = tokyonight.magenta;
-          selected.odd.fg = tokyonight.bg;
-          selected.odd.bg = tokyonight.magenta;
-          selected.even.fg = tokyonight.bg;
-          selected.even.bg = tokyonight.magenta;
+          bar.bg = "#${black}";
+          indicator.start = "#${blue}";
+          indicator.stop = "#${green}";
+          indicator.error = "#${yellow}";
+          odd.fg = "#${bright.black}";
+          odd.bg = "#${bright.black}";
+          even.fg = "#${bright.black}";
+          even.bg = "#${bright.black}";
+          pinned.even.bg = "#${bright.black}";
+          pinned.even.fg = "#${bright.black}";
+          pinned.odd.bg = "#${bright.black}";
+          pinned.odd.fg = "#${bright.black}";
+          pinned.selected.even.fg = "#${black}";
+          pinned.selected.even.bg = "#${magenta}";
+          pinned.selected.odd.fg = "#${black}";
+          pinned.selected.odd.bg = "#${magenta}";
+          selected.odd.fg = "#${black}";
+          selected.odd.bg = "#${magenta}";
+          selected.even.fg = "#${black}";
+          selected.even.bg = "#${magenta}";
         };
 
         tooltip = {
-          bg = tokyonight.bg_popup;
-          fg = tokyonight.fg;
+          bg = "#${black}";
+          fg = "#${black}";
         };
       };
     };
