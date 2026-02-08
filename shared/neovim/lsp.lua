@@ -2,6 +2,8 @@ local lsps = {
     { 'lua_ls',               {} },
     { 'nil_ls',               {} },
     { 'java-language-server', {} },
+    { 'asm-lsp',              {} },
+    { 'ccls',                 {} },
 }
 
 for _, pair in pairs(lsps) do
