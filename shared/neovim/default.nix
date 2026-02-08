@@ -1,31 +1,26 @@
 { lib, pkgs, ... }:
+# TODO use global pencils colors instead of colorscheme
+# TODO get lsp for asm and java working
+# TODO haskell lsp
 # TODO add plugin to get vim specific stuffs in lua
 # TODO add plugin to get nixos specific stuff in nix
 # TODO no autocomplete in comments
 # TODO auto hide cmp when done
 # TODO remove confirm keybind cmp
 # TODO highlight TODO's
+# TODO look at kickstart nvim for inspiration
+# TODO add primeagen's keybinds
 # stop autocomplete in comments. fuck you bitch. that's fucking dumb as hell.
-# Default to tabwidth = 2
-# relative line numbers
 # relative line numbers in explorer
-# grep thingie in folder
 # disable arrow keys
-# disable mouse (in all terminal instances and neovim etc...) ()
+# disable mouse
 # lsp easy
-# tree-sitter easy
 # auto indent detection
+# TODO fix harpoon and other keybinds not working
 # harpoon or fuzzy finder or file explorer or similar (pick one)
-# undo-tree
 # system clipboard
 # Auto format
-# Autosave on close
 # Auto sudo on write protected
-# haskell with good lsp. hlint builtin.
-# Se lsp and tree-sitter errors
-# Autocomplete
-# TODO notes highlighted
-# TODO look at kickstart nvim for inspiration
 
 {
   programs.neovim = {

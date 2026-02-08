@@ -7,7 +7,7 @@
       enable_audio_bell = false;
       font_family = "Comic Mono";
       font_style = "Bold";
-      font_size = 20.0;
+      font_size = 22.0;
       # TODO Make vim keybinds for selecting text. then you uncomment this.
       # clear_all_mouse_actions = "yes"; Disables mouse:
 

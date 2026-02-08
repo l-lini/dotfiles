@@ -1,6 +1,8 @@
 { inputs, config, ... }:
 
 {
+  # TODO split into files nicely, shell scripts and such.
+  # TODO separate monster and power configs.
   imports = [
     ./sway.nix
     inputs.md307.homeModules.default
