@@ -40,6 +40,7 @@
     [
       inputs.chalmers-search-exam.packages.${system}.default
       minitube # Super basic youtube app
+      spotify
       glow
       playerctl
       git-crypt

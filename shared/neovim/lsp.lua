@@ -1,6 +1,6 @@
 local lsps = {
     { 'lua_ls',               {} },
-    { 'nil_ls',               {} },
+    { 'nil_ls',               { autoArchive = true, } },
     { 'java-language-server', {} },
     { 'asm-lsp',              {} },
     { 'ccls',                 {} },
