@@ -3,6 +3,6 @@
 {
   imports = [
     ../shared
-    ./swaylock
+    ./swaylock.nix
   ];
 }
