@@ -44,6 +44,5 @@
   };
 }
 # Command history Search. Me forgor often );
-# Comic mono (better readability)
 # tmux ?
 # Fully fledged Vim Motions (Select text etc ...)
