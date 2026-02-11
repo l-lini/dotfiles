@@ -58,6 +58,7 @@
     lua-language-server
     ripgrep
     asm-lsp
+    bash-language-server
     ccls
   ];
 }

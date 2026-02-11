@@ -1,0 +1,1 @@
+qutebrowser --target private-window

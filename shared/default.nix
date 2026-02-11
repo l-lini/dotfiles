@@ -40,6 +40,8 @@
     [
       inputs.chalmers-search-exam.packages.${system}.default
       minitube # Super basic youtube app
+      qsynth
+      gcc
       spotify
       glow
       playerctl

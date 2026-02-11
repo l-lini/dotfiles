@@ -49,6 +49,7 @@
             };
           in
           listToAttrs (map pathToPair secretPaths);
+        scripts = import ./scripts/scripts.nix;
       };
       generateSystem =
         hostName:

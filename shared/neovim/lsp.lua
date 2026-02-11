@@ -1,9 +1,20 @@
 local lsps = {
     { 'lua_ls',               {} },
-    { 'nil_ls',               { autoArchive = true, } },
+    { 'nil_ls',
+        {
+            settings =
+            {
+                ['nil'] =
+                {
+                    autoArchive = true
+                }
+            },
+        }
+    },
     { 'java-language-server', {} },
     { 'asm-lsp',              {} },
     { 'ccls',                 {} },
+    { 'bash-lsp',             {} },
 }
 
 for _, pair in pairs(lsps) do
