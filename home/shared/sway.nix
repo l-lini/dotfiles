@@ -1,4 +1,4 @@
-{ pencils, scripts, ... }:
+{ pencils, ... }:
 # Make stuff look nice: (Comic Font for readability) (Nice Colorscheme) (Simple)
 # TODO change mirror screen on button press is on nixos wiki for sway under tips and tricks.
 # TODO Keybind for activity bar
@@ -38,8 +38,9 @@
 
   wayland.windowManager.sway =
     let
-      notificationFromBash = notificationWithTime 4000;
-      notificationWithTime = time: command: "notify-send -t ${time} $(${command})";
+      notificationFromBash = notificationWithTime "4000";
+      notificationWithTime =
+        time: command: builtins.trace command "sh -c 'notify-send -t ${time} $(${command})'";
       keys = {
         modifier = "Mod4";
         resize = "Ctrl";
@@ -59,11 +60,11 @@
             always = true;
           }
           {
-            command = scripts.autotiler;
+            command = "autotiler";
             always = true;
           }
           {
-            command = scripts.notification-daemon;
+            command = "notification-daemon";
             always = true;
           }
         ];
@@ -120,10 +121,10 @@
         };
         keybindings =
           (with keys; {
-            "${modifier}+Return" = "exec ${scripts.terminal}";
-            "${modifier}+Space" = "exec ${scripts.launcher}";
-            "${modifier}+b" = "exec ${scripts.browser}";
-            "${modifier}+p" = "exec ${scripts.private-browser}";
+            "${modifier}+Return" = "exec terminal";
+            "${modifier}+Space" = "exec launcher";
+            "${modifier}+b" = "exec browser";
+            "${modifier}+p" = "exec private-browser";
           })
           // (with keys; {
             "${modifier}+Backspace" = "kill";
@@ -140,7 +141,7 @@
             "${modifier}+${right}" = "focus right";
             "${modifier}+${up}" = "focus up";
             "${modifier}+${down}" = "focus down";
-            "${modifier}+w" = "exec ${notificationFromBash scripts.workspace-status { }}";
+            "${modifier}+w" = "exec ${notificationFromBash "workspace-status"}";
             "${modifier}+1" = "workspace number 1";
             "${modifier}+2" = "workspace number 2";
             "${modifier}+3" = "workspace number 3";
@@ -161,9 +162,8 @@
             "${modifier}+${move}+8" = "move to workspace number 8";
             "${modifier}+${move}+9" = "move to workspace number 9";
             "${modifier}+${move}+0" = "move to workspace number 10";
-            "${modifier}+t" = "exec ${notification.dateTime}";
-            "${modifier}+Right" = "exec ${notificationFromBash (scripts.switch-to-next-sink) { }}";
-            "${modifier}+Left" = "exec ${notificationFromBash (scripts.switch-to-previous-sink) { }}";
+            "${modifier}+t" = "exec ${notificationFromBash "date-status"}";
+            "${modifier}+v" = "exec ${notificationFromBash "sine-volume"}";
           });
         seat."*".hide_cursor = "when-typing enable";
         window = {

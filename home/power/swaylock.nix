@@ -1,7 +1,7 @@
 { pencils, ... }:
 
 {
-  swaylock = {
+  programs.swaylock = {
     enable = true;
     settings = with pencils; {
       # Background

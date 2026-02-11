@@ -10,6 +10,7 @@
 
 {
   imports = [
+    ../scripts
     ./networking.nix
     ./neovim
     ./zoxide.nix
@@ -33,6 +34,8 @@
     sway.enable = true;
     direnv.enable = true;
   };
+
+  myScripts.enable = true;
 
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages =

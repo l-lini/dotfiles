@@ -1,9 +1,5 @@
-ss=$(wpctl status |
-    sed -n '/Sinks:/,/Sources:/ {p; /Sources:/q}' |
-    sed -nE 's/^[^0-9]*([0-9]+)\..*/\1/p')
-s=$(wpctl status |
-    sed -n '/Sinks:/,/Sources:/ {p; /Sources:/q}' |
-    sed -nE 's/^[^*]*\* *([0-9]+)\..*/\1/p')
+ss=$(wpctl status | sed -n "/Sinks:/,/Sources:/ {p; /Sources:/q}" | sed -nE "s/^[^0-9]*([0-9]+)\..*/\1/p")
+s=$(wpctl status | sed -n "/Sinks:/,/Sources:/ {p; /Sources:/q}" | sed -nE "s/^[^*]*\* *([0-9]+)\..*/\1/p")
 arr=()
 for i in $ss; do
     arr+=("$i")
