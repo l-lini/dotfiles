@@ -1,12 +1,5 @@
 {
   # TODO switch to sops-nix
-  # TODO Ephemeral root network manager passwords and make declarative
-  # TODO Ephemeral root .config and other stuffs.
-  # TODO Ephemeral root your Downloads folder. Nothing of value should be there. Teach yourself this through this measure.
-  # TODO Modularize config and do the desktop separation stuffies. https://wiki.nixos.org/wiki/NixOS_system_configuration#Modularizing_your_configuration_with_modules
-  # TODO lookup how to make nixos rebuil faster
-  # TODO lookup how to make flake.nix shells faster
-  # TODO lookup how to make home manager builds faster
   description = "lini's system configuration";
 
   inputs = {
@@ -30,7 +23,7 @@
       ...
     }:
     let
-      defaultArgs = rec {
+      argsWith = f: rec {
         inherit inputs;
         system = "x86_64-linux";
         pencils = import ./pencils.nix;
@@ -44,7 +37,7 @@
             secretPaths = nixpkgs.lib.filesystem.listFilesRecursive ./secrets;
             pathToPair = path: {
               name = baseNameOf path;
-              value = readFile path;
+              value = f path;
             };
           in
           listToAttrs (map pathToPair secretPaths);
@@ -74,16 +67,10 @@
     in
     {
       nixosConfigurations = {
-        power = generateSystem "power" defaultArgs;
-        monster = generateSystem "monster" defaultArgs;
-        guest = generateSystem "guest" {
-          inherit (defaultArgs)
-            inputs
-            system
-            pencils
-            pkgs-unstable
-            ;
-        };
+        power = generateSystem "power" (argsWith builtins.readFile);
+        monster = generateSystem "monster" (argsWith builtins.readFile);
+        guest-power = generateSystem "power" (argsWith (path: ""));
+        guest-monster = generateSystem "monster" (argsWith (path: ""));
       };
     };
 }
