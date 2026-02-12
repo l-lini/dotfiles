@@ -4,6 +4,7 @@
   pkgs,
   pkgs-unstable,
   system,
+  scripts,
   ...
 }:
 
@@ -36,7 +37,8 @@
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages =
     with pkgs;
-    [
+    builtins.attrValues scripts
+    ++ [
       inputs.chalmers-search-exam.packages.${system}.default
       minitube # Super basic youtube app
       qsynth
