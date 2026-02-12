@@ -1,6 +1,5 @@
 { pencils, ... }:
-# TODO
-# disable arrow keys outside of passthrough mode
+# TODO disable arrow keys outside of passthrough mode
 
 {
   programs.qutebrowser = {
@@ -55,9 +54,9 @@
         };
 
         hints = {
-          fg = "#${white}";
-          bg = "#${yellow}";
-          match.fg = "#${green}";
+          fg = "#${bright.white}";
+          bg = "#${bright.black}";
+          match.fg = "#${black}";
         };
 
         keyhint = {
