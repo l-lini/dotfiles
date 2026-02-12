@@ -25,7 +25,7 @@
               size = "100%";
               content = {
                 type = "zfs";
-                pool = "zroot";
+                pool = "rpool";
               };
             };
           };
@@ -33,25 +33,32 @@
       };
     };
     zpool = {
-      zroot = {
+      rpool = {
         type = "zpool";
         rootFsOptions = {
           mountpoint = "none";
           compression = "zstd"; # Check!
         };
         datasets = {
-          "root" = {
+          "nixos/empty" = {
             type = "zfs_fs";
+            options.mountpoint = "legacy";
             mountpoint = "/";
-            options = {
-              encryption = "aes-256-gcm"; # Check!
-              keyformat = "passphrase";
-              keylocation = "prompt";
-            };
+            postCreateHook = "zfs snapshot rpool/nixos/empty@start";
           };
-          "root/nix" = {
+          "nixos/home" = {
             type = "zfs_fs";
-            options.mountpoint = "/nix";
+            options.mountpoint = "legacy";
+            mountpoint = "/home";
+          };
+          "nixos/persist" = {
+            type = "zfs_fs";
+            options.mountpoint = "legacy";
+            mountpoint = "/persist";
+          };
+          "nixos/nix" = {
+            type = "zfs_fs";
+            options.mountpoint = "legacy";
             mountpoint = "/nix";
           };
         };
