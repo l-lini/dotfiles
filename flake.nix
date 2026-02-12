@@ -30,7 +30,7 @@
       ...
     }:
     let
-      args = rec {
+      defaultArgs = rec {
         inherit inputs;
         system = "x86_64-linux";
         pencils = import ./pencils.nix;
@@ -44,24 +44,23 @@
             secretPaths = nixpkgs.lib.filesystem.listFilesRecursive ./secrets;
             pathToPair = path: {
               name = baseNameOf path;
-              # value = ""
               value = readFile path;
             };
           in
           listToAttrs (map pathToPair secretPaths);
       };
       generateSystem =
-        hostName:
+        hostName: args:
         nixpkgs.lib.nixosSystem {
           specialArgs = args // {
             inherit hostName;
           };
           modules = [
             ./${hostName}
-            (generateHomeManagerModule hostName)
+            (generateHomeManagerModule hostName args)
           ];
         };
-      generateHomeManagerModule = hostName: {
+      generateHomeManagerModule = hostName: args: {
         imports = [ home-manager.nixosModules.home-manager ];
         home-manager = {
           useGlobalPkgs = true;
@@ -75,8 +74,16 @@
     in
     {
       nixosConfigurations = {
-        power = generateSystem "power";
-        monster = generateSystem "monster";
+        power = generateSystem "power" defaultArgs;
+        monster = generateSystem "monster" defaultArgs;
+        guest = generateSystem "guest" {
+          inherit (defaultArgs)
+            inputs
+            system
+            pencils
+            pkgs-unstable
+            ;
+        };
       };
     };
 }
