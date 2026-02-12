@@ -1,4 +1,5 @@
 { lib, pkgs, ... }:
+# TODO line-wrap toggle keybind
 # TODO use global pencils colors instead of colorscheme
 # TODO get lsp for asm and java working
 # TODO haskell lsp
