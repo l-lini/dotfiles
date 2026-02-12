@@ -1,4 +1,3 @@
-# TODO! Synth Program
 # TODO! Ephemeral Root
 {
   inputs,
@@ -10,7 +9,7 @@
 
 {
   imports = [
-    # ../scripts
+    ../scripts
     ./networking.nix
     ./neovim
     ./zoxide.nix
