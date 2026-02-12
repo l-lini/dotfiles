@@ -9,7 +9,6 @@
 
 {
   imports = [
-    ../scripts
     ./networking.nix
     ./neovim
     ./zoxide.nix
