@@ -4,7 +4,7 @@
   imports = [
     ../shared
     ./hardware.nix
-    ./disko.nix
+    ./disko-install.nix
     ./tlp.nix
   ];
 
