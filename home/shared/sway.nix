@@ -121,10 +121,10 @@
         };
         keybindings =
           (with keys; {
-            "${modifier}+Return" = "exec terminal";
-            "${modifier}+Space" = "exec launcher";
-            "${modifier}+b" = "exec browser";
-            "${modifier}+p" = "exec private-browser";
+            "${modifier}+Return" = "exec kitty";
+            "${modifier}+Space" = "exec wofi --show run";
+            "${modifier}+b" = "exec qutebrowser";
+            "${modifier}+p" = "exec qutebrowser --target private-window";
           })
           // (with keys; {
             "${modifier}+Backspace" = "kill";
@@ -163,7 +163,7 @@
             "${modifier}+${move}+9" = "move to workspace number 9";
             "${modifier}+${move}+0" = "move to workspace number 10";
             "${modifier}+t" = "exec ${notificationFromBash "date-status"}";
-            "${modifier}+v" = "exec ${notificationFromBash "sine-volume"}";
+            "${modifier}+v" = "exec ${notificationFromBash "sink-volume"}";
           });
         seat."*".hide_cursor = "when-typing enable";
         window = {
