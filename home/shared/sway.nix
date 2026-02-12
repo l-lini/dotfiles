@@ -39,8 +39,8 @@
   wayland.windowManager.sway =
     let
       notificationFromBash = notificationWithTime "4000";
-      notificationWithTime =
-        time: command: builtins.trace command "sh -c 'notify-send -t ${time} $(${command})'";
+      notificationWithTime = time: command: "sh -c 'notify-send -t ${time} \"$(${command})\"'";
+      exec = command: "exec sh -c '${command}'";
       keys = {
         modifier = "Mod4";
         resize = "Ctrl";
@@ -64,7 +64,7 @@
             always = true;
           }
           {
-            command = "notification-daemon";
+            command = "swaync";
             always = true;
           }
         ];
@@ -163,7 +163,17 @@
             "${modifier}+${move}+9" = "move to workspace number 9";
             "${modifier}+${move}+0" = "move to workspace number 10";
             "${modifier}+t" = "exec ${notificationFromBash "date-status"}";
-            "${modifier}+v" = "exec ${notificationFromBash "sink-volume"}";
+            "${modifier}+down" = exec "audio-changer volume $(audio-status sink) 0.05-";
+            "${modifier}+up" = exec "audio-changer volume $(audio-status sink) 0.05+";
+            "${modifier}+m" = exec "audio-changer mute $(audio-status sink) toggle";
+            "${modifier}+left" = exec "scroll-devices sink -1";
+            "${modifier}+right" = exec "scroll-devices sink 1";
+            "${modifier}+Shift+down" = exec "audio-changer volume $(audio-status source) 0.05-";
+            "${modifier}+Shift+up" = exec "audio-changer volume $(audio-status source) 0.05+";
+            "${modifier}+Shift+m" = exec "audio-changer mute $(audio-status source) toggle";
+            "${modifier}+Shift+left" = exec "scroll-devices source -1";
+            "${modifier}+Shift+right" = exec "scroll-devices source 1";
+            "${modifier}+s" = exec "screenshot";
           });
         seat."*".hide_cursor = "when-typing enable";
         window = {
