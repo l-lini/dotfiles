@@ -31,6 +31,10 @@
           inherit system;
           config.allowUnfree = true;
         };
+        pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        };
         secrets =
           with builtins;
           let
@@ -41,6 +45,10 @@
             };
           in
           listToAttrs (map pathToPair secretPaths);
+        scripts = import ./scripts/scripts.nix {
+          inherit pkgs;
+          lib = pkgs.lib;
+        };
       };
       generateSystem =
         hostName: args:
