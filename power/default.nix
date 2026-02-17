@@ -8,6 +8,11 @@
     ./tlp.nix
   ];
 
+  users.users.lini = {
+    initialPassword = "$y$j9T$BawzOnCgU6zGTOayD5Z29/$ERhA6KSj78VvC4qOozPuUXSaKfDWhfQjXAe98jIsQYA";
+    hashedPasswordFile = /persist/password;
+  };
+
   environment.systemPackages = with pkgs; [
     brightnessctl
     acpid
