@@ -6,9 +6,9 @@
 # TODO! Make Launcher always on top
 # TODO! Make neovim nice
 # TODO! Make Audio Interface nice (Pipewire thingy instead?)
+# TODO! Add launch entries for network and audio and bluetooth
 # TODO! Make Network Interface nice
 # TODO! Make Sway nice
-#   TODO! Better JA Font
 #   TODO! (Nice Notifications)
 #   TODO! (Nice Background)
 #   TODO! (Borders etc)
