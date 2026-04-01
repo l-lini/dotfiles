@@ -54,6 +54,10 @@
             command = "notification-daemon";
             always = true;
           }
+          {
+            command = "spotify";
+            always = true;
+          }
         ];
         bars = [ ];
         defaultWorkspace = "workspace number 1";
