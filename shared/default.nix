@@ -40,6 +40,9 @@
     builtins.attrValues scripts
     ++ [
       inputs.chalmers-search-exam.packages.${system}.default
+      ani-cli
+      eduvpn-client
+      remmina
       minitube # Super basic youtube app
       qsynth
       gcc
@@ -88,6 +91,7 @@
   time.timeZone = "Europe/Stockholm";
 
   services = {
+    atd.enable = true;
     # CUPS
     printing.enable = true;
     # Sound
