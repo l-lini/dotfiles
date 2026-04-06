@@ -3,6 +3,7 @@
 {
   imports = [
     ../shared
+    ../shared/networking.nix
     ./hardware.nix
     ./disko-install.nix
     ./tlp.nix

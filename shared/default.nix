@@ -10,7 +10,6 @@
 
 {
   imports = [
-    ./networking.nix
     ./neovim
     ./zoxide.nix
     ./zsh.nix
