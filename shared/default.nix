@@ -39,6 +39,8 @@
     builtins.attrValues scripts
     ++ [
       inputs.chalmers-search-exam.packages.${system}.default
+      friture
+      spek
       ani-cli
       eduvpn-client
       remmina
