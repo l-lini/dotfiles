@@ -58,6 +58,10 @@
             command = "spotify";
             always = true;
           }
+          {
+            command = "qsynth";
+            always = true;
+          }
         ];
         bars = [ ];
         defaultWorkspace = "workspace number 1";
