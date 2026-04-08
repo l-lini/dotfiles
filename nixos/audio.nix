@@ -10,10 +10,10 @@
 
   environment.systemPackages = with pkgs; [
     pamixer
-    scripts.audio-changes
-    scripts.audio-status
-    scripts.scroll-devices
-    scripts.scroll-items
+    # scripts.audio-changes
+    # scripts.audio-status
+    # scripts.scroll-devices
+    # scripts.scroll-items
   ];
 
   hardware.bluetooth = {
