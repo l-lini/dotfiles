@@ -77,8 +77,10 @@
       nixosConfigurations = {
         power = generateSystem "power" (argsWith builtins.readFile);
         monster = generateSystem "monster" (argsWith builtins.readFile);
+        bull = generateSystem "bull" (argsWith builtins.readFile);
         guest-power = generateSystem "power" (argsWith (path: ""));
         guest-monster = generateSystem "monster" (argsWith (path: ""));
+        guest-bull = generateSystem "bull" (argsWith (path: ""));
       };
     };
 }
