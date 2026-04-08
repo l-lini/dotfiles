@@ -45,6 +45,8 @@
     extraModulePackages = [ ];
   };
 
+  networking.hostId = "e16f9e84"; # lower-case 8 digit hexadecimal number used by zfs
+
   swapDevices = [ ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
