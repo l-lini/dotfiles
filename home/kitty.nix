@@ -1,16 +1,23 @@
-{ pencils, ... }:
+# TODO Command history Search. Me forgor often ); CTRL-R???
+# TODO tmux ?
+# TODO Fully fledged Vim Motions (Select text etc ...)
+# TODO remove mouse from kitty
+
+{ pencils, config, ... }:
 
 {
+  programs.zsh.initContent = config.programs.zsh.shellInit;
+
   programs.kitty = {
     enable = true;
-    settings = with pencils; rec {
+    settings = {
       enable_audio_bell = false;
       font_family = "Comic Mono";
       font_style = "Bold";
       font_size = 19.0;
-      # TODO Make vim keybinds for selecting text. then you uncomment this.
-      # clear_all_mouse_actions = "yes"; Disables mouse:
-
+      # clear_all_mouse_actions = "yes";
+    }
+    // (with pencils; rec {
       foreground = "#${white}";
       background = "#${black}";
       color0 = "#${bright.black}";
@@ -40,9 +47,6 @@
 
       # The color for highlighting URLs on mouse-over
       url_color = "#${bright.red}";
-    };
+    });
   };
 }
-# Command history Search. Me forgor often );
-# tmux ?
-# Fully fledged Vim Motions (Select text etc ...)

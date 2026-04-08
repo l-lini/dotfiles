@@ -3,6 +3,7 @@
 {
   programs.swaylock = {
     enable = true;
+
     settings = with pencils; {
       # Background
       color = black;

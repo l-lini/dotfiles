@@ -11,6 +11,7 @@
       width = 800;
       height = 600;
     };
+
     style = with pencils; ''
       * {
         font-family: "Comic Mono";
