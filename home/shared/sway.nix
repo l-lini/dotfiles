@@ -43,10 +43,6 @@
       config = {
         startup = [
           {
-            command = "fcitx5";
-            always = true;
-          }
-          {
             command = "autotiler";
             always = true;
           }
@@ -57,16 +53,17 @@
           {
             command = "spotify";
             always = true;
+            # move to workspace 2
           }
           {
             command = "qsynth";
             always = true;
+            # move to workspace 3
           }
         ];
         bars = [ ];
         defaultWorkspace = "workspace number 1";
         floating = {
-          criteria = [ ];
           modifier = "Mod4";
           border = 0;
           titlebar = false;
@@ -75,13 +72,20 @@
           natural_scroll = "enabled";
           tap = "enabled";
         };
+        input."type:keyboard" = {
+          xkb_layout = "us";
+          # xkb_layout = "se";
+          # xkb_variant = "swerty";
+
+          # TODO: use this to remove caps lock
+          # xkb_options = "grp:win_space_toggle";
+        };
         keybindings = ({
           "Mod4+Return" = "exec kitty";
           "Mod4+Space" = "exec wofi --show run";
           "Mod4+b" = "exec qutebrowser";
           "Mod4+p" = "exec qutebrowser --target private-window";
           "Mod4+Backspace" = "kill";
-          #"Mod4+f" = "fullscreen toggle";
           "Mod4+h" = "focus left";
           "Mod4+l" = "focus right";
           "Mod4+k" = "focus up";
