@@ -13,6 +13,9 @@
     "skärmdump" = "slurp | grim -g - - | wl-copy";
   };
 
+  # Autostart sway
+  environment.loginShellInit = "[[ \"$(tty)\" == /dev/tty1 ]] && sway";
+
   environment.systemPackages = with pkgs; [
     jq
     minitube
