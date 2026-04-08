@@ -1,7 +1,0 @@
-{ timeZone, ... }:
-
-{
-  time = {
-    inherit timeZone;
-  };
-}
