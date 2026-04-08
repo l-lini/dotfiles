@@ -1,0 +1,8 @@
+Remove secrets (move to /persist)
+Switch all to zfs
+Modularize (home folder and os folder and hosts folder)
+Nicer flake.nix
+ssh hosts
+Make cli utility scripts into local package or github repo
+modularize sway config
+swerty
