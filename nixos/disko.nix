@@ -1,4 +1,7 @@
-{ disk-path, compression }:
+{
+  disk-path,
+  compression ? "zstd",
+}:
 
 {
   disko.devices = {
