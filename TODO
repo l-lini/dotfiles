@@ -8,3 +8,4 @@ modularize sway config
 swerty
 Try own simple colortheme (maximum contrast)
 Git aliases
+Neovim force sudo (Don't warn about no write access)

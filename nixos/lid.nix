@@ -1,18 +1,6 @@
 { pkgs, ... }:
 
 {
-  imports = [
-    ../shared
-    ./hardware.nix
-    ./disko-install.nix
-    ./tlp.nix
-  ];
-
-  users.users.lini = {
-    initialPassword = "lini";
-    hashedPasswordFile = "/persist/password";
-  };
-
   environment.systemPackages = with pkgs; [
     brightnessctl
     acpid

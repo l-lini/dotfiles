@@ -29,8 +29,8 @@
   nixpkgs.config.allowUnfree = true;
 
   programs = {
-    steam.enable = true; # TODO! Fix random persistant lag
-    sway.enable = true;
+    steam.enable = true; # gaming # TODO! Fix random persistant lag
+    sway.enable = true; # sway lol
     direnv.enable = true;
   };
 
@@ -39,50 +39,45 @@
     with pkgs;
     builtins.attrValues scripts
     ++ [
-      inputs.chalmers-search-exam.packages.${system}.default
-      minitube # Super basic youtube app
-      qsynth
+      inputs.chalmers-search-exam.packages.${system}.default # clients
+      minitube # clients
+      qsynth # clients
       gcc
-      spotify
+      spotify # clients
       glow
-      playerctl
       git-crypt
       dust
-      tigervnc
-      stunnel
+      tigervnc # clients
+      stunnel # clients
       unzip
-      ffmpeg
-      erlang
-      prusa-slicer
-      tree-sitter
-      prismlauncher
-      heroic
-      pavucontrol
-      pamixer
-      r2modman
-      anki
-      inkscape
+      ffmpeg # clients
+      erlang # clients
+      prusa-slicer # clients
+      tree-sitter # clients
+      prismlauncher # gaming
+      heroic # gaming
+      pavucontrol # audio
+      pamixer # audio
+      r2modman # gaming
+      inkscape # sway
       git
       mpv
-      mupdf
+      mupdf # sway
       tree
-      screen
-      grim
-      slurp
-      wl-clipboard
-      discord
-      slack
-      libnotify
-      firefox
-      qutebrowser # Imagine if it actually worked ):
-      autotiling
+      screen # clients
+      grim # sway
+      slurp # sway
+      wl-clipboard # sway
+      discord # sway
+      slack # sway
+      libnotify # sway
+      firefox # sway
+      qutebrowser # sway
+      autotiling # sway
     ]
     ++ (with pkgs-unstable; [
       nvcat
     ]);
-
-  # Set the default editor to neovim
-  environment.variables.EDITOR = "nvim";
 
   # Set your time zone.
   time.timeZone = "Europe/Stockholm";
@@ -97,17 +92,6 @@
     };
 
     openssh.enable = true;
-
-    # TODO add this to specifically the project in question
-    # mariadb-connector-java
-    # jdk25_headless
-    # maven
-    # android-studio
-    # mysql = {
-    #   enable = true;
-    #   package = pkgs.mariadb;
-    # };
   };
 
-  system.stateVersion = "25.11";
 }

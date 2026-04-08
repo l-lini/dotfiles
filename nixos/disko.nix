@@ -1,14 +1,16 @@
+{ disk-path, compression }:
+
 {
   disko.devices = {
     disk = {
       root = {
         type = "disk";
-        device = "/dev/disk/by-id/nvme-SSSTC_CL1-8D256-HP_UKFCN01ZTF95EW";
+        device = disk-path; # A string not a path. Why btw? Waste of potential.
         content = {
           type = "gpt";
           partitions = {
             ESP = {
-              size = "256M";
+              size = "1G";
               type = "EF00";
               content = {
                 type = "filesystem";
@@ -33,7 +35,7 @@
         type = "zpool";
         rootFsOptions = {
           mountpoint = "none";
-          compression = "zstd"; # Check!
+          compression = compression;
         };
         datasets = {
           "nixos/empty" = {
@@ -42,15 +44,10 @@
             mountpoint = "/";
             postCreateHook = "zfs snapshot rpool/nixos/empty@start";
           };
-          "nixos/home" = {
+          "nixos/stay" = {
             type = "zfs_fs";
             options.mountpoint = "legacy";
-            mountpoint = "/home";
-          };
-          "nixos/persist" = {
-            type = "zfs_fs";
-            options.mountpoint = "legacy";
-            mountpoint = "/persist";
+            mountpoint = "/stay";
           };
           "nixos/nix" = {
             type = "zfs_fs";
