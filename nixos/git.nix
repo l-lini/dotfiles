@@ -1,6 +1,15 @@
 { pkgs, secrets, ... }:
 
 {
+  environment.shellAliases = {
+    g = "git";
+    s = "git status";
+    c = "git commit -m";
+    a = "git add";
+    p = "git push";
+    u = "git pull";
+  };
+
   programs.git = {
     enable = true;
     config = {
