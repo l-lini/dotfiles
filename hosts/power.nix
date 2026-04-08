@@ -1,13 +1,12 @@
 {
   home-manager,
-  disk-path ? /dev/disk/by-id/nvme-SSSTC_CL1-8D256-HP_UKFCN01ZTF95EW,
   ...
 }@args:
 
 {
-  # TODO add args to imports
-  # _module.args = {
-  # };
+  _module.args = {
+    disk-path = /dev/disk/by-id/nvme-SSSTC_CL1-8D256-HP_UKFCN01ZTF95EW;
+  };
 
   imports = [
     home-manager.nixosModules.home-manager

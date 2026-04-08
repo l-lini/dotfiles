@@ -17,7 +17,7 @@
       lib = import ./lib.nix;
     in
     {
-      nixosConfigurations = lib.dirToAttr ./hosts baseNameOf (
+      nixosConfigurations = lib.dirToAttr ./hosts (path: lib.removeEnd ".nix" (baseNameOf path)) (
         path:
         nixpkgs.lib.nixosSystem {
           specialArgs = {

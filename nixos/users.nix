@@ -12,8 +12,8 @@
         # "video" # is this for brightnessctl??? i forgor :skull:
       ];
       shell = pkgs.zsh; # why both here and above???
-      # initialPassword = "lini";
-      passwordFile = "/stay/.lini-digest";
+      initialPassword = "lini";
+      passwordFile = "/stay/lini";
     };
   };
 }
