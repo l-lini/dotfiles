@@ -1,3 +1,6 @@
+# TODO make terminal line more apparent
+# TODO move into ouput and copy
+# TODO Higher contrast in this and neovim
 { ... }:
 # zoxide
 # command history thingy with fuzzy finding.

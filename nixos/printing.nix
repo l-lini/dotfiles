@@ -1,0 +1,5 @@
+{ ... }:
+
+{
+  printing.enable = true;
+}

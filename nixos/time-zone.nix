@@ -1,0 +1,7 @@
+{ timeZone, ... }:
+
+{
+  time = {
+    inherit timeZone;
+  };
+}
