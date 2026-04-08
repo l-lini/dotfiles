@@ -1,7 +1,6 @@
 {
   home-manager,
-  hostName ? "monster",
-  disk-path ? /dev/disk/by-id/nvme-KINGSTON_SKC3000D2048G_50026B76860D859A,
+  disk-path ? /dev/disk/by-id/nvme-SSSTC_CL1-8D256-HP_UKFCN01ZTF95EW,
   ...
 }@args:
 
