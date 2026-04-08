@@ -6,3 +6,5 @@ ssh hosts
 Make cli utility scripts into local package or github repo
 modularize sway config
 swerty
+Try own simple colortheme (maximum contrast)
+Git aliases
