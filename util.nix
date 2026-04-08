@@ -29,4 +29,12 @@ rec {
     if endsWith end s' then substring 0 (ls - le) s' else s';
   # !BEWARE OF FUNKY REGEX SHIT!
   splitString = sep: s: filter isString (split (toString sep) (toString s));
+  pencil = {
+    void = "000000";
+    ground = "002233";
+    text = "ffffff";
+    bad = "ff0000";
+    good = "00ff00";
+    keyword = "ff9966";
+  };
 }

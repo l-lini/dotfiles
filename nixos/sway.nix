@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  program = {
+  programs = {
     steam.enable = true; # TODO! Fix random persistant lag
     sway.enable = true;
   };

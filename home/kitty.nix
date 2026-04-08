@@ -2,8 +2,9 @@
 # TODO tmux ?
 # TODO Fully fledged Vim Motions (Select text etc ...)
 # TODO remove mouse from kitty
+# TODO same theme in neovim
 
-{ pencils, config, ... }:
+{ util, config, ... }:
 
 {
   programs.zsh.initContent = config.programs.zsh.shellInit;
@@ -17,19 +18,19 @@
       font_size = 19.0;
       # clear_all_mouse_actions = "yes";
     }
-    // (with pencils; rec {
-      foreground = "#${white}";
-      background = "#${black}";
-      color0 = "#${bright.black}";
-      color1 = "#${red}";
-      color2 = "#${green}";
-      color3 = "#${yellow}";
-      color4 = "#${blue}";
-      color5 = "#${magenta}";
-      color6 = "#${cyan}";
+    // (with util.pencil; rec {
+      foreground = "#${text}";
+      background = "#${void}";
+      color0 = "#${ground}";
+      color1 = "#${error}";
+      color2 = "#${good}";
+      color3 = "#${keyword}";
+      color4 = "#${keyword}";
+      color5 = "#${keyword}";
+      color6 = "#${keyword}";
 
-      color7 = foreground;
-      cursor_text_color = background;
+      color7 = text;
+      cursor_text_color = void;
 
       color8 = color0;
       color9 = color1;
@@ -46,7 +47,7 @@
       selection_background = color0;
 
       # The color for highlighting URLs on mouse-over
-      url_color = "#${bright.red}";
+      url_color = "#${keyword}";
     });
   };
 }

@@ -12,23 +12,24 @@
   };
 
   outputs =
-    { nixpkgs, ... }@inputs:
+    { nixpkgs, home-manager, ... }@inputs:
     let
-      lib = import ./lib.nix;
+      util = import ./util.nix;
     in
     {
-      nixosConfigurations = lib.dirToAttr ./hosts (path: lib.removeEnd ".nix" (baseNameOf path)) (
+      nixosConfigurations = util.dirToAttr ./hosts (path: util.removeEnd ".nix" (baseNameOf path)) (
         path:
         nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs lib;
+            inherit inputs util;
             system = "x86_64-linux";
             pencils = import ./pencils.nix;
-            secrets = lib.readDirFiles ./stay;
+            secrets = util.readDirFiles /stay;
             scripts = { };
             hostName = baseNameOf path;
           };
           modules = [
+            home-manager.nixosModules.home-manager
             path
           ];
         }

@@ -1,6 +1,6 @@
-{ lib, ... }:
+{ util, ... }:
 
-with lib;
+with util;
 with builtins;
 let
   paths = pathsInDir ./.;

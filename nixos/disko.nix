@@ -1,14 +1,17 @@
 {
-  disk-path,
-  compression ? "zstd",
+  inputs,
+  device,
+  ...
 }:
 
 {
+  imports = [ inputs.disko.nixosModules.disko ];
+
   disko.devices = {
     disk = {
       root = {
         type = "disk";
-        device = disk-path; # A string not a path. Why btw? Waste of potential.
+        inherit device; # Why string? Use the language for gods sake! >:(
         content = {
           type = "gpt";
           partitions = {
@@ -38,7 +41,7 @@
         type = "zpool";
         rootFsOptions = {
           mountpoint = "none";
-          compression = compression;
+          compression = "zstd";
         };
         datasets = {
           "nixos/empty" = {
