@@ -11,7 +11,7 @@
     disk = {
       root = {
         type = "disk";
-        inherit device; # Why string? Use the language for gods sake! >:(
+        inherit device;
         content = {
           type = "gpt";
           partitions = {
@@ -49,6 +49,11 @@
             options.mountpoint = "legacy";
             mountpoint = "/";
             postCreateHook = "zfs snapshot rpool/nixos/empty@start";
+          };
+          "nixos/home" = {
+            type = "zfs_fs";
+            options.mountpoint = "legacy";
+            mountpoint = "/home";
           };
           "nixos/stay" = {
             type = "zfs_fs";
