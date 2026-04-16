@@ -1,4 +1,4 @@
-{ ... }@args:
+{ ... }:
 
 {
   imports = [
@@ -8,4 +8,6 @@
     ./../sway.nix
     ./../wofi.nix
   ];
+
+  home.stateVersion = "25.11";
 }

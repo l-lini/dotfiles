@@ -18,7 +18,7 @@ rec {
     listToAttrs (
       map (path: {
         name = nameF path;
-        value = valueF (nameF path);
+        value = valueF path (nameF path);
       }) (pathsInDir dir)
     );
   hexToUpper = replaceStrings [ "a" "b" "c" "d" "e" "f" ] [ "A" "B" "C" "D" "E" "F" ];

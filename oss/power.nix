@@ -6,7 +6,6 @@
   };
 
   imports = [
-    ./../nixos/alias.nix
     ./../nixos/networking.nix
     ./../nixos/sway.nix
     ./../nixos/fonts.nix
@@ -27,26 +26,6 @@
     ./../nixos/disko.nix
     ./../nixos/neovim
   ];
-
-  home-manager = {
-    #useGlobalPkgs = true;
-    #useUserPackages = true;
-    users.lini.imports = [
-      ./../home/kitty.nix
-      ./../qutebrowser.nix
-      ./../swaylock.nix
-      ./../sway.nix
-      ./../wofi.nix
-      (
-        { ... }:
-        {
-          home.stateVersion = "25.11";
-        }
-      )
-    ];
-    extraSpecialArgs = args // {
-    };
-  };
 
   time.timeZone = "Europe/Stockholm";
 
