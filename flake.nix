@@ -17,8 +17,10 @@
       util = import ./util.nix;
     in
     {
-      nixosConfigurations = util.dirToAttr ./hosts (path: util.removeEnd ".nix" (baseNameOf path)) (
+      nixosConfigurations = util.dirToAttr ./oss (util.nameOfFile ".nix") (
         path:
+        let
+            hostname
         nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs util;
@@ -29,10 +31,12 @@
             hostName = baseNameOf path;
           };
           modules = [
-            home-manager.nixosModules.home-manager
             path
+            home-manager.nixosModules.home-manager
           ];
         }
       );
+      homeConfigurations = util.dirToAttr ./homes (path: util.removeEnd ".nix" (baseNameOf path)) (path: {
+          "lini@%{}"
     };
 }

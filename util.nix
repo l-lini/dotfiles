@@ -27,6 +27,7 @@ rec {
       ls = stringLength s';
     in
     if endsWith end s' then substring 0 (ls - le) s' else s';
+  nameOfFile = end: path: removeEnd end (baseNameOf path);
   # !BEWARE OF FUNKY REGEX SHIT!
   splitString = sep: s: filter isString (split (toString sep) (toString s));
   pencil = {
