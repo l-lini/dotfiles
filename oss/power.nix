@@ -5,26 +5,26 @@
     device = /dev/disk/by-id/nvme-SSSTC_CL1-8D256-HP_UKFCN01ZTF95EW;
   };
 
-  imports = [
-    ./../nixos/networking.nix
-    ./../nixos/sway.nix
-    ./../nixos/fonts.nix
-    ./../nixos/network-manager.nix
-    ./../nixos/audio.nix
-    ./../nixos/git.nix
-    ./../nixos/nix.nix
-    ./../nixos/users.nix
-    ./../nixos/hardware.nix
-    ./../nixos/packages.nix
-    ./../nixos/zoxide.nix
-    ./../nixos/boot.nix
-    ./../nixos/printing.nix
-    ./../nixos/zsh.nix
-    ./../nixos/console.nix
-    ./../nixos/autologin.nix
-    ./../nixos/ssh-client.nix
-    ./../nixos/disko.nix
-    ./../nixos/neovim
+  imports = builtins.map (x: ./../os + x) [
+    /networking.nix
+    /sway.nix
+    /fonts.nix
+    /network-manager.nix
+    /audio.nix
+    /git.nix
+    /nix.nix
+    /users.nix
+    /hardware.nix
+    /packages.nix
+    /zoxide.nix
+    /boot.nix
+    /printing.nix
+    /zsh.nix
+    /console.nix
+    /autologin.nix
+    /ssh-client.nix
+    /disko.nix
+    /neovim
   ];
 
   time.timeZone = "Europe/Stockholm";
