@@ -1,3 +1,4 @@
+Make different prompt for root
 Make nix lsp shut the fuck up
 Include home-manager as a program when needed (just make it it's own file i guess)
 Include efibootmgr as program
