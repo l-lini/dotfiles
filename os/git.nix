@@ -8,6 +8,10 @@
     a = "git add";
     p = "git push";
     u = "git pull";
+    d = "git diff";
+    ds = "git diff --staged";
+    r = "git restore --staged";
+    rs = "git restore";
   };
 
   programs.git = {
