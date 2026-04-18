@@ -2,7 +2,7 @@
 
 {
   _module.args = {
-    device = /dev/disk/by-id/nvme-SSSTC_CL1-8D256-HP_UKFCN01ZTF95EW;
+    device = "/dev/disk/by-id/nvme-SSSTC_CL1-8D256-HP_UKFCN01ZTF95EW";
   };
 
   imports = builtins.map (x: ./../os + x) [
