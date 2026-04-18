@@ -1,3 +1,5 @@
+Include home-manager as a program when needed (just make it it's own file i guess)
+Include efibootmgr as program
 Remove secrets (move to /persist)
 Switch all to zfs
 Modularize (home folder and os folder and hosts folder)

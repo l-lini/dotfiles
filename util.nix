@@ -12,7 +12,8 @@ rec {
       ext = extension baseName;
     in
     substring 0 (stringLength baseName - stringLength ext) baseName;
-  pathsInDir = dir: map (name: /${dir}/${name}) (attrNames (readDir dir));
+  pathsInDir =
+    dir: if pathExists dir then map (name: /${dir}/${name}) (attrNames (readDir dir)) else [ ];
   dirToAttr =
     dir: nameF: valueF:
     listToAttrs (
