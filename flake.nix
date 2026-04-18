@@ -46,7 +46,8 @@
       homeConfigurations = util.dirToAttr ./homes (path: "lini@${util.pathToName path}") (
         path: hostName:
         home-manager.lib.homeManagerConfiguration {
-          specialArgs = {
+          pkgs = import nixpkgs { inherit (args) system; };
+          extraSpecialArgs = {
             inherit hostName;
           }
           // args;
