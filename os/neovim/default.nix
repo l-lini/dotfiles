@@ -27,6 +27,9 @@
 # Auto sudo on write protected
 
 {
+  environment.shellAliases = {
+    v = "vi";
+  };
   programs.neovim = {
     enable = true;
     defaultEditor = true;
