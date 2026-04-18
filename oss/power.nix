@@ -22,7 +22,6 @@
     /printing.nix
     /zsh.nix
     /console.nix
-    /autologin.nix
     /ssh-client.nix
     /disko.nix
     /neovim
