@@ -26,7 +26,11 @@
         os = util.dirToAttr ./os util.pathToName (path: _: import path);
         home = util.dirToAttr ./home util.pathToName (path: _: import path);
         pencils = import ./pencils.nix;
-        secrets = util.dirToAttr /stay builtins.baseNameOf (path: _: builtins.readFile path);
+        secrets =
+          if !builtins.pathExists /stay then
+            builtins.trace "\nWARNING!!!: /stay doesn't exist, enable --impure please\n" { }
+          else
+            util.dirToAttr /stay builtins.baseNameOf (path: _: builtins.readFile path);
         scripts = { };
       };
     in
