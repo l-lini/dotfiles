@@ -5,7 +5,7 @@
     enable = true;
     enableZshIntegration = true;
     flags = [
-      "--cmd c"
+      "--cmd z"
     ];
   };
 }
