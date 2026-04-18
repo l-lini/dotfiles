@@ -45,6 +45,8 @@
     extraModulePackages = [ ];
   };
 
+  fileSystems."/stay".neededForBoot = true;
+
   networking.hostId = "e16f9e84"; # lower-case 8 digit hexadecimal number used by zfs
 
   swapDevices = [ ];
