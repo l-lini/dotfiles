@@ -4,9 +4,9 @@ with util;
 with builtins;
 let
   paths = pathsInDir ./.;
-  luaPaths = filter (stringEndsWith ".lua") paths;
+  luaPaths = filter (path: extension (baseNameOf path) == ".lua") paths;
   indentLines = lines: map (line: "    " + line) lines;
-  lines = string: splitString "\n" string;
+  lines = string: filter isString (split "\n" string);
   indentString = string: concatStringsSep "\n" (indentLines (lines string));
   indentFile = path: indentString (readFile path);
   intoDoBlock = path: "do -- ${path}\n${indentFile path}\nend";

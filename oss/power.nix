@@ -6,6 +6,7 @@
   };
 
   imports = builtins.map (x: ./../os + x) [
+    /allow-unfree.nix
     /networking.nix
     /sway.nix
     /fonts.nix

@@ -1,4 +1,7 @@
-{ lib, pkgs, ... }:
+{
+  pkgs,
+  ...
+}@args:
 # TODO line-wrap toggle keybind
 # TODO use global pencils colors instead of colorscheme
 # TODO get lsp for asm and java working
@@ -30,7 +33,7 @@
     viAlias = true;
     vimAlias = true;
     configure = {
-      customLuaRC = import ./combineLua.nix { inherit lib; };
+      customLuaRC = import ./combineLua.nix args;
       packages.myVimPackage = with pkgs.vimPlugins; {
         start = [
           nvim-treesitter.withAllGrammars
