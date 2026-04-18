@@ -25,9 +25,11 @@
     tree-sitter
     tigervnc
     stunnel
-  ]
+    home-manager
+    efibootmgr
+    disko
+  ];
   # ++ (with pkgs-unstable; [
   #   nvcat
-  # ])
-  ;
+  # ]);
 }

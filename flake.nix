@@ -47,7 +47,7 @@
           ];
         }
       );
-      homeConfigurations = util.dirToAttr ./homes (path: "lini@${util.pathToName path}") (
+      homeConfigurations = util.dirToAttr ./homes util.pathToName (
         path: hostName:
         home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { inherit (args) system; };

@@ -22,7 +22,7 @@
       foreground = "#${text}";
       background = "#${void}";
       color0 = "#${ground}";
-      color1 = "#${error}";
+      color1 = "#${bad}";
       color2 = "#${good}";
       color3 = "#${keyword}";
       color4 = "#${keyword}";
