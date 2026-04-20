@@ -34,5 +34,24 @@ rec {
     function = "00bbdd";
     literal = "99cc66";
     comment = "334477";
+    console_colors = with pencil; [
+      void
+      bad
+      good
+      keyword
+      variable
+      function
+      literal
+      text
+      ground
+      bad
+      good
+      comment
+      comment
+      comment
+      comment
+      comment
+      comment
+    ];
   };
 }

@@ -1,5 +1,5 @@
 {
-  pencils,
+  util,
   pkgs,
   lib,
   ...
@@ -16,23 +16,6 @@
   console = {
     earlySetup = true;
     font = "latarcyrheb-sun32"; # Enums, why are they not enums );
-    colors = [
-      pencils.black
-      pencils.red
-      pencils.green
-      pencils.yellow
-      pencils.blue
-      pencils.magenta
-      pencils.cyan
-      pencils.white
-      pencils.bright.black
-      pencils.bright.red
-      pencils.bright.green
-      pencils.bright.yellow
-      pencils.bright.blue
-      pencils.bright.magenta
-      pencils.bright.cyan
-      pencils.bright.white
-    ];
+    colors = util.pencil.console_colors;
   };
 }

@@ -17,37 +17,20 @@
       font_style = "Bold";
       font_size = 19.0;
       # clear_all_mouse_actions = "yes";
-    }
-    // (with util.pencil; rec {
-      foreground = "#${text}";
-      background = "#${void}";
-      color0 = "#${ground}";
-      color1 = "#${bad}";
-      color2 = "#${good}";
-      color3 = "#${keyword}";
-      color4 = "#${keyword}";
-      color5 = "#${keyword}";
-      color6 = "#${keyword}";
 
-      color7 = text;
-      cursor_text_color = void;
-
-      color8 = color0;
-      color9 = color1;
-      color10 = color2;
-      color11 = color3;
-      color12 = color4;
-      color13 = color5;
-      color14 = color6;
-      color15 = color7;
-      cursor = color7;
-
-      # Selection highlight
+      foreground = "#${util.pencil.text}";
+      background = "#${util.pencil.void}";
+      cursor_text_color = "#${util.pencil.void}";
       selection_foreground = "none";
-      selection_background = color0;
+      selection_background = "#${util.pencil.void}";
+      url_color = "#${util.pencil.comment}";
 
-      # The color for highlighting URLs on mouse-over
-      url_color = "#${keyword}";
-    });
+    }
+    // builtins.listToAttrs (
+      builtins.genList (i: {
+        name = "color${builtins.toString i}";
+        value = "#${builtins.elemAt util.pencil.console_colors i}";
+      }) (builtins.length util.pencil.console_colors)
+    );
   };
 }
