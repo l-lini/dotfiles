@@ -14,7 +14,7 @@
     syntaxHighlighting.enable = true;
     ohMyZsh.enable = true;
     shellInit = ''
-      PS1="%1~ > "
+      PS1="%S%2~%s"$'\n'"%# "
       nix-env --delete-generations +3
     '';
     histSize = 10000;

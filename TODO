@@ -1,3 +1,5 @@
+Make zsh shut up
+Stop autostart qsynth (fix merge adding workspaces to monster only)
 Neovim system clipboard cut
 Make different prompt for root
 Make nix lsp shut the fuck up
