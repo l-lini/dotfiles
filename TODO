@@ -1,11 +1,7 @@
-Make zsh shut up
+Make bull
 Stop autostart qsynth (fix merge adding workspaces to monster only)
 Neovim system clipboard cut
-Make different prompt for root
 Make nix lsp shut the fuck up
-Include home-manager as a program when needed (just make it it's own file i guess)
-Include efibootmgr as program
-Include disko
 Remove secrets (move to /persist)
 Switch all to zfs
 Modularize (home folder and os folder and hosts folder)
