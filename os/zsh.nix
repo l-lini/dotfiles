@@ -7,6 +7,9 @@
 # Remove .zshrc prompt at boot
 { ... }:
 {
+  # shut the fuck up bitch ass fucker
+  system.userActivationScripts.zshrc = "touch .zshrc";
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
