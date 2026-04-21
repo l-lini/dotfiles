@@ -1,7 +1,7 @@
 {
   inputs,
   pkgs,
-  pkgs-unstable,
+  # pkgs-unstable,
   system,
   ...
 }:

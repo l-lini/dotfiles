@@ -8,6 +8,7 @@
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     disko.url = "github:nix-community/disko/latest";
     md307.url = "github:olillin/eda482-md307-flake";
+    dat566.url = "github:LinuxAtChalmers/dat566-flake";
     chalmers-search-exam.url = "github:olillin/chalmers-search-exam";
   };
 
@@ -50,7 +51,10 @@
       homeConfigurations = util.dirToAttr ./homes (path: "lini@${util.pathToName path}") (
         path: hostName:
         home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { inherit (args) system; };
+          pkgs = import nixpkgs {
+            inherit (args) system;
+            config.allowUnfree = true;
+          };
           extraSpecialArgs = {
             inherit hostName;
           }
