@@ -25,7 +25,6 @@
     tree-sitter
     tigervnc
     stunnel
-    home-manager
     efibootmgr
     disko
   ];
