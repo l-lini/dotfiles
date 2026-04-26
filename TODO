@@ -1,3 +1,18 @@
+autotiling sway
+    first
+       |
+       |
+       |
+    then
+       |
+       |---
+       |
+    then
+       |
+    ---|---
+       |
+    no more.
+
 Make bull
 Stop autostart qsynth (fix merge adding workspaces to monster only)
 Neovim system clipboard cut
