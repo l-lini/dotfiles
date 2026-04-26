@@ -9,6 +9,7 @@
 
   imports = builtins.map (x: ./../os + x) [
     /allow-unfree.nix
+    /autologin.nix
     /home-manager.nix
     /networking.nix
     /sway.nix
