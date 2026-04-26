@@ -1,7 +1,8 @@
-{ inputs, ... }:
+{ ... }:
 
 {
   imports = builtins.map (x: ./../home/${x}) [
+    /keyd.nix
     /kitty.nix
     /qutebrowser.nix
     /sway.nix
