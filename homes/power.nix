@@ -4,6 +4,7 @@
   imports =
     builtins.map (x: ./../home/${x}) [
       /kitty.nix
+      /keyd.nix
       /qutebrowser.nix
       /swaylock.nix
       /sway.nix
