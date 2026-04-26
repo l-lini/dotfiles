@@ -12,6 +12,7 @@
     builtins.map (x: ./../os + x) [
       /home-manager.nix
       /allow-unfree.nix
+      /autologin.nix
       /networking.nix
       /battery.nix
       /sway.nix
