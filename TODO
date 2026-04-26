@@ -1,12 +1,12 @@
-autotiling sway
+autotiling sway (split horizontally maybe because of large font. only on power maybe.)
     first
        |
-       |
+       |    or -------
        |
     then
        |
-       |---
-       |
+       |--- or -------
+       |          |
     then
        |
     ---|---
