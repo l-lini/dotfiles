@@ -2,9 +2,9 @@
 
 {
   _module.args = {
-    disko-device = "/dev/disk/by-id/nvme-SSSTC_CL1-8D256-HP_UKFCN01ZTF95EW";
-    encryption = "aes-256-gcm";
-    filesystem = "zfs";
+    disk-device = "/dev/disk/by-id/nvme-SSSTC_CL1-8D256-HP_UKFCN01ZTF95EW";
+    disk-encryption = "aes-256-gcm";
+    disk-filesystem = "zfs";
     hostId = "b000b135";
   };
 

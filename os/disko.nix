@@ -1,8 +1,8 @@
 {
   inputs,
-  disko-device,
-  filesystem,
-  encryption,
+  disk-encryption,
+  disk-filesystem,
+  disk-device,
   ...
 }:
 
@@ -13,7 +13,7 @@
     disk = {
       root = {
         type = "disk";
-        device = disko-device;
+        device = disk-device;
         content = {
           type = "gpt";
           partitions = {
@@ -29,7 +29,7 @@
             };
           }
           // (
-            if filesystem == "zfs" then
+            if disk-filesystem == "zfs" then
               {
                 zfs = {
                   size = "100%";
@@ -39,7 +39,7 @@
                   };
                 };
               }
-            else if filesystem == "btrfs" then
+            else if disk-filesystem == "btrfs" then
               {
                 root = {
                   size = "100%";
@@ -54,14 +54,14 @@
                 };
               }
             else
-              builtins.abort "filesystem has to be either btrfs or zfs not ${filesystem}"
+              builtins.abort "filesystem has to be either btrfs or zfs not ${disk-filesystem}"
           );
         };
       };
     };
   }
   // (
-    if filesystem == "zstd" then
+    if disk-filesystem == "zfs" then
       {
         zpool = {
           rpool = {
@@ -77,9 +77,9 @@
                   mountpoint = "legacy";
                 }
                 // (
-                  if builtins.isString encryption then
+                  if builtins.isString disk-encryption then
                     {
-                      inherit encryption;
+                      encryption = disk-encryption;
                     }
                   else
                     { }

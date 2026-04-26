@@ -3,7 +3,7 @@
   lib,
   pkgs,
   hostId,
-  filesystem,
+  disk-filesystem,
   modulesPath,
   ...
 }:
@@ -26,43 +26,29 @@
         "rtsx_pci_sdmmc"
       ];
       kernelModules = [ ];
-    }
-    // (
-      if filesystem == "zfs" then
-        {
-          systemd = {
-            enable = true;
-            services.initrd-rollback-root = {
-              after = [ "zfs-import-rpool.service" ];
-              wantedBy = [ "initrd.target" ];
-              before = [
-                "sysroot.mount"
-              ];
-              path = [ pkgs.zfs ];
-              description = "Rollback root fs";
-              unitConfig.DefaultDependencies = "no";
-              serviceConfig.Type = "oneshot";
-              script = "zfs rollback -r rpool/nixos/empty@start";
-            };
-          };
-        }
-      else
-        { }
-    );
+      systemd = lib.mkIf (disk-filesystem == "zfs") {
+        enable = true;
+        services.initrd-rollback-root = {
+          after = [ "zfs-import-rpool.service" ];
+          wantedBy = [ "initrd.target" ];
+          before = [
+            "sysroot.mount"
+          ];
+          path = [ pkgs.zfs ];
+          description = "Rollback root fs";
+          unitConfig.DefaultDependencies = "no";
+          serviceConfig.Type = "oneshot";
+          script = "zfs rollback -r rpool/nixos/empty@start";
+        };
+      };
+    };
   };
 
   networking.hostId = hostId; # lower-case 8 digit hexadecimal number used by zfs
 
+  fileSystems."/stay".neededForBoot = lib.mkIf (disk-filesystem == "zfs") true;
   swapDevices = [ ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
-// (
-  if filesystem == "zfs" then
-    {
-      fileSystems."/stay".neededForBoot = true;
-    }
-  else
-    { }
-)
