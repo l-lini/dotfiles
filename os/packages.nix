@@ -13,10 +13,8 @@
     inputs.chalmers-search-exam.packages.${system}.default
     gcc
     glow
-    git-crypt
     dust
     unzip
-    git
     mpv
     tree
     screen
