@@ -3,7 +3,6 @@
   lib,
   pkgs,
   hostId,
-  disk-filesystem,
   modulesPath,
   ...
 }:
@@ -26,7 +25,7 @@
         "rtsx_pci_sdmmc"
       ];
       kernelModules = [ ];
-      systemd = lib.mkIf (disk-filesystem == "zfs") {
+      systemd = {
         enable = true;
         services.initrd-rollback-root = {
           after = [ "zfs-import-rpool.service" ];
@@ -46,7 +45,7 @@
 
   networking.hostId = hostId; # lower-case 8 digit hexadecimal number used by zfs
 
-  fileSystems."/stay".neededForBoot = lib.mkIf (disk-filesystem == "zfs") true;
+  fileSystems."/stay".neededForBoot =  true;
   swapDevices = [ ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
