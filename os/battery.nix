@@ -1,7 +1,12 @@
 { pkgs, ... }:
 
+let
+  batteri = ''echo "$(cat /sys/class/power_supply/BAT0/capacity) $(cat /sys/class/power_supply/BAT0/status)"'';
+in
 {
-  environment.shellAliases.batteri = "echo \"$(cat /sys/class/power_supply/BAT0/capacity) $(cat /sys/class/power_supply/BAT0/status)\"";
+  environment.shellAliases = {
+    inherit batteri;
+  };
 
   systemd.user = {
     services.low-battery = {
@@ -12,9 +17,9 @@
         Type = "simple";
         ExecStart = pkgs.writeShellScript "low-battery" ''
           if (( 27 >= $(cat /sys/class/power_supply/BAT0/capacity)));
-          then ${pkgs.lib.getExe pkgs.pkgs.libnotify} --urgency=critical "$(batteri)";
+          then ${pkgs.lib.getExe pkgs.pkgs.libnotify} --urgency=critical low battery;
           fi;
-        '';
+        ''; # How the fuck does writeShellScript work? funky ass function.
       };
     };
     timers.low-battery = {
