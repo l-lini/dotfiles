@@ -13,6 +13,7 @@ autotiling sway (split horizontally maybe because of large font. only on power m
        |
     no more.
 
+Add host and user to prompt
 Make bull
 Stop autostart qsynth (fix merge adding workspaces to monster only)
 Neovim system clipboard cut

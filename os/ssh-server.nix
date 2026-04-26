@@ -21,7 +21,7 @@
     ports = [ port ];
   };
 
-  networking.networking = {
+  networking = {
     inherit nameservers defaultGateway;
 
     firewall = {
