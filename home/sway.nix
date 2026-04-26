@@ -21,6 +21,7 @@
 # TODO! Fix Volume Mute and Mic Mute Lights
 # TODO! Fix notification delay (send a notification on boot with a nice message! emojis and stuff!)
 # TODO! Replace Caps-Lock
+
 {
   imports = [
     ./kitty.nix
@@ -49,16 +50,6 @@
           {
             command = "swaync";
             always = true;
-          }
-          {
-            command = "spotify";
-            always = true;
-            # move to workspace 2
-          }
-          {
-            command = "qsynth";
-            always = true;
-            # move to workspace 3
           }
         ];
         bars = [ ];

@@ -9,6 +9,7 @@
     builtins.map (x: ./../os + x) [
       /allow-unfree.nix
       /networking.nix
+      /battery.nix
       /sway.nix
       /fonts.nix
       /network-manager.nix

@@ -1,37 +1,37 @@
-{ pencils, ... }:
+{ util, ... }:
 
 {
   programs.swaylock = {
     enable = true;
 
-    settings = with pencils; {
+    settings = with util.pencil; {
       # Background
-      color = black;
+      color = void;
 
       # Indicator (active ring)
-      ring-color = blue;
-      inside-color = bright.blue;
-      line-color = cyan;
+      ring-color = keyword;
+      inside-color = variable;
+      line-color = literal;
 
       # Idle / unfocused (verification)
-      ring-ver-color = bright.black;
-      inside-ver-color = bright.blue;
-      line-ver-color = bright.cyan;
+      ring-ver-color = ground;
+      inside-ver-color = function;
+      line-ver-color = comment;
 
       # Wrong password (urgent)
-      ring-wrong-color = red;
-      inside-wrong-color = bright.red;
-      line-wrong-color = bright.red;
+      ring-wrong-color = bad;
+      inside-wrong-color = bad;
+      line-wrong-color = bad;
 
       # Text
-      text-color = white;
-      text-ver-color = bright.white;
-      text-wrong-color = black;
+      text-color = text;
+      text-ver-color = text;
+      text-wrong-color = bad;
 
       # Layout / keyboard indicators
-      layout-bg-color = black;
-      layout-border-color = blue;
-      layout-text-color = white;
+      layout-bg-color = void;
+      layout-border-color = ground;
+      layout-text-color = text;
     };
   };
 }
