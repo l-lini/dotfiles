@@ -10,6 +10,7 @@
 
   imports =
     builtins.map (x: ./../os + x) [
+      /home-manager.nix
       /allow-unfree.nix
       /networking.nix
       /battery.nix

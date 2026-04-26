@@ -2,14 +2,14 @@
 
 {
   _module.args = {
-    # disk-device = "/dev/disk/by-id/nvme-SSSTC_CL1-8D256-HP_UKFCN01ZTF95EW";
+    disk-device = "/dev/disk/by-id/nvme-KINGSTON_SKC3000D2048G_50026B76860D859A";
     disk-encryption = null;
-    disk-filesystem = "btrfs";
     hostId = "6c6f7665";
   };
 
   imports = builtins.map (x: ./../os + x) [
     /allow-unfree.nix
+    /home-manager.nix
     /networking.nix
     /sway.nix
     /fonts.nix

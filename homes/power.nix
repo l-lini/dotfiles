@@ -3,7 +3,6 @@
 {
   imports =
     builtins.map (x: ./../home/${x}) [
-      /home-manager.nix
       /kitty.nix
       /qutebrowser.nix
       /swaylock.nix
