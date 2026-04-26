@@ -2,6 +2,6 @@
 
 {
   environment.shellAliases = {
-    tid = "date \"+%d %A %H:%M:S\"";
+    tid = "date \"+%d %A %H:%M:%S\"";
   };
 }
