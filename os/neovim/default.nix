@@ -54,6 +54,7 @@
           cmp-nvim-lua
           luasnip
           friendly-snippets
+          surround-nvim
         ];
       };
     };
