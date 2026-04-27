@@ -23,6 +23,9 @@ let
   };
 in
 {
+  users.users.lini.extraGroups = [
+    "networkmanager" # make declarative instead
+  ];
   networking.networkmanager = {
     enable = true;
     ensureProfiles.profiles = {
