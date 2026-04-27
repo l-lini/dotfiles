@@ -12,8 +12,6 @@ autotiling sway (split horizontally maybe because of large font. only on power m
     ---|---
        |
     no more.
-Add two workspaces on Monster for spotify and Qsynth (force them to always be there)
-Stop autostart qsynth (fix merge adding workspaces to monster only)
 modularize sway config
 Neovim system clipboard cut
 Neovim force sudo (Don't warn about no write access)
