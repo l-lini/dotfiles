@@ -19,7 +19,7 @@ in
           level=$(cat /sys/class/power_supply/BAT0/capacity);
           status=$(cat /sys/class/power_supply/BAT0/status);
           if (( 10 >= $level ));
-          then ${pkgs.lib.getExe pkgs.pkgs.libnotify} --urgency=critical --time=60000 "$level $status";
+          then ${pkgs.lib.getExe pkgs.pkgs.libnotify} --urgency=critical -t 60000 "$level $status";
           fi;
         '';
       };
