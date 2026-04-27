@@ -4,6 +4,7 @@
     "2" = null;
     "3" = null;
   },
+  sway-startup ? [ ],
 }:
 {
   lib,
@@ -55,8 +56,8 @@
           command = "swaync";
           always = true;
         }
-
       ]
+      ++ sway-startup
       ++ (
         with builtins;
         map (app: {
@@ -106,6 +107,7 @@
           "Mod4+w" = ''exec notify-send -t 3000 "$(workspace-status)"'';
           "Mod4+t" = ''exec notify-send -t 3000 "$(tid)"'';
           "Mod4+v" = ''exec notify-send -t 3000 "$(sink-volume)"'';
+          "Mod4+s" = "exec systemctl sleep";
         }
         // generator (n: "Mod4+${n}") (n: "workspace number ${n}") workspaces
         // generator (n: "Mod4+Shift+${n}") (n: "move to workspace number ${n}") workspaces;

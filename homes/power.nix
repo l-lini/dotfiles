@@ -4,6 +4,7 @@
   imports =
     builtins.map (x: ./../home/${x}) [
       /kitty.nix
+      /swayidle.nix
       /keyd.nix
       /qutebrowser.nix
       /swaylock.nix
@@ -16,6 +17,12 @@
           "2" = null;
           "3" = null;
         };
+        sway-startup = [
+          {
+            command = "swayidle -w before-sleep 'swaylock' timeout 0 'swaylock'";
+            always = true;
+          }
+        ];
       })
     ]
     ++ [
