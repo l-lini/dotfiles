@@ -1,6 +1,7 @@
 { secrets, ... }:
 
 let
+  escapeEnv = builtins.replaceStrings [ "$" ] [ "$$" ];
   createWifi = ssid: {
     connection = {
       id = ssid;
@@ -13,7 +14,7 @@ let
     wifi-security = {
       auth-alg = "open";
       key-mgmt = "wpa-psk";
-      psk = secrets.${ssid};
+      psk = escapeEnv secrets.${ssid};
     };
     ipv4.method = "auto";
     ipv6 = {
@@ -24,7 +25,7 @@ let
 in
 {
   users.users.lini.extraGroups = [
-    "networkmanager" # make declarative instead
+    "networkmanager"
   ];
   networking.networkmanager = {
     enable = true;
@@ -43,7 +44,7 @@ in
           eap = "peap";
           domain-suffix-match = "eduroam.chalmers.se";
           identity = "alteborn@chalmers.se";
-          password = secrets.eduroam;
+          password = escapeEnv secrets.eduroam;
           phase2-auth = "mschapv2";
         };
       };
