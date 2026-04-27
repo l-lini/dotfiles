@@ -4,14 +4,12 @@
   environment.shellAliases = {
     g = "git";
     s = "git status";
-    c = "git commit -m";
+    c = "git commit";
     a = "git add";
     p = "git push";
     u = "git pull";
     d = "git diff";
-    ds = "git diff --staged";
-    r = "git restore --staged";
-    rs = "git restore";
+    l = "git log";
   };
 
   programs.git = {
