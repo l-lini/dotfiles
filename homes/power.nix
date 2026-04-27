@@ -7,8 +7,16 @@
       /keyd.nix
       /qutebrowser.nix
       /swaylock.nix
-      /sway.nix
       /wofi.nix
+    ]
+    ++ [
+      (import ./../home/sway.nix {
+        sway-workspaces = {
+          "1" = null;
+          "2" = null;
+          "3" = null;
+        };
+      })
     ]
     ++ [
       inputs.dat566.homeModules.vscode

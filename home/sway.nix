@@ -1,4 +1,14 @@
-{ ... }:
+{
+  sway-workspaces ? {
+    "1" = null;
+    "2" = null;
+    "3" = null;
+  },
+}:
+{
+  lib,
+  ...
+}:
 # Make stuff look nice: (Comic Font for readability) (Nice Colorscheme) (Simple)
 # TODO change mirror screen on button press is on nixos wiki for sway under tips and tricks.
 # TODO Keybind for activity bar
@@ -33,45 +43,57 @@
 
   services.swaync.enable = true;
 
-  wayland.windowManager.sway =
-    let
-      notificationFromBash = notificationWithTime "4000";
-      notificationWithTime =
-        time: command: builtins.trace command "sh -c 'notify-send -t ${time} $(${command})'";
-    in
-    {
-      enable = true;
-      config = {
-        startup = [
-          {
-            command = "autotiler";
-            always = true;
-          }
-          {
-            command = "swaync";
-            always = true;
-          }
-        ];
-        bars = [ ];
-        defaultWorkspace = "workspace number 1";
-        floating = {
-          modifier = "Mod4";
-          border = 0;
-          titlebar = false;
-        };
-        input."type:touchpad" = {
-          natural_scroll = "enabled";
-          tap = "enabled";
-        };
-        input."type:keyboard" = {
-          xkb_layout = "us";
-          # xkb_layout = "se";
-          # xkb_variant = "swerty";
+  wayland.windowManager.sway = {
+    enable = true;
+    config = {
+      startup = [
+        {
+          command = "autotiling -l 1";
+          always = true;
+        }
+        {
+          command = "swaync";
+          always = true;
+        }
 
-          # TODO: use this to remove caps lock
-          # xkb_options = "grp:win_space_toggle";
-        };
-        keybindings = ({
+      ]
+      ++ (
+        with builtins;
+        map (app: {
+          command = app;
+          always = true;
+        }) (filter isString (attrValues sway-workspaces))
+      );
+      assigns =
+        with builtins;
+        mapAttrs (_: app: [
+          { class = lib.toUpper (substring 0 1 app) + substring 1 (stringLength app - 1) app; }
+        ]) (lib.filterAttrs (_: s: isString s) sway-workspaces);
+      bars = [ ];
+      defaultWorkspace = "workspace number 1";
+      floating = {
+        modifier = "Mod4";
+        border = 0;
+        titlebar = false;
+      };
+      input."type:touchpad" = {
+        natural_scroll = "enabled";
+        tap = "enabled";
+      };
+      keybindings =
+        with builtins;
+        let
+          generator =
+            nameF: valueF: xs:
+            listToAttrs (
+              map (x: {
+                name = nameF x;
+                value = valueF x;
+              }) xs
+            );
+          workspaces = attrNames sway-workspaces;
+        in
+        {
           "Mod4+Return" = "exec kitty";
           "Mod4+Space" = "exec wofi --show run";
           "Mod4+b" = "exec qutebrowser";
@@ -81,22 +103,18 @@
           "Mod4+l" = "focus right";
           "Mod4+k" = "focus up";
           "Mod4+j" = "focus down";
-          "Mod4+w" = "exec ${notificationFromBash "workspace-status"}";
-          "Mod4+1" = "workspace number 1";
-          "Mod4+2" = "workspace number 2";
-          "Mod4+3" = "workspace number 3";
-          "Mod4+Shift+1" = "move to workspace number 1";
-          "Mod4+Shift+2" = "move to workspace number 2";
-          "Mod4+Shift+3" = "move to workspace number 3";
-          "Mod4+t" = "exec ${notificationFromBash "date-status"}";
-          "Mod4+v" = "exec ${notificationFromBash "sink-volume"}";
-        });
-        seat."*".hide_cursor = "when-typing enable";
-        window = {
-          border = 0;
-          titlebar = false;
-        };
+          "Mod4+w" = ''exec notify-send -t 3000 "$(workspace-status)"'';
+          "Mod4+t" = ''exec notify-send -t 3000 "$(tid)"'';
+          "Mod4+v" = ''exec notify-send -t 3000 "$(sink-volume)"'';
+        }
+        // generator (n: "Mod4+${n}") (n: "workspace number ${n}") workspaces
+        // generator (n: "Mod4+Shift+${n}") (n: "move to workspace number ${n}") workspaces;
+      seat."*".hide_cursor = "when-typing enable";
+      window = {
+        border = 0;
+        titlebar = false;
       };
-      xwayland = true;
     };
+    xwayland = true;
+  };
 }
