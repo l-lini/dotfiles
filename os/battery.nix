@@ -16,10 +16,12 @@ in
       serviceConfig = {
         Type = "simple";
         ExecStart = pkgs.writeShellScript "low-battery" ''
-          if (( 27 >= $(cat /sys/class/power_supply/BAT0/capacity)));
-          then ${pkgs.lib.getExe pkgs.pkgs.libnotify} --urgency=critical low battery;
+          level=$(cat /sys/class/power_supply/BAT0/capacity);
+          status=$(cat /sys/class/power_supply/BAT0/status);
+          if (( 10 >= $level ));
+          then ${pkgs.lib.getExe pkgs.pkgs.libnotify} --urgency=critical --time=60000 "$level $status";
           fi;
-        ''; # How the fuck does writeShellScript work? funky ass function.
+        '';
       };
     };
     timers.low-battery = {
