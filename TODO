@@ -12,26 +12,15 @@ autotiling sway (split horizontally maybe because of large font. only on power m
     ---|---
        |
     no more.
-
-Add host and user to prompt
-Make bull
-Stop autostart qsynth (fix merge adding workspaces to monster only)
-Neovim system clipboard cut
-Make nix lsp shut the fuck up
-Remove secrets (move to /persist)
-Switch all to zfs
-Modularize (home folder and os folder and hosts folder)
-Nicer flake.nix
-ssh hosts
-Make cli utility scripts into local package or github repo
-modularize sway config
-swerty
-Try own simple colortheme (maximum contrast)
-Git aliases
-Neovim force sudo (Don't warn about no write access)
 Add two workspaces on Monster for spotify and Qsynth (force them to always be there)
-Comic mono/Comic sans everywhere. Big size. Big contrast
-Clips
+Stop autostart qsynth (fix merge adding workspaces to monster only)
+modularize sway config
+Neovim system clipboard cut
+Neovim force sudo (Don't warn about no write access)
+Make nix lsp shut the fuck up
+Make sudo shut the fuck up
+Move /stay to ./keys.nix
+Make cli utility scripts into local package or github repo
 Bluetooth shortcut
 Notifs for info stuffs
 
