@@ -22,7 +22,14 @@
             command = "swayidle -w before-sleep 'swaylock' timeout 0 'swaylock'";
             always = true;
           }
+          {
+            command = "autotiling -l 1";
+            always = true;
+          }
         ];
+        sway-keybinds = {
+          "Mod4+a" = ''exec notify-send -t 3000 "$(batteri)"'';
+        };
       })
     ]
     ++ [

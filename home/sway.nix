@@ -5,6 +5,7 @@
     "3" = null;
   },
   sway-startup ? [ ],
+  sway-keybinds ? { },
 }:
 {
   lib,
@@ -49,11 +50,11 @@
     config = {
       startup = [
         {
-          command = "autotiling -l 1";
+          command = "swaync";
           always = true;
         }
         {
-          command = "swaync";
+          command = ''notify-send -t 5000 "Welcome!"'';
           always = true;
         }
       ]
@@ -104,13 +105,16 @@
           "Mod4+l" = "focus right";
           "Mod4+k" = "focus up";
           "Mod4+j" = "focus down";
-          "Mod4+w" = ''exec notify-send -t 3000 "$(workspace-status)"'';
+          "Mod4+w" =
+            ''exec notify-send -t 3000 "$(swaymsg -t get_workspaces -r | jq '.[] | select(.focused) | .num')"'';
+          "Mod4+r" = "exec skärmdump";
           "Mod4+t" = ''exec notify-send -t 3000 "$(tid)"'';
           "Mod4+v" = ''exec notify-send -t 3000 "$(sink-volume)"'';
           "Mod4+s" = "exec systemctl sleep";
         }
         // generator (n: "Mod4+${n}") (n: "workspace number ${n}") workspaces
-        // generator (n: "Mod4+Shift+${n}") (n: "move to workspace number ${n}") workspaces;
+        // generator (n: "Mod4+Shift+${n}") (n: "move to workspace number ${n}") workspaces
+        // sway-keybinds;
       seat."*".hide_cursor = "when-typing enable";
       window = {
         border = 0;

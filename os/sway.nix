@@ -1,16 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, scripts, ... }:
 
 {
   programs = {
-    steam.enable = true; # TODO! Fix random persistant lag
+    steam.enable = true;
     sway.enable = true;
-  };
-
-  # I hope it merges correctly by default
-  environment.shellAliases = {
-    arbetsplats = "swaymsg -t get_workspaces -r | jq \".[] | select(.focused) | .num\"";
-    placera = "autotiler -l 2"; # TODO different depending on system
-    "skärmdump" = "slurp | grim -g - - | wl-copy";
   };
 
   # Autostart sway
@@ -37,5 +30,6 @@
     firefox
     qutebrowser
     autotiling
+    scripts."skärmdump"
   ];
 }

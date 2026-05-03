@@ -23,7 +23,7 @@ elif [[ $1 == "name" ]]; then
         sed -nE "s/^[[:space:]]*alsa\.card_name = \"(.*)\"/\1/p" |
         sed "s/^[[:space:]]*//;s/[[:space:]]*$//"
 elif [[ $1 == "volume" ]]; then
-    wpctl get-volume "$2" | awk '{printf "%d%% %s\n", $2*100, $3}'
+    wpctl get-volume "$2" | awk '{printf "%d %s\n", $2*100, $3}'
 else
     echo "bruh, invalid args"
 fi

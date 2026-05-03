@@ -1,12 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, scripts, ... }:
 
-let
-  batteri = ''echo "$(cat /sys/class/power_supply/BAT0/capacity) $(cat /sys/class/power_supply/BAT0/status)"'';
-in
 {
-  environment.shellAliases = {
-    inherit batteri;
-  };
+  environment.systemPackages = [
+    scripts.batteri
+  ];
 
   systemd.user = {
     services.low-battery = {
@@ -16,10 +13,8 @@ in
       serviceConfig = {
         Type = "simple";
         ExecStart = pkgs.writeShellScript "low-battery" ''
-          level=$(cat /sys/class/power_supply/BAT0/capacity);
-          status=$(cat /sys/class/power_supply/BAT0/status);
-          if (( 10 >= $level )) && [[ "Charging" != $status ]];
-          then ${pkgs.lib.getExe pkgs.pkgs.libnotify} -t 60000 "$level $status";
+          if (( 10 >= $(batteri %) )) && [[ "Charging" != $(batteri status) ]];
+          then ${pkgs.lib.getExe pkgs.pkgs.libnotify} -t 60000 "$(batteri)";
           fi;
         '';
       };
