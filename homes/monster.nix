@@ -17,6 +17,16 @@
           "4" = "spotify";
           "5" = "qsynth";
         };
+        sway-startup = [
+          {
+            command = "spotify";
+            always = true;
+          }
+          {
+            command = "qsynth";
+            always = true;
+          }
+        ];
       })
     ];
 

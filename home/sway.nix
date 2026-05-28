@@ -58,14 +58,7 @@
           always = true;
         }
       ]
-      ++ sway-startup
-      ++ (
-        with builtins;
-        map (app: {
-          command = app;
-          always = true;
-        }) (filter isString (attrValues sway-workspaces))
-      );
+      ++ sway-startup;
       assigns =
         with builtins;
         mapAttrs (_: app: [
