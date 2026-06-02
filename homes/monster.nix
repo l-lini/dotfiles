@@ -22,10 +22,6 @@
             command = "qsynth";
             always = true;
           }
-          {
-            command = "spotify";
-            always = true;
-          }
         ];
       })
     ];
