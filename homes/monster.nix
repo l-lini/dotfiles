@@ -19,11 +19,11 @@
         };
         sway-startup = [
           {
-            command = "spotify";
+            command = "qsynth";
             always = true;
           }
           {
-            command = "qsynth";
+            command = "spotify";
             always = true;
           }
         ];
