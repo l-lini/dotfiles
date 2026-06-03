@@ -11,6 +11,7 @@
     builtins.map (x: ./../os + x) [
       /autologin.nix
       /nix.nix
+      /git.nix
       /users.nix
       /hardware.nix
       /packages.nix

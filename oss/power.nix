@@ -24,6 +24,7 @@
       /network-manager.nix
       /audio.nix
       /git.nix
+      /github.nix
       /nix.nix
       /users.nix
       /hardware.nix
