@@ -10,6 +10,7 @@
   imports =
     builtins.map (x: ./../os + x) [
       /autologin.nix
+      /allow-unfree.nix
       /nix.nix
       /git.nix
       /users.nix
