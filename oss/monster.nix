@@ -1,4 +1,4 @@
-{ inputs, ... }@args:
+{ ... }@args:
 
 {
   _module.args = {
@@ -9,6 +9,8 @@
 
   imports = builtins.map (x: ./../os + x) [
     /keyd.nix
+    /docker.nix
+    /alias.nix
     /allow-unfree.nix
     /autologin.nix
     /home-manager.nix
@@ -17,6 +19,7 @@
     /fonts.nix
     /audio.nix
     /git.nix
+    /github.nix
     /nix.nix
     /users.nix
     /hardware.nix

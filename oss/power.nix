@@ -11,6 +11,9 @@
   imports =
     builtins.map (x: ./../os + x) [
       /home-manager.nix
+      /docker.nix
+      /alias.nix
+      /lid.nix
       /keyd.nix
       /allow-unfree.nix
       /autologin.nix
@@ -21,6 +24,7 @@
       /network-manager.nix
       /audio.nix
       /git.nix
+      /github.nix
       /nix.nix
       /users.nix
       /hardware.nix

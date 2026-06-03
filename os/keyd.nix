@@ -14,6 +14,8 @@
             capslock = "esc";
             altgr = "layer(altgr)";
             "altgr+shift" = "layer(altgr+shift)";
+            "alt" = "layer(alt)";
+            "alt+shift" = "layer(alt+shift)";
           };
           altgr = {
             "[" = "å";
@@ -24,6 +26,14 @@
             "[" = "Å";
             "'" = "Ä";
             ";" = "Ö";
+          };
+          "alt" = {
+            "'" = "æ";
+            ";" = "ø";
+          };
+          "alt+shift" = {
+            "'" = "Æ";
+            ";" = "Ø";
           };
         };
       };

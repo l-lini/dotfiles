@@ -11,6 +11,7 @@
     builtins.map (x: ./../os + x) [
       /autologin.nix
       /nix.nix
+      /git.nix
       /users.nix
       /hardware.nix
       /packages.nix
@@ -22,6 +23,9 @@
       /neovim
     ]
     ++ [
+      (import ./../os/minecraft-server.nix {
+        port = 1337;
+      })
       (import ./../os/ssh-server.nix {
         port = 42069;
         interface = "enp5s0";

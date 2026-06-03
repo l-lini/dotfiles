@@ -21,8 +21,12 @@
     }@inputs:
     let
       util = import ./util.nix;
-      args = {
+      args = rec {
         inherit inputs util;
+        pkgs-unstable = import nixpkgs-unstable {
+          inherit system;
+          nixpkgs.allowUnfree = true;
+        };
         system = "x86_64-linux";
         os = util.dirToAttr ./os util.pathToName (path: _: import path);
         home = util.dirToAttr ./home util.pathToName (path: _: import path);
@@ -32,7 +36,17 @@
             builtins.trace "\nWARNING!!!: /stay doesn't exist, enable --impure please\n" { }
           else
             util.dirToAttr /stay builtins.baseNameOf (path: _: builtins.readFile path);
-        scripts = { };
+        scripts = util.dirToAttr ./scripts util.pathToName (
+          path: name:
+          (import nixpkgs {
+            inherit system;
+            nixpkgs.allowUnfree = true;
+          }).writeShellApplication
+            {
+              inherit name;
+              text = builtins.readFile path;
+            }
+        );
       };
     in
     {
