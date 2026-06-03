@@ -6,7 +6,6 @@
       /kitty.nix
       /swayidle.nix
       /keyd.nix
-      /qutebrowser.nix
       /swaylock.nix
       /wofi.nix
     ]

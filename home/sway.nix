@@ -37,7 +37,6 @@
 {
   imports = [
     ./kitty.nix
-    ./qutebrowser.nix
     ./wofi.nix
   ];
 
@@ -91,8 +90,8 @@
         {
           "Mod4+Return" = "exec kitty";
           "Mod4+Space" = "exec wofi --show run";
-          "Mod4+b" = "exec qutebrowser";
-          "Mod4+p" = "exec qutebrowser --target private-window";
+          "Mod4+b" = "exec firefox";
+          "Mod4+p" = "exec firefox --private-window";
           "Mod4+Backspace" = "kill";
           "Mod4+h" = "focus left";
           "Mod4+l" = "focus right";
