@@ -1,3 +1,6 @@
+make program shortcuts (WIN+d for discord)
+programs have their own workspace and start automatically if not started
+shortcut info screen (save it somwewhere globally in nix)
 autotiling sway (split horizontally maybe because of large font. only on power maybe.)
     first
        |
