@@ -32,7 +32,6 @@
 # TODO! Fix qutebrowser not working with SEB, Ladok etc ...
 # TODO! Fix Volume Mute and Mic Mute Lights
 # TODO! Fix notification delay (send a notification on boot with a nice message! emojis and stuff!)
-# TODO! Replace Caps-Lock
 
 {
   imports = [
@@ -107,7 +106,7 @@
         // generator (n: "Mod4+${n}") (n: "workspace number ${n}") workspaces
         // generator (n: "Mod4+Shift+${n}") (n: "move to workspace number ${n}") workspaces
         // sway-keybinds;
-      seat."*".hide_cursor = "when-typing enable";
+      # seat."*".hide_cursor = "when-typing enable";
       window = {
         border = 0;
         titlebar = false;
