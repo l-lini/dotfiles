@@ -11,6 +11,7 @@
 
   environment.systemPackages = with pkgs; [
     prismlauncher
+    obsidian
     clonehero
     jq
     minitube

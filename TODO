@@ -25,4 +25,5 @@ Move /stay to ./keys.nix
 Make cli utility scripts into local package or github repo
 Bluetooth shortcut
 Notifs for info stuffs
+Auto wifi passwords from folder of passwords
 
