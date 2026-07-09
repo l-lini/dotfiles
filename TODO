@@ -20,6 +20,8 @@ Git default pull/push with current branch
 Git default pull with rebase
 Fix terminal
 Switch terminal so it not do the ssh stupidly
+Vim terminal
+Better contrast in autocomplete terminal
 fuzzel (big text)
 fix mouse lock
 modularize sway config
