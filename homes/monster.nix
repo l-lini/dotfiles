@@ -6,6 +6,7 @@
       /keyd.nix
       /kitty.nix
       /wofi.nix
+      /fluidsynth.nix
     ]
     ++ [
       (import ./../home/sway.nix {

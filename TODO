@@ -12,17 +12,19 @@ autotiling sway (split horizontally maybe because of large font. only on power m
     ---|---
        |
     no more.
+Bigger mouse
 Git default pull/push with current branch
 Git default pull with rebase
-fuzzel
+Fix terminal
+Switch terminal so it not do the ssh stupidly
+fuzzel (big text)
 fix mouse lock
 modularize sway config
 Neovim system clipboard cut
 Neovim force sudo (Don't warn about no write access)
 Make nix lsp shut the fuck up
 Make sudo shut the fuck up
-Move /stay to ./keys.nix
-Make cli utility scripts into local package or github repo
+Move /stay to ./keys.nix (gitignore it of course)
 Bluetooth shortcut
 Notifs for info stuffs
 Auto wifi passwords from folder of passwords

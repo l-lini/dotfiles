@@ -20,7 +20,6 @@
     heroic
     r2modman
     prusa-slicer
-    qsynth
     pavucontrol
     inkscape
     mupdf

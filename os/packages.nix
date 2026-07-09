@@ -15,6 +15,7 @@
     [
       inputs.chalmers-search-exam.packages.${system}.default
       gcc
+      yt-dlp
       glow
       dust
       unzip

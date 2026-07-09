@@ -15,6 +15,7 @@
     /autologin.nix
     /home-manager.nix
     /networking.nix
+    /network-manager.nix
     /sway.nix
     /fonts.nix
     /audio.nix
