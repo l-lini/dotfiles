@@ -9,6 +9,7 @@
 
   imports = builtins.map (x: ./../os + x) [
     /keyd.nix
+    /tmux.nix
     /docker.nix
     /alias.nix
     /allow-unfree.nix

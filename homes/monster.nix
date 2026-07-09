@@ -1,4 +1,4 @@
-{ ... }:
+{ username, homeDirectory, ... }:
 
 {
   imports =
@@ -26,8 +26,8 @@
       })
     ];
 
-  home.username = "lini";
-  home.homeDirectory = /home/lini;
+  home.username = username;
+  home.homeDirectory = homeDirectory;
 
   home.stateVersion = "25.11";
 }

@@ -30,6 +30,7 @@ Neovim force sudo (Don't warn about no write access)
 Make nix lsp shut the fuck up
 Make sudo shut the fuck up
 Move /stay to ./keys.nix (gitignore it of course)
+    but actually do sops.nix though
 fix bluetooth memory
 Bluetooth shortcut
 fix spotify memory

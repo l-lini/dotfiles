@@ -1,4 +1,4 @@
-{ ... }:
+{ username, ... }:
 
 {
   services.openssh = {
@@ -8,6 +8,6 @@
       Host bull
         Hostname alteborn.se
         Port 42069
-        User lini
+        User ${username}
     ";
 }

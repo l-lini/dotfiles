@@ -1,4 +1,9 @@
-{ inputs, ... }:
+{
+  inputs,
+  username,
+  homeDirectory,
+  ...
+}:
 
 {
   imports =
@@ -35,8 +40,8 @@
       inputs.dat566.homeModules.vscode
     ];
 
-  home.username = "lini";
-  home.homeDirectory = /home/lini;
+  home.username = username;
+  home.homeDirectory = homeDirectory;
 
   home.stateVersion = "25.11";
 }

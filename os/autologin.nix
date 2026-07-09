@@ -1,8 +1,8 @@
-{ ... }:
+{ username, ... }:
 
 {
   services.getty = {
-    autologinUser = "lini";
+    autologinUser = username;
     autologinOnce = true;
   };
 

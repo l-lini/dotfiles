@@ -1,4 +1,4 @@
-{ secrets, ... }:
+{ username, secrets, ... }:
 
 let
   escapeEnv = builtins.replaceStrings [ "$" ] [ "$$" ];
@@ -24,7 +24,7 @@ let
   };
 in
 {
-  users.users.lini.extraGroups = [
+  users.users.${username}.extraGroups = [
     "networkmanager"
   ];
   networking.networkmanager = {

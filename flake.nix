@@ -1,7 +1,4 @@
 {
-  # TODO switch to sops-nix
-  description = "lini's system configuration";
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -30,6 +27,8 @@
         system = "x86_64-linux";
         os = util.dirToAttr ./os util.pathToName (path: _: import path);
         home = util.dirToAttr ./home util.pathToName (path: _: import path);
+        username = "lini";
+        homeDirectory = /home/lini;
         secrets =
           if !builtins.pathExists /stay then
             builtins.trace "\nWARNING!!!: /stay doesn't exist, enable --impure please\n" { }
@@ -61,7 +60,7 @@
           ];
         }
       );
-      homeConfigurations = util.dirToAttr ./homes (path: "lini@${util.pathToName path}") (
+      homeConfigurations = util.dirToAttr ./homes (path: "${args.username}@${util.pathToName path}") (
         path: hostName:
         home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs {
