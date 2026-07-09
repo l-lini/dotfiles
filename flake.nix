@@ -30,7 +30,6 @@
         system = "x86_64-linux";
         os = util.dirToAttr ./os util.pathToName (path: _: import path);
         home = util.dirToAttr ./home util.pathToName (path: _: import path);
-        pencils = import ./pencils.nix;
         secrets =
           if !builtins.pathExists /stay then
             builtins.trace "\nWARNING!!!: /stay doesn't exist, enable --impure please\n" { }

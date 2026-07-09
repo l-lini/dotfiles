@@ -11,10 +11,7 @@
     builtins.map (x: ./../os + x) [
       /autologin.nix
       /allow-unfree.nix
-<<<<<<< HEAD
-=======
       /networking.nix
->>>>>>> dev
       /nix.nix
       /git.nix
       /users.nix
