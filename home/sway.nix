@@ -11,27 +11,6 @@
   lib,
   ...
 }:
-# Make stuff look nice: (Comic Font for readability) (Nice Colorscheme) (Simple)
-# TODO change mirror screen on button press is on nixos wiki for sway under tips and tricks.
-# TODO Keybind for activity bar
-# TODO Network status keybind
-# TODO keybinds keybind
-# TODO Fix double lock
-# TODO! Make Login nice
-# TODO! Make Launcher nice
-# TODO! Make Launcher always on top
-# TODO! Make neovim nice
-# TODO! Make Audio Interface nice (Pipewire thingy instead?)
-# TODO! Make Network Interface nice
-# TODO! Make Sway nice
-#   TODO! (Nice Notifications)
-#   TODO! (Nice Background)
-# TODO! Make Browser nice
-# TODO! Low battery notification
-# TODO! Fix qutebrowser crashing
-# TODO! Fix qutebrowser not working with SEB, Ladok etc ...
-# TODO! Fix Volume Mute and Mic Mute Lights
-# TODO! Fix notification delay (send a notification on boot with a nice message! emojis and stuff!)
 
 {
   imports = [

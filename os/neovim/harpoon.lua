@@ -1,5 +1,3 @@
--- not working idk why
--- TODO fix it
 local mark = require 'harpoon.mark'
 local ui = require 'harpoon.ui'
 vim.keymap.set("n", "<leader>a", mark.add_file)

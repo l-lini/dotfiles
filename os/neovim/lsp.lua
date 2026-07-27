@@ -53,5 +53,4 @@ cmp.setup({
     })
 })
 
--- lsp stuffs TODO fix
 vim.keymap.set("n", "<leader>d", function() vim.diagnostic.open_float() end)

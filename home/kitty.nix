@@ -1,9 +1,3 @@
-# TODO Command history Search. Me forgor often ); CTRL-R???
-# TODO tmux ?
-# TODO Fully fledged Vim Motions (Select text etc ...)
-# TODO remove mouse from kitty
-# TODO same theme in neovim
-
 { util, config, ... }:
 
 {

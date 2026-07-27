@@ -1,5 +1,3 @@
-# TODO Bluetooth auto connect to headphones
-# TODO make sway require this audio module
 { pkgs, scripts, ... }:
 
 {
