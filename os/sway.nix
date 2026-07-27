@@ -14,6 +14,7 @@
     obsidian
     clonehero
     jq
+    qsynth
     minitube
     spotify
     prismlauncher
