@@ -32,6 +32,7 @@ in
     ensureProfiles.profiles = {
       Merkurius = createWifi "Merkurius";
       Lini = createWifi "Lini";
+      SkyNet = createWifi "SkyNet";
       eduroam = with createWifi "eduroam"; {
         inherit
           wifi
