@@ -4,9 +4,6 @@
 }@args:
 
 {
-  environment.shellAliases = {
-    v = "vi";
-  };
   programs.neovim = {
     enable = true;
     defaultEditor = true;
