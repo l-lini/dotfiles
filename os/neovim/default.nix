@@ -45,5 +45,6 @@
     asm-lsp
     bash-language-server
     ccls
+    rust-analyzer
   ];
 }
