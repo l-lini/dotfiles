@@ -38,6 +38,7 @@
 
   environment.systemPackages = with pkgs; [
     nil
+    rustfmt
     rust-analyzer
     cargo
     lua-language-server
