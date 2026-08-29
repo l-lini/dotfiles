@@ -15,6 +15,9 @@ vim.keymap.set("n", "<C-e>", function()
 		})
 	end
 end)
+vim.keymap.set("n", "<C-w>", function()
+	vim.opt.wrap = not vim.opt.wrap:get()
+end)
 
 vim.diagnostic.config({
 	signs = false,
