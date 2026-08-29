@@ -16,8 +16,8 @@
       packages.myVimPackage = with pkgs.vimPlugins; {
         start = [
           nvim-treesitter.withAllGrammars
-	  nvim-lspconfig
-	  render-markdown-nvim
+          nvim-lspconfig
+          render-markdown-nvim
           # telescope-nvim
           # harpoon
           # undotree
@@ -37,13 +37,14 @@
   };
 
   environment.systemPackages = with pkgs; [
-    # java-language-server
     nil
+    rust-analyzer
+    cargo
     lua-language-server
+    # java-language-server
     # ripgrep
     # asm-lsp
     # bash-language-server
     # ccls
-    # rust-analyzer
   ];
 }
