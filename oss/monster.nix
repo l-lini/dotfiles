@@ -8,6 +8,7 @@
   };
 
   imports = builtins.map (x: ./../os + x) [
+    /sudo.nix
     /keyd.nix
     /tmux.nix
     /docker.nix
