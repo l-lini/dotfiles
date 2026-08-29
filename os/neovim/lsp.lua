@@ -15,13 +15,13 @@ local lsps = {
     { 'asm-lsp',              {} },
     { 'ccls',                 {} },
     { 'bash-lsp',             {} },
-    { 'rust-analyzer',
-        {
-            cmd = { "rust-analyzer" },
-            root_markers = { ".git", "Cargo.toml" },
-            filetypes = { "rs", "rust" },
-        }
-    },
+    -- { 'rust-analyzer',
+    --     {
+    --         cmd = { "rust-analyzer" },
+    --         root_markers = { ".git", "Cargo.toml" },
+    --         filetypes = { "rs", "rust" },
+    --     }
+    -- },
 }
 
 for _, pair in pairs(lsps) do
@@ -60,4 +60,4 @@ cmp.setup({
     })
 })
 
-vim.keymap.set("n", "<leader>d", function() vim.diagnostic.open_float() end)
+vim.keymap.set("n", "<leader>e", function() vim.diagnostic.open_float() end)

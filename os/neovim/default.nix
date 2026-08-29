@@ -1,7 +1,7 @@
 {
   pkgs,
   ...
-}@args:
+}:
 
 {
   programs.neovim = {
@@ -10,25 +10,23 @@
     viAlias = true;
     vimAlias = true;
     configure = {
-      customLuaRC = import ./combineLua.nix args;
+      customLuaRC = builtins.readFile ./init.lua;
       packages.myVimPackage = with pkgs.vimPlugins; {
         start = [
           nvim-treesitter.withAllGrammars
-          tokyonight-nvim
-          nvim-lspconfig
-          telescope-nvim
-          harpoon
-          undotree
-          vim-fugitive
-          nvim-cmp
-          cmp-buffer
-          cmp-path
-          cmp_luasnip
-          cmp-nvim-lsp
-          cmp-nvim-lua
-          luasnip
-          friendly-snippets
-          surround-nvim
+          # telescope-nvim
+          # harpoon
+          # undotree
+          # vim-fugitive
+          # nvim-cmp
+          # cmp-buffer
+          # cmp-path
+          # cmp_luasnip
+          # cmp-nvim-lsp
+          # cmp-nvim-lua
+          # luasnip
+          # friendly-snippets
+          # surround-nvim
         ];
       };
     };
@@ -38,13 +36,13 @@
   environment.variables.EDITOR = "nvim";
 
   environment.systemPackages = with pkgs; [
-    java-language-server
+    # java-language-server
     nil
     lua-language-server
-    ripgrep
-    asm-lsp
-    bash-language-server
-    ccls
-    rust-analyzer
+    # ripgrep
+    # asm-lsp
+    # bash-language-server
+    # ccls
+    # rust-analyzer
   ];
 }
