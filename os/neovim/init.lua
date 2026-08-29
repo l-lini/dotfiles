@@ -1,6 +1,25 @@
 -- keybinds
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
+vim.keymap.set("n", "<C-e>", function()
+	local signs = vim.diagnostic.config().signs
+	if signs then
+		vim.diagnostic.config({
+			signs = false,
+			underline = false,
+		})
+	else
+		vim.diagnostic.config({
+			signs = true,
+			underline = true,
+		})
+	end
+end)
+
+vim.diagnostic.config({
+	signs = false,
+	underline = false,
+})
 
 -- lsp
 vim.lsp.enable({ 'nil', 'lua_ls', 'rust_analyzer' })
@@ -27,7 +46,8 @@ vim.api.nvim_create_autocmd("Filetype", {
 	end,
 })
 
-colors = {
+-- colors
+for group, color in pairs({
 	red            = "#ff3d00",
 	orange         = "#e58e44",
 	green          = "#77b886",
@@ -82,8 +102,6 @@ colors = {
 	diag_warn      = "#fab387",
 	diag_info      = "#89dceb",
 	diag_hint      = "#b4befe",
-}
-
-for group, color in pairs(colors) do
+}) do
 	vim.api.nvim_set_hl(0, "@" .. group, { fg = color })
 end
