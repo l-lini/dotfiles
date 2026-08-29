@@ -4,6 +4,8 @@
 }:
 
 {
+  environment.variables.EDITOR = "nvim";
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -14,6 +16,8 @@
       packages.myVimPackage = with pkgs.vimPlugins; {
         start = [
           nvim-treesitter.withAllGrammars
+	  nvim-lspconfig
+	  render-markdown-nvim
           # telescope-nvim
           # harpoon
           # undotree
@@ -31,9 +35,6 @@
       };
     };
   };
-
-  # Set the default editor to neovim
-  environment.variables.EDITOR = "nvim";
 
   environment.systemPackages = with pkgs; [
     # java-language-server
