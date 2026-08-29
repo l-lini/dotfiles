@@ -1,24 +1,18 @@
 -- keybinds
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
 vim.keymap.set("n", "<C-e>", function()
-	local signs = vim.diagnostic.config().signs
-	if signs then
-		vim.diagnostic.config({
-			signs = false,
-			underline = false,
-		})
-	else
-		vim.diagnostic.config({
-			signs = true,
-			underline = true,
-		})
-	end
+	vim.diagnostic.config({
+		underline = not vim.diagnostic.config().underline,
+	})
 end)
 vim.keymap.set("n", "<C-w>", function()
 	vim.opt.wrap = not vim.opt.wrap:get()
 end)
 vim.opt.wrap = false
+
+-- Remove netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 vim.diagnostic.config({
 	signs = false,
