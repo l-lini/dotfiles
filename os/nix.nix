@@ -1,11 +1,15 @@
 { username, hostName, ... }:
 
 {
-  environment.shellAliases = {
-    test-nixos = "sudo nixos-rebuild test --impure --flake .#${hostName}";
-    switch-nixos = "sudo nixos-rebuild switch --impure --flake .#${hostName}";
-    switch-home = "home-manager switch --flake .#${username}@${hostName}";
-  };
+  environment.shellAliases =
+    let
+      config_path = ./..;
+    in
+    {
+      test-nixos = "sudo nixos-rebuild test --impure --flake ${config_path}#${hostName}";
+      switch-nixos = "sudo nixos-rebuild switch --impure --flake ${config_path}#${hostName}";
+      switch-home = "home-manager switch --flake ${config_path}#${username}@${hostName}";
+    };
   nix = {
     settings.experimental-features = [
       "nix-command"
