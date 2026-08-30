@@ -1,23 +1,22 @@
 -- keybinds
 vim.g.mapleader = " "
+vim.diagnostic.config({
+	signs = false,
+	underline = false,
+})
 vim.keymap.set("n", "<C-e>", function()
 	vim.diagnostic.config({
 		underline = not vim.diagnostic.config().underline,
 	})
 end)
+vim.opt.wrap = false
 vim.keymap.set("n", "<C-w>", function()
 	vim.opt.wrap = not vim.opt.wrap:get()
 end)
-vim.opt.wrap = false
 
 -- Remove netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
-vim.diagnostic.config({
-	signs = false,
-	underline = false,
-})
 
 -- lsp
 vim.lsp.enable({ 'nil', 'lua_ls', 'rust_analyzer' })
