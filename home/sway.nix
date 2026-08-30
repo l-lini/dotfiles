@@ -20,7 +20,18 @@
 
   programs.jq.enable = true;
 
-  services.swaync.enable = true;
+  services = {
+    swaync.enable = true;
+    autotiling = {
+      enable = true;
+      extraArgs = [
+        "--splitratio"
+        "2"
+        "-l"
+        "2"
+      ];
+    };
+  };
 
   wayland.windowManager.sway = {
     enable = true;

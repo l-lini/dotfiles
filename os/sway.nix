@@ -32,7 +32,6 @@
     libnotify
     firefox
     qutebrowser
-    autotiling
     scripts."skärmdump"
   ];
 }
