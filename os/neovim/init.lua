@@ -25,7 +25,15 @@ vim.lsp.config('nil', {
 	cmd = { "nil" },
 	filetypes = { "nix" },
 })
-vim.lsp.config('lua_ls', {})
+vim.lsp.config('rust_analyzer', {
+	settings = {
+		diagnostics = {
+			styleLints = {
+				enable = true,
+			},
+		},
+	},
+})
 vim.lsp.config('*', {
 	root_markers = { '.git' },
 })
