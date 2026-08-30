@@ -81,6 +81,7 @@
           "Mod4+t" = ''exec notify-send -t 3000 "$(tid)"'';
           "Mod4+v" = ''exec notify-send -t 3000 "$(sink-volume)"'';
           "Mod4+s" = "exec systemctl sleep";
+          "Mod4+x" = "layout toggle split";
         }
         // generator (n: "Mod4+${n}") (n: "workspace number ${n}") workspaces
         // generator (n: "Mod4+Shift+${n}") (n: "move to workspace number ${n}") workspaces
