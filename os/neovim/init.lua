@@ -23,6 +23,8 @@ vim.api.nvim_create_autocmd('UIEnter', {
 })
 
 vim.opt.laststatus = 0
+vim.opt.cmdheight = 0
+vim.opt.ruler = false
 
 -- Remove netrw
 vim.g.loaded_netrw = 1
