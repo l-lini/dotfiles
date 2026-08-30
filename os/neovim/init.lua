@@ -15,6 +15,13 @@ vim.keymap.set("n", "<C-w>", function()
 	vim.opt.wrap = not vim.opt.wrap:get()
 end)
 
+-- schedule sync of OS clipboard (it can be slow)
+vim.api.nvim_create_autocmd('UIEnter', {
+	callback = function()
+		vim.o.clipboard = 'unnamedplus'
+	end,
+})
+
 -- Remove netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
