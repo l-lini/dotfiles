@@ -60,9 +60,11 @@ vim.api.nvim_create_autocmd("Filetype", {
 })
 
 -- colors
-vim.api.nvim_set_hl(0, "Normal", { fg = "#ffffff", bg = "#000000" })
-vim.api.nvim_set_hl(0, "Identifier", { fg = "#ffffff" })
-vim.api.nvim_set_hl(0, "Function", { fg = "#ffffff" })
-vim.api.nvim_set_hl(0, "Special", { fg = "#ffffff" })
-vim.api.nvim_set_hl(0, "String", { fg = "#ffffff" })
-vim.api.nvim_set_hl(0, "Macro", { fg = "#ffffff" })
+vim.api.nvim_set_hl(0, "Normal", { bg = "#000000" })
+vim.api.nvim_set_hl(0, "Diagnostic", { fg = "#ff0000" })
+vim.api.nvim_set_hl(0, "Identifier", { fg = "#00ff00" })
+vim.api.nvim_set_hl(0, "Comment", { fg = "#aaaaaa" })
+vim.api.nvim_set_hl(0, "Function", { fg = "#0000ff" })
+vim.api.nvim_set_hl(0, "Special", { fg = "#00ffff" })
+vim.api.nvim_set_hl(0, "String", { fg = "#bbbb00" })
+vim.api.nvim_set_hl(0, "Macro", { fg = "#bb00bb" })
