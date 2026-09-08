@@ -1,4 +1,4 @@
-{ util, config, ... }:
+{ color, config, ... }:
 
 {
   programs.zsh.initContent = config.programs.zsh.shellInit;
@@ -12,19 +12,13 @@
       font_size = 19.0;
       # clear_all_mouse_actions = "yes";
 
-      foreground = "#${util.pencil.text}";
-      background = "#${util.pencil.void}";
-      cursor_text_color = "#${util.pencil.void}";
+      foreground = "#${color.foreground}";
+      background = "#${color.background}";
+      cursor_text_color = "#${color.background}";
       selection_foreground = "none";
-      selection_background = "#${util.pencil.void}";
-      url_color = "#${util.pencil.comment}";
+      selection_background = "#${color.background}";
+      url_color = "#${color.background}";
 
     }
-    // builtins.listToAttrs (
-      builtins.genList (i: {
-        name = "color${builtins.toString i}";
-        value = "#${builtins.elemAt util.pencil.console_colors i}";
-      }) (builtins.length util.pencil.console_colors)
-    );
   };
 }

@@ -16,6 +16,5 @@
   console = {
     earlySetup = true;
     font = "latarcyrheb-sun32"; # Enums, why are they not enums );
-    colors = util.pencil.console_colors;
   };
 }

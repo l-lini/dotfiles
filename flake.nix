@@ -17,24 +17,25 @@
       ...
     }@inputs:
     let
-      util = import ./util.nix;
+      path = import ./lib/path.nix;
       args = rec {
-        inherit inputs util;
+        inherit inputs path;
+        colors = import ./lib/color.nix;
         pkgs-unstable = import nixpkgs-unstable {
           inherit system;
           nixpkgs.allowUnfree = true;
         };
         system = "x86_64-linux";
-        os = util.dirToAttr ./os util.pathToName (path: _: import path);
-        home = util.dirToAttr ./home util.pathToName (path: _: import path);
+        os = path.dirPathsToAttr ./os path.pathToName (path: _: import path);
+        home = path.dirPathsToAttr ./home path.pathToName (path: _: import path);
         username = "lini";
         homeDirectory = /home/lini;
         secrets =
           if !builtins.pathExists /stay then
             builtins.trace "\nWARNING!!!: /stay doesn't exist, enable --impure please\n" { }
           else
-            util.dirToAttr /stay builtins.baseNameOf (path: _: builtins.readFile path);
-        scripts = util.dirToAttr ./scripts util.pathToName (
+            path.dirPathsToAttr /stay builtins.baseNameOf (path: _: builtins.readFile path);
+        scripts = path.dirPathsToAttr ./scripts path.pathToName (
           path: name:
           (import nixpkgs {
             inherit system;
@@ -48,7 +49,7 @@
       };
     in
     {
-      nixosConfigurations = util.dirToAttr ./oss util.pathToName (
+      nixosConfigurations = path.dirPathsToAttr ./oss path.pathToName (
         path: hostName:
         nixpkgs.lib.nixosSystem {
           specialArgs = {
@@ -60,19 +61,21 @@
           ];
         }
       );
-      homeConfigurations = util.dirToAttr ./homes (path: "${args.username}@${util.pathToName path}") (
-        path: hostName:
-        home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs {
-            inherit (args) system;
-            config.allowUnfree = true;
-          };
-          extraSpecialArgs = {
-            inherit hostName;
-          }
-          // args;
-          modules = [ path ];
-        }
-      );
+      homeConfigurations =
+        path.dirPathsToAttr ./homes (path: "${args.username}@${path.pathToName path}")
+          (
+            path: hostName:
+            home-manager.lib.homeManagerConfiguration {
+              pkgs = import nixpkgs {
+                inherit (args) system;
+                config.allowUnfree = true;
+              };
+              extraSpecialArgs = {
+                inherit hostName;
+              }
+              // args;
+              modules = [ path ];
+            }
+          );
     };
 }
