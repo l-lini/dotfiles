@@ -3,7 +3,7 @@
 {
   environment.shellAliases =
     let
-      config_path = ./..;
+      config_path = "/home/lini/nixos";
     in
     {
       test-nixos = "sudo nixos-rebuild test --impure --flake ${config_path}#${hostName}";
