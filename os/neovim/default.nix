@@ -1,5 +1,6 @@
 {
   pkgs,
+  # TODO: depend on global color
   ...
 }:
 
