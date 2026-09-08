@@ -4,12 +4,12 @@ vim.diagnostic.config({
 	signs = false,
 	underline = false,
 })
-vim.keymap.set("n", "<C-e>", function()
+vim.keymap.set("n", "<leader>e", function()
 	vim.diagnostic.config({
 		underline = not vim.diagnostic.config().underline,
 	})
 end)
-vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
+vim.keymap.set("n", "<C-d>", vim.diagnostic.open_float)
 vim.opt.wrap = false
 vim.keymap.set("n", "<C-w>", function()
 	vim.opt.wrap = not vim.opt.wrap:get()
