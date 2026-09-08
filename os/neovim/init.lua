@@ -9,7 +9,7 @@ vim.keymap.set("n", "<C-e>", function()
 		underline = not vim.diagnostic.config().underline,
 	})
 end)
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
+vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
 vim.opt.wrap = false
 vim.keymap.set("n", "<C-w>", function()
 	vim.opt.wrap = not vim.opt.wrap:get()
