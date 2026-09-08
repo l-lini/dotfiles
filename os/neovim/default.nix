@@ -19,7 +19,9 @@
           nvim-treesitter.withAllGrammars
           nvim-lspconfig
           render-markdown-nvim
-          # telescope-nvim
+          telescope-nvim
+          telescope-file-browser-nvim
+          plenary-nvim # dependency for telescope-file-browser
           # harpoon
           # undotree
           # vim-fugitive
@@ -43,8 +45,8 @@
     rust-analyzer
     cargo
     lua-language-server
+    ripgrep
     # java-language-server
-    # ripgrep
     # asm-lsp
     # bash-language-server
     # ccls

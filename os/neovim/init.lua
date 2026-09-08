@@ -9,10 +9,23 @@ vim.keymap.set("n", "<leader>e", function()
 		underline = not vim.diagnostic.config().underline,
 	})
 end)
-vim.keymap.set("n", "<C-d>", vim.diagnostic.open_float)
+vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
 vim.opt.wrap = false
 vim.keymap.set("n", "<C-w>", function()
 	vim.opt.wrap = not vim.opt.wrap:get()
+end)
+
+-- telescope
+require("telescope").setup {
+	extensions = {
+		file_browser = {
+			hijack_netrw = true
+		}
+	}
+}
+require("telescope").load_extension "file_browser"
+vim.keymap.set("n", "<C-e>", function()
+	require("telescope").extensions.file_browser.file_browser()
 end)
 
 -- schedule sync of OS clipboard (it can be slow)
@@ -25,10 +38,6 @@ vim.api.nvim_create_autocmd('UIEnter', {
 vim.opt.laststatus = 0
 vim.opt.cmdheight = 0
 vim.opt.ruler = false
-
--- Remove netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 
 -- lsp
 vim.lsp.enable({ 'nil', 'lua_ls', 'rust_analyzer' })
