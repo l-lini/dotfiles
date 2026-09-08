@@ -22,6 +22,7 @@
           telescope-nvim
           telescope-file-browser-nvim
           plenary-nvim # dependency for telescope-file-browser
+          vim-sleuth
           # harpoon
           # undotree
           # vim-fugitive
